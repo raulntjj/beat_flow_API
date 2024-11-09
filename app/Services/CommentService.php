@@ -43,11 +43,9 @@ class CommentService {
         try {
             $commentPost = DB::transaction(function() use ($request) { 
                 return Comment::create([
+                    'post_id' => $request['post_id'],
                     'user_id' => $request['user_id'],
                     'content' => $request['content'],
-                    'visibility' => $request['visibility'],
-                    'media_type' => $request['media_type'],
-                    'media_path' => $request['media_path'],
                 ]);     
             });
 
@@ -67,11 +65,9 @@ class CommentService {
                 }
 
                 $commentPost->fill([
-                    'user_id' => $request['user_id'] ?? $user_id->user_id,
+                    'post_id' => $request['post_id'] ?? $commentPost->post_id,
+                    'user_id' => $request['user_id'] ?? $commentPost->user_id,
                     'content' => $request['content'] ?? $commentPost->content,
-                    'visibility' => $request['visibility'] ?? $commentPost->visibility,
-                    'media_type' => $request['media_type'] ?? $commentPost->media_type,
-                    'media_path' => $request['media_path'] ?? $commentPost->media_path,
                 ])->save();
 
                 return $commentPost;

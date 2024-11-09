@@ -11,7 +11,7 @@ class StoreNotificationRequest extends FormRequest {
 
     public function rules(): array {
         return [
-            'post_id' => 'required|exists:posts,id',
+            'user_id' => 'required|exists:users,id',
             'type' => 'required|in:follow,like,comment',
             'is_read' => 'required|boolean',
             'content' => 'required|string|max:255',
@@ -20,8 +20,8 @@ class StoreNotificationRequest extends FormRequest {
 
     public function messages(): array {
         return [
-            'post_id.required' => 'The post_id field is required.',
-            'post_id.exists' => 'The selected post does not exist.',
+            'user_id.required' => 'The user_id field is required.',
+            'user_id.exists' => 'The selected user does not exist.',
             'type.required' => 'The type field is required.',
             'type.in' => 'The type must be one of: follow, like, comment.',
             'is_read.required' => 'The is_read field is required.',

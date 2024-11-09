@@ -13,7 +13,7 @@ class FollowService {
                 return Follow::create([
                     'followed_id' => $request['followed_id'],
                     'follower_id' => $request['follower_id'],
-                ]);     
+                ]);
             });
 
             return response()->json(['status' => 'success', 'response' => $follow]);

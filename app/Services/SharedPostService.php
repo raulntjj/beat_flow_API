@@ -43,11 +43,9 @@ class SharedPostService {
         try {
             $sharedPost = DB::transaction(function() use ($request) { 
                 return SharedPost::create([
+                    'post_id' => $request['post_id'],
                     'user_id' => $request['user_id'],
-                    'content' => $request['content'],
-                    'visibility' => $request['visibility'],
-                    'media_type' => $request['media_type'],
-                    'media_path' => $request['media_path'],
+                    'comment' => $request['comment'],
                 ]);     
             });
 
@@ -67,11 +65,9 @@ class SharedPostService {
                 }
 
                 $sharedPost->fill([
-                    'user_id' => $request['user_id'] ?? $user_id->user_id,
-                    'content' => $request['content'] ?? $sharedPost->content,
-                    'visibility' => $request['visibility'] ?? $sharedPost->visibility,
-                    'media_type' => $request['media_type'] ?? $sharedPost->media_type,
-                    'media_path' => $request['media_path'] ?? $sharedPost->media_path,
+                    'post_id' => $request['post_id'] ?? $sharedPost->post_id,
+                    'user_id' => $request['user_id'] ?? $sharedPost->user_id,
+                    'comment' => $request['comment'] ?? $sharedPost->comment,
                 ])->save();
 
                 return $sharedPost;

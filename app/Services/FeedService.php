@@ -43,8 +43,9 @@ class FeedService {
         try {
             $feed = DB::transaction(function() use ($request) { 
                 return Feed::create([
-                    'name' => $request['name'],
-                    'slug' => $request['slug'],
+                    'post_id' => $request['post_id'],
+                    'user_id' => $request['user_id'],
+                    'shared_post_id' => $request['user_id'],
                 ]);     
             });
 
@@ -64,9 +65,10 @@ class FeedService {
                 }
 
                 $feed->fill([
-                    'name' => $request['name'] ?? $feed->name,
-                    'slug' => $request['slug'] ?? $feed->slug,
-                ])->save();
+                    'post_id' => $request['post_id'] ?? $feed->post_id,
+                    'user_id' => $request['user_id'] ?? $feed->user_id,
+                    'shared_post_id' => $request['shared_post_id'] ?? $feed->shared_post_id,
+                    ])->save();
 
                 return $feed;
             });

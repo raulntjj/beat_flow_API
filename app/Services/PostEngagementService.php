@@ -43,11 +43,9 @@ class PostEngagementService {
         try {
             $engagement = DB::transaction(function() use ($request) { 
                 return PostEngagement::create([
+                    'post_id' => $request['post_id'],
                     'user_id' => $request['user_id'],
-                    'content' => $request['content'],
-                    'visibility' => $request['visibility'],
-                    'media_type' => $request['media_type'],
-                    'media_path' => $request['media_path'],
+                    'type' => $request['type'],
                 ]);     
             });
 
@@ -67,11 +65,9 @@ class PostEngagementService {
                 }
 
                 $engagement->fill([
-                    'user_id' => $request['user_id'] ?? $user_id->user_id,
-                    'content' => $request['content'] ?? $engagement->content,
-                    'visibility' => $request['visibility'] ?? $engagement->visibility,
-                    'media_type' => $request['media_type'] ?? $engagement->media_type,
-                    'media_path' => $request['media_path'] ?? $engagement->media_path,
+                    'post_id' => $request['post_id'] ?? $engagement->post_id,
+                    'user_id' => $request['user_id'] ?? $engagement->user_id,
+                    'type' => $request['type'] ?? $engagement->type,
                 ])->save();
 
                 return $engagement;

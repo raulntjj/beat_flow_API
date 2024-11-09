@@ -43,7 +43,10 @@ class NotificationService {
         try {
             $notification = DB::transaction(function() use ($request) { 
                 return Notification::create([
-                    'name' => $request['name'],
+                    'user_id' => $request['user_id'],
+                    'type' => $request['type'],
+                    'is_read' => $request['is_read'],
+                    'content' => $request['content'],
                 ]);     
             });
 
@@ -63,7 +66,10 @@ class NotificationService {
                 }
 
                 $notification->fill([
-                    'name' => $request['name'] ?? $notification->name,
+                    'user_id' => $request['user_id'] ?? $notification->user_id,
+                    'type' => $request['type'] ?? $notification->type,
+                    'is_read' => $request['is_read'] ?? $notification->is_read,
+                    'content' => $request['content'] ?? $notification->content,
                 ])->save();
 
                 return $notification;
