@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use Illuminate\Http\Request;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use App\Services\PostService;
@@ -22,7 +23,7 @@ class PostController {
             'search' => $request->search ?? false,
             'filter' => $request->filter ?? false,
             'sortByDate' => $request->sortByDate ?? false,
-            'sortByEngagments' => $request->sortByDate ?? 'ASC',
+            'sortByEngagements' => $request->sortByDate ?? 'ASC',
         ];
         return $this->postService->getAllPosts($params);
     }

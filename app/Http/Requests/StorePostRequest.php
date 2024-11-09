@@ -4,25 +4,34 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StorePostRequest extends FormRequest
-{
-    /**
-     * Determine if the user is authorized to make this request.
-     */
-    public function authorize(): bool
-    {
-        return false;
+class StorePostRequest extends FormRequest {
+    public function authorize(): bool {
+        return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
-     */
-    public function rules(): array
-    {
+    public function rules(): array {
         return [
-            //
+            'user_id' => 'required|exists:users,id',
+            'content' => 'required|string',
+            'visibility' => 'required|in:private,public,followers',
+            'media_type' => 'required|in:audio,image',
+            'media_path' => 'required|string|max:255',
+        ];
+    }
+
+    public function messages(): array {
+        return [
+            'user_id.required' => 'The user_id field is required.',
+            'user_id.exists' => 'The selected user does not exist.',
+            'content.required' => 'The content field is required.',
+            'content.string' => 'The content must be a string.',
+            'visibility.required' => 'The visibility field is required.',
+            'visibility.in' => 'The visibility must be one of: private, public, followers.',
+            'media_type.required' => 'The media_type field is required.',
+            'media_type.in' => 'The media_type must be one of: audio, image.',
+            'media_path.required' => 'The media_path field is required.',
+            'media_path.string' => 'The media_path must be a string.',
+            'media_path.max' => 'The media_path may not be greater than 255 characters.',
         ];
     }
 }

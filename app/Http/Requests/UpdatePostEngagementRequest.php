@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateSharedPostRequest extends FormRequest {
+class UpdatePostEngagementRequest extends FormRequest {
     public function authorize(): bool {
         return true;
     }
@@ -13,7 +13,7 @@ class UpdateSharedPostRequest extends FormRequest {
         return [
             'post_id' => 'nullable|exists:posts,id',
             'user_id' => 'nullable|exists:users,id',
-            'comment' => 'nullable|string|max:255',
+            'type' => 'nullable|in:like,share',
         ];
     }
 
@@ -21,8 +21,7 @@ class UpdateSharedPostRequest extends FormRequest {
         return [
             'post_id.exists' => 'The selected post does not exist.',
             'user_id.exists' => 'The selected user does not exist.',
-            'comment.string' => 'The comment must be a string.',
-            'comment.max' => 'The comment may not be greater than 255 characters.',
+            'type.in' => 'The type must be one of: like, share.',
         ];
     }
 }

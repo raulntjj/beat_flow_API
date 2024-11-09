@@ -14,10 +14,10 @@ class PostService {
                 $query->where('content', 'like', '%' . $params['search'] . '%');
             }
 
-            // Se passar valor para sortByEngagments
-            if ($params['sortByEngagments']) {
+            // Se passar valor para sortByEngagements
+            if ($params['sortByEngagements']) {
                 // o valor deverá conter ['asc', 'desc']
-                $query->orderBy('id', $params['sortByEngagments']);
+                $query->orderBy('id', $params['sortByEngagements']);
             // Se passar valor para sortByDate
             } else if ($params['sortByDate']) {
                 // o valor deverá conter ['asc', 'desc']
