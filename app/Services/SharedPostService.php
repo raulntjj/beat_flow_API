@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\SharedPost;
+use App\Models\Feed;
 use Illuminate\Support\Facades\DB;
 use Exception;
 
@@ -48,6 +49,12 @@ class SharedPostService {
                     'comment' => $request['comment'],
                 ]);     
             });
+
+            // Criando um feed para o compartilhamento criado
+            Feed::create([
+                'post_id' => null,
+                'shared_post_id' => $sharedPost->id,
+            ]);
 
             return response()->json(['status' => 'success', 'response' => $sharedPost]);
         } catch (Exception $e) {

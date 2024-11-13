@@ -27,7 +27,7 @@ class FeedService {
         }
     }
 
-    public function getFeedToUser(array $params) {
+    public function getUserFeed(array $params) {
         try {
             $userAuth = Auth::guard('api')->user();
     

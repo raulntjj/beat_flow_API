@@ -20,7 +20,7 @@ class FeedController {
             'perPage' => $request->perPage ?? 10,
             'currentPage' => $request->currentPage ?? 1,
         ];
-        return $this->feedService->getFeedToUser($params);
+        return $this->feedService->getUserFeed($params);
     }
 
     public function index(Request $request){

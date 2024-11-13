@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('feeds', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('post_id');
+            $table->unsignedBigInteger('post_id')->nullable();
             $table->unsignedBigInteger('shared_post_id')->nullable();
             $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('shared_post_id')->references('id')->on('shared_posts')->onDelete('cascade')->onUpdate('cascade');

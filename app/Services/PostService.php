@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Post;
+use App\Models\Feed;
 use Illuminate\Support\Facades\DB;
 use Exception;
 
@@ -58,8 +59,14 @@ class PostService {
                     'visibility' => $request['visibility'],
                     'media_type' => $request['media_type'],
                     'media_path' => $request['media_path'],
-                ]);     
+                ]);
             });
+
+            // Criando um feed para a postagem criada
+            Feed::create([
+                'post_id' => $post->id,
+                'shared_post_id' => null,
+            ]);
 
             return response()->json(['status' => 'success', 'response' => $post]);
         } catch (Exception $e) {

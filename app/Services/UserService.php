@@ -30,7 +30,8 @@ class UserService {
     public function getUserFollowers(array $params) {
         try {
             $userAuth = Auth::guard('api')->user();        
-            $query = Follow::where('followed_id', $userAuth->id);
+            $query = Follow::with(['follower'])
+            ->where('followed_id', $userAuth->id);
 
             $followers = $query->paginate($params['perPage'], ['*'], 'page', $params['currentPage']);
             return response()->json(['status' => 'success', 'response' => $followers]);
@@ -42,7 +43,8 @@ class UserService {
     public function getUserFollowed(array $params) {
         try {
             $userAuth = Auth::guard('api')->user();        
-            $query = Follow::where('follower_id', $userAuth->id);
+            $query = Follow::with(['followed'])
+            ->where('follower_id', $userAuth->id);
 
             $followed = $query->paginate($params['perPage'], ['*'], 'page', $params['currentPage']);
             return response()->json(['status' => 'success', 'response' => $followed]);
@@ -54,7 +56,8 @@ class UserService {
     public function getUserNotifications(array $params) {
         try {
             $userAuth = Auth::guard('api')->user();        
-            $query = Notification::where('user_id', $userAuth->id);
+            $query = Notification::with(['post', 'user'])
+            ->where('user_id', $userAuth->id);
 
             $notifications = $query->paginate($params['perPage'], ['*'], 'page', $params['currentPage']);
             return response()->json(['status' => 'success', 'response' => $notifications]);
