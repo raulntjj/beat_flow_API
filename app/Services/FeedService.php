@@ -30,42 +30,54 @@ class FeedService {
     public function getFeedToUser(array $params) {
         try {
             $userAuth = Auth::guard('api')->user();
-
-            $query = Feed::query();
-            
+    
             // Subconsulta para engajamentos de posts
             $postEngagements = \DB::table('post_engagements')
-            ->select('post_id', \DB::raw('COUNT(*) as engagement_count'))
-            ->groupBy('post_id');
-            
+                ->select('post_id', \DB::raw('COUNT(*) as engagement_count'))
+                ->groupBy('post_id');
+    
             // Subconsulta para engajamentos dos posts compartilhados
             $sharedPostEngagements = \DB::table('post_engagements')
-            ->join('shared_posts', 'post_engagements.post_id', '=', 'shared_posts.post_id')
-            ->select('shared_posts.id as shared_post_id', \DB::raw('COUNT(*) as engagement_count'))
-            ->groupBy('shared_posts.id');
-            
-            $query->with(['user', 'post', 'sharedPost.post'])
-            ->whereHas('user', function ($queryUser) use ($userAuth) {
-                $queryUser->whereIn('id', function($q) use ($userAuth) {
-                    $q->select('followed_id')
-                        ->from('follows')
-                        ->where('follower_id', $userAuth->id);
-                });
-            })
-            ->leftJoinSub($postEngagements, 'post_engagements', function ($join) {
-                $join->on('feeds.post_id', '=', 'post_engagements.post_id');
-            })
-            ->leftJoinSub($sharedPostEngagements, 'shared_engagements', function ($join) {
-                $join->on('feeds.shared_post_id', '=', 'shared_engagements.shared_post_id');
-            })
-            ->orderByRaw('GREATEST(COALESCE(post_engagements.engagement_count, 0), COALESCE(shared_engagements.engagement_count, 0)) DESC');
-
+                ->join('shared_posts', 'post_engagements.post_id', '=', 'shared_posts.post_id')
+                ->select('shared_posts.id as shared_post_id', \DB::raw('COUNT(*) as engagement_count'))
+                ->groupBy('shared_posts.id');
+    
+            // Busca os posts e compartilhamentos relacionados às pessoas que o usuário segue
+            $query = Feed::query()
+                ->with(['post.user', 'sharedPost.post.user']) // Precarrega os usuários e conteúdos dos posts/compartilhamentos
+                ->where(function ($query) use ($userAuth) {
+                    $query->whereHas('post.user', function ($queryUser) use ($userAuth) {
+                        $queryUser->whereIn('id', function ($q) use ($userAuth) {
+                            $q->select('followed_id')
+                                ->from('follows')
+                                ->where('follower_id', $userAuth->id);
+                        });
+                    })
+                    ->orWhereHas('sharedPost.post.user', function ($queryUser) use ($userAuth) {
+                        $queryUser->whereIn('id', function ($q) use ($userAuth) {
+                            $q->select('followed_id')
+                                ->from('follows')
+                                ->where('follower_id', $userAuth->id);
+                        });
+                    });
+                })
+                ->leftJoinSub($postEngagements, 'post_engagements', function ($join) {
+                    $join->on('feeds.post_id', '=', 'post_engagements.post_id');
+                })
+                ->leftJoinSub($sharedPostEngagements, 'shared_engagements', function ($join) {
+                    $join->on('feeds.shared_post_id', '=', 'shared_engagements.shared_post_id');
+                })
+                ->orderByRaw('GREATEST(COALESCE(post_engagements.engagement_count, 0), COALESCE(shared_engagements.engagement_count, 0)) DESC');
+    
+            // Paginação
             $feeds = $query->paginate($params['perPage'], ['*'], 'page', $params['currentPage']);
+    
             return response()->json(['status' => 'success', 'response' => $feeds]);
         } catch (Exception $e) {
             return response()->json(['status' => 'failed', 'response' => $e->getMessage()]);
         }
     }
+    
 
     public function getFeed(int $id) {
         try {
@@ -86,7 +98,6 @@ class FeedService {
             $feed = DB::transaction(function() use ($request) { 
                 return Feed::create([
                     'post_id' => $request['post_id'],
-                    'user_id' => $request['user_id'],
                     'shared_post_id' => $request['user_id'],
                 ]);     
             });
@@ -108,7 +119,6 @@ class FeedService {
 
                 $feed->fill([
                     'post_id' => $request['post_id'] ?? $feed->post_id,
-                    'user_id' => $request['user_id'] ?? $feed->user_id,
                     'shared_post_id' => $request['shared_post_id'] ?? $feed->shared_post_id,
                     ])->save();
 
