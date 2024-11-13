@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\PostEngagement;
+use App\Events\PostEngagementEvent;
 use Illuminate\Support\Facades\DB;
 use Exception;
 
@@ -48,6 +49,9 @@ class PostEngagementService {
                     'type' => $request['type'],
                 ]);     
             });
+
+            // Disparando evento para notificar
+            event(new PostEngagementEvent($validated['type'], $engagement->post, auth()->user()));
 
             return response()->json(['status' => 'success', 'response' => $engagement]);
         } catch (Exception $e) {
