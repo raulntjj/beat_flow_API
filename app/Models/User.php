@@ -47,12 +47,27 @@ class User extends Authenticatable implements JWTSubject {
     }
 
     public function followers(){
-        return $this->HasMany(Follow::class);
+        return $this->hasMany(Follow::class, 'followed_id')
+        ->with(['follower' => function ($query) {
+            $query->select('id', 'name', 'profile_photo');
+        }]);
+    }
+    
+    public function followed(){
+        return $this->HasMany(Follow::class, 'follower_id')
+        ->with(['follower' => function ($query) {
+            $query->select('id', 'name', 'profile_photo');
+        }]);
     }
 
-    public function followed(){
-        return $this->HasMany(Follow::class);
+    public function notifications() {
+        return $this->HasMany(Notification::class);
     }
+
+    public function newNotifications(){
+        return $this->HasMany(Notification::class)->where('is_read', false)->orderByDesc('created_at');
+    }
+
 
     public function hasRole($role){
         return $this->roles()->where('name', $role)->exists();

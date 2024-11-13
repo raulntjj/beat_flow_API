@@ -30,6 +30,10 @@ Route::post('refresh', [UserController::class, 'refresh']);
 
 Route::middleware('auth:api')->group(function () {
     Route::get('me', [UserController::class, 'me']);
+    Route::get('me/feed', [FeedController::class, 'myFeed']);
+    Route::get('me/followers', [UserController::class, 'myFollowers']);
+    Route::get('me/followed', [UserController::class, 'myFollowed']);
+    Route::get('me/notifications', [UserController::class, 'myNotifications']);
 });
 
 Route::apiResource('comments', CommentController::class);

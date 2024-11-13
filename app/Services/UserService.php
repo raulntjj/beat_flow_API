@@ -3,10 +3,66 @@
 namespace App\Services;
 
 use App\Models\User;
+use App\Models\Notification;
+use App\Models\Follow;
+
 use Illuminate\Support\Facades\DB;
 use Exception;
+use Illuminate\Support\Facades\Auth;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
-class UserService {         
+class UserService {    
+    public function authenticatedUser(){
+       $userAuth = Auth::guard('api')->user();
+       $user = User::with([
+            'followers',
+            'followed',
+            'newNotifications'
+        ])
+       ->where('id', $userAuth->id)
+       ->get();
+        return response()->json([
+            'status' => 'success', 
+            'response' => $user
+        ]);
+    }
+
+    public function getUserFollowers(array $params) {
+        try {
+            $userAuth = Auth::guard('api')->user();        
+            $query = Follow::where('followed_id', $userAuth->id);
+
+            $followers = $query->paginate($params['perPage'], ['*'], 'page', $params['currentPage']);
+            return response()->json(['status' => 'success', 'response' => $followers]);
+        } catch (Exception $e) {
+            return response()->json(['status' => 'failed', 'response' => $e->getMessage()]);
+        }
+    }
+
+    public function getUserFollowed(array $params) {
+        try {
+            $userAuth = Auth::guard('api')->user();        
+            $query = Follow::where('follower_id', $userAuth->id);
+
+            $followed = $query->paginate($params['perPage'], ['*'], 'page', $params['currentPage']);
+            return response()->json(['status' => 'success', 'response' => $followed]);
+        } catch (Exception $e) {
+            return response()->json(['status' => 'failed', 'response' => $e->getMessage()]);
+        }
+    }
+
+    public function getUserNotifications(array $params) {
+        try {
+            $userAuth = Auth::guard('api')->user();        
+            $query = Notification::where('user_id', $userAuth->id);
+
+            $notifications = $query->paginate($params['perPage'], ['*'], 'page', $params['currentPage']);
+            return response()->json(['status' => 'success', 'response' => $notifications]);
+        } catch (Exception $e) {
+            return response()->json(['status' => 'failed', 'response' => $e->getMessage()]);
+        }
+    }
+
     public function getAllUsers(array $params) {
         try {
             $query = User::query();

@@ -14,6 +14,7 @@ class FollowController {
     public function __construct(FollowService $followService) {
         $this->followService = $followService;
     }
+    
     public function store(StoreFollowRequest $request){
         return $this->followService->createFollow($request);
     }

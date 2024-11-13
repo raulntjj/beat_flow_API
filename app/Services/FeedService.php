@@ -5,6 +5,8 @@ namespace App\Services;
 use App\Models\Feed;
 use Illuminate\Support\Facades\DB;
 use Exception;
+use Illuminate\Support\Facades\Auth;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class FeedService {         
     public function getAllFeeds(array $params) {
@@ -19,6 +21,46 @@ class FeedService {
             } else {
                 $feeds = $query->paginate($params['perPage'], ['*'], 'page', $params['currentPage']);
             }
+            return response()->json(['status' => 'success', 'response' => $feeds]);
+        } catch (Exception $e) {
+            return response()->json(['status' => 'failed', 'response' => $e->getMessage()]);
+        }
+    }
+
+    public function getFeedToUser(array $params) {
+        try {
+            $userAuth = Auth::guard('api')->user();
+
+            $query = Feed::query();
+            
+            // Subconsulta para engajamentos de posts
+            $postEngagements = \DB::table('post_engagements')
+            ->select('post_id', \DB::raw('COUNT(*) as engagement_count'))
+            ->groupBy('post_id');
+            
+            // Subconsulta para engajamentos dos posts compartilhados
+            $sharedPostEngagements = \DB::table('post_engagements')
+            ->join('shared_posts', 'post_engagements.post_id', '=', 'shared_posts.post_id')
+            ->select('shared_posts.id as shared_post_id', \DB::raw('COUNT(*) as engagement_count'))
+            ->groupBy('shared_posts.id');
+            
+            $query->with(['user', 'post', 'sharedPost.post'])
+            ->whereHas('user', function ($queryUser) use ($userAuth) {
+                $queryUser->whereIn('id', function($q) use ($userAuth) {
+                    $q->select('followed_id')
+                        ->from('follows')
+                        ->where('follower_id', $userAuth->id);
+                });
+            })
+            ->leftJoinSub($postEngagements, 'post_engagements', function ($join) {
+                $join->on('feeds.post_id', '=', 'post_engagements.post_id');
+            })
+            ->leftJoinSub($sharedPostEngagements, 'shared_engagements', function ($join) {
+                $join->on('feeds.shared_post_id', '=', 'shared_engagements.shared_post_id');
+            })
+            ->orderByRaw('GREATEST(COALESCE(post_engagements.engagement_count, 0), COALESCE(shared_engagements.engagement_count, 0)) DESC');
+
+            $feeds = $query->paginate($params['perPage'], ['*'], 'page', $params['currentPage']);
             return response()->json(['status' => 'success', 'response' => $feeds]);
         } catch (Exception $e) {
             return response()->json(['status' => 'failed', 'response' => $e->getMessage()]);

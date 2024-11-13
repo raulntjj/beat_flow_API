@@ -55,7 +55,31 @@ class UserController {
     }
 
     public function me() {
-        return response()->json(['status' => 'success', 'response' => Auth::guard('api')->user()]);
+        return $this->userService->authenticatedUser();
+    }
+
+    public function myFollowers(Request $params) {
+        $params = [
+            'perPage' => $request->perPage ?? 10,
+            'currentPage' => $request->currentPage ?? 1,
+        ];
+        return $this->userService->getUserFollowers($params);
+    }
+
+    public function myFollowed(Request $params) {
+        $params = [
+            'perPage' => $request->perPage ?? 10,
+            'currentPage' => $request->currentPage ?? 1,
+        ];
+        return $this->userService->getUserFollowed($params);
+    }
+
+    public function myNotifications(Request $params) {
+        $params = [
+            'perPage' => $request->perPage ?? 10,
+            'currentPage' => $request->currentPage ?? 1,
+        ];
+        return $this->userService->getUserNotifications($params);
     }
 
     public function logout() {

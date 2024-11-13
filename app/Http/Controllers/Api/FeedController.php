@@ -14,6 +14,14 @@ class FeedController {
     public function __construct(FeedService $feedService) {
         $this->feedService = $feedService;
     }
+    
+    public function myFeed(Request $params) {
+        $params = [
+            'perPage' => $request->perPage ?? 10,
+            'currentPage' => $request->currentPage ?? 1,
+        ];
+        return $this->feedService->getFeedToUser($params);
+    }
 
     public function index(Request $request){
         $params = [
@@ -25,6 +33,7 @@ class FeedController {
         ];
         return $this->feedService->getAllFeeds($params);
     }
+
 
     public function store(StoreFeedRequest $request){
         return $this->feedService->createFeed($request);
