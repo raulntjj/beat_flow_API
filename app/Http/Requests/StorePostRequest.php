@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class StorePostRequest extends FormRequest {
     public function authorize(): bool {
@@ -33,5 +35,14 @@ class StorePostRequest extends FormRequest {
             'media_path.string' => 'The media_path must be a string.',
             'media_path.max' => 'The media_path may not be greater than 255 characters.',
         ];
+    }
+
+    protected function failedValidation(Validator $validator) {
+        $response = [
+            'status' => 'failed',
+            'response' => $validator->errors(),
+        ];
+
+        throw new HttpResponseException(response()->json($response, 422));
     }
 }

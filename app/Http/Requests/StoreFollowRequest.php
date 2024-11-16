@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class StoreFollowRequest extends FormRequest{
     public function authorize(): bool {
@@ -23,5 +25,14 @@ class StoreFollowRequest extends FormRequest{
             'followed_id.required' => 'The followed_id field is required.',
             'followed_id.exists' => 'The selected followed user does not exist.',
         ];
+    }
+
+    protected function failedValidation(Validator $validator) {
+        $response = [
+            'status' => 'failed',
+            'response' => $validator->errors(),
+        ];
+
+        throw new HttpResponseException(response()->json($response, 422));
     }
 }

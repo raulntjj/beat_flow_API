@@ -35,11 +35,11 @@ class User extends Authenticatable implements JWTSubject {
     }
 
     public function roles(){
-        return $this->belongsToMany(Role::class);
+        return $this->belongsToMany(Role::class, 'user_roles', 'user_id', 'role_id');
     }
 
     public function genres(){
-        return $this->belongsToMany(Genre::class);
+        return $this->belongsToMany(Genre::class, 'user_genres', 'user_id', 'genre_id');
     }
 
     public function hasGenre($slug){

@@ -14,26 +14,29 @@ use App\Http\Controllers\Api\PostEngagementController;
 use App\Http\Controllers\Api\RoleController;
 use App\Http\Controllers\Api\SharedPostController;
 use App\Http\Controllers\Api\UserController;
-use App\Http\Middleware;
+use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Middleware\CheckPermission;
+use App\Http\Middleware\CheckOwnership;
 
 Route::fallback(function () {
     return response()->json(['status' => 'failed', 'details' => 'Route not found'], 404);
 });
 
-Route::post('login', [UserController::class, 'login']);
-Route::post('logout', [UserController::class, 'logout']);
-Route::post('refresh', [UserController::class, 'refresh']);
+Route::post('login', [AuthController::class, 'login']);
+Route::post('logout', [AuthController::class, 'logout']);
+Route::post('refresh', [AuthController::class, 'refresh']);
 
 Route::middleware('auth:api')->group(function () {
     // Rotas para obter dados do usuário logado
-    Route::get('me', [UserController::class, 'me']);
+    Route::get('me', [AuthenticatedSessionController::class, 'me']);
     Route::get('me/feed', [FeedController::class, 'myFeed']);
-    Route::get('me/followers', [UserController::class, 'myFollowers']);
-    Route::get('me/followed', [UserController::class, 'myFollowed']);
-    Route::get('me/notifications', [UserController::class, 'myNotifications']);
+    Route::get('me/followers', [AuthenticatedSessionController::class, 'myFollowers']);
+    Route::get('me/followed', [AuthenticatedSessionController::class, 'myFollowed']);
+    Route::get('me/notifications', [AuthenticatedSessionController::class, 'myNotifications']);
 
     // Permissões para usuários comuns (Limited acess)
-    Route::middleware([CheckPermission::class . ':user'])->group(function () {
+    Route::middleware([CheckPermission::class . ':User'])->group(function () {
         Route::apiResource('comments', CommentController::class)
         ->middleware(CheckOwnership::class . ':comment');
 
@@ -54,7 +57,7 @@ Route::middleware('auth:api')->group(function () {
     });
 
     // Permissões para admins (Full access)
-    Route::middleware([CheckPermission::class . ':admin'])->group(function () {
+    Route::middleware([CheckPermission::class . ':Admin'])->group(function () {
         Route::apiResource('comments', CommentController::class);
         Route::apiResource('feeds', FeedController::class);
         Route::apiResource('follows', FollowController::class);
