@@ -17,4 +17,5 @@ Route::fallback(function () {
     return response()->json(['status' => 'failed', 'details' => 'Route not found'], 404);
 });
 
+
 require __DIR__.'/auth.php';
