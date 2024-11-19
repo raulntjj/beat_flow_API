@@ -16,12 +16,20 @@ use App\Http\Controllers\Api\SharedPostController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Database\DatabaseController;
 use App\Http\Middleware\CheckPermission;
 use App\Http\Middleware\CheckOwnership;
 
 Route::fallback(function () {
     return response()->json(['status' => 'failed', 'details' => 'Route not found'], 404);
 });
+
+if(env('APP_ENV') == 'local') {
+    Route::prefix('database')->group(function () {
+        Route::delete('/', [DatabaseController::class, 'refreshDatabase']);
+        Route::post('/', [DatabaseController::class, 'seedDatabase']);
+    });
+}
 
 Route::post('login', [AuthController::class, 'login']);
 Route::post('logout', [AuthController::class, 'logout']);
