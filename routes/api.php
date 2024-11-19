@@ -29,11 +29,18 @@ Route::post('refresh', [AuthController::class, 'refresh']);
 
 Route::middleware('auth:api')->group(function () {
     // Rotas para obter dados do usuário logado
-    Route::get('me', [AuthenticatedSessionController::class, 'me']);
-    Route::get('me/feed', [FeedController::class, 'myFeed']);
-    Route::get('me/followers', [AuthenticatedSessionController::class, 'myFollowers']);
-    Route::get('me/followed', [AuthenticatedSessionController::class, 'myFollowed']);
-    Route::get('me/notifications', [AuthenticatedSessionController::class, 'myNotifications']);
+    Route::prefix('me')->group(function () {
+        Route::get('/', [AuthenticatedSessionController::class, 'me']);
+        Route::put('/', [AuthenticatedSessionController::class, 'changeUserData']);
+        Route::delete('/', [AuthenticatedSessionController::class, 'deleteUserAccount']);
+        Route::patch('/change-password', [AuthenticatedSessionController::class, 'changePassword']);
+        Route::patch('/change-email', [AuthenticatedSessionController::class, 'changeEmail']);
+    
+        Route::get('/feed', [FeedController::class, 'myFeed']);
+        Route::get('/followers', [AuthenticatedSessionController::class, 'myFollowers']);
+        Route::get('/followed', [AuthenticatedSessionController::class, 'myFollowed']);
+        Route::get('/notifications', [AuthenticatedSessionController::class, 'myNotifications']);
+    });
 
     // Permissões para usuários comuns (Limited acess)
     Route::middleware([CheckPermission::class . ':User'])->group(function () {
