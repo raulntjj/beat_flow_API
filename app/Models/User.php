@@ -6,6 +6,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
+use Aws\S3\S3Client;
+use Carbon\Carbon;
 
 class User extends Authenticatable implements JWTSubject {
     // use HasFactory, Notifiable;
@@ -20,6 +22,10 @@ class User extends Authenticatable implements JWTSubject {
         'profile_photo',
         'bio',
         'is_private',
+    ];
+
+    protected $appends = [
+        'profile_photo_temp',
     ];
 
     protected $hidden = [
@@ -78,6 +84,15 @@ class User extends Authenticatable implements JWTSubject {
             ->whereHas('permissions', function($query) use ($permission) {
                 $query->where('name', $permission);
             })->exists();
+    }
+
+    // Atributos
+    public function getProfilePhotoTempAttribute(){
+        try {
+            return $this->photo ? Storage::disk('s3')->temporaryUrl($this->profile_photo, Carbon::now()->addDays(7)) : null;
+        } catch (\Exception $e) {
+            return null;
+        }
     }
 
     public function getJWTIdentifier(){

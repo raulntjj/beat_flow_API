@@ -5,9 +5,11 @@ namespace App\Services;
 use App\Models\Post;
 use App\Models\Feed;
 use Illuminate\Support\Facades\DB;
+use App\Traits\S3Operations;
 use Exception;
 
 class PostService {         
+    use S3Operations;
     public function getAllPosts(array $params) {
         try {
             $query = Post::query();
@@ -58,7 +60,7 @@ class PostService {
                     'content' => $request['content'],
                     'visibility' => $request['visibility'],
                     'media_type' => $request['media_type'],
-                    'media_path' => $request['media_path'],
+                    'media_path' => $this->storePostMedia($request),
                 ]);
             });
 
@@ -88,7 +90,7 @@ class PostService {
                     'content' => $request['content'] ?? $post->content,
                     'visibility' => $request['visibility'] ?? $post->visibility,
                     'media_type' => $request['media_type'] ?? $post->media_type,
-                    'media_path' => $request['media_path'] ?? $post->media_path,
+                    'media_path' => $this->updatePostMedia($request),
                 ])->save();
 
                 return $post;
