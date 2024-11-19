@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Exception;
 use Illuminate\Support\Facades\Auth;
 use Tymon\JWTAuth\Facades\JWTAuth;
+use Illuminate\Support\Facades\Hash;
 
 class UserService {    
     public function authenticatedUser(){
@@ -164,6 +165,38 @@ class UserService {
             });
 
             return response()->json(['status' => 'success', 'response' => 'User deleted successfully']);
+        } catch (Exception $e) {
+            return response()->json(['status' => 'failed', 'response' => $e->getMessage()]);
+        }
+    }
+
+    public function changePassword(Array $request) {
+        try {
+            $user = Auth::guard('api')->user();        
+
+            if (Hash::check($request['old_password'], $user->password)) {
+                $user->update([
+                    'password' => bcrypt($request['password']),
+                ]);
+                return response()->json(['status' => 'success', 'message' => 'Password changed successfully.']);
+            }
+            throw new Exception('Old password does not match.');    
+        } catch (Exception $e) {
+            return response()->json(['status' => 'failed', 'response' => $e->getMessage()]);
+        }    
+    }
+
+    public function changeEmail(Array $request) {
+        try {
+            $user = Auth::guard('api')->user();        
+
+            if ($request['old_email'] == $user->email) {
+                $user->update([
+                    'email' => $request['email'],
+                ]);
+                return response()->json(['status' => 'success', 'message' => 'Email changed successfully.']);
+            }
+            throw new Exception('Old email does not match.');    
         } catch (Exception $e) {
             return response()->json(['status' => 'failed', 'response' => $e->getMessage()]);
         }
