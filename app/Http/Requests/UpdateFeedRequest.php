@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class UpdateFeedRequest extends FormRequest {
     public function authorize(): bool {
@@ -21,5 +23,14 @@ class UpdateFeedRequest extends FormRequest {
             'post_id.exists' => 'The selected post does not exist.',
             'shared_post_id.exists' => 'The selected shared post does not exist.',
         ];
+    }
+
+    protected function failedValidation(Validator $validator) {
+        $response = [
+            'status' => 'failed',
+            'response' => $validator->errors(),
+        ];
+
+        throw new HttpResponseException(response()->json($response, 422));
     }
 }

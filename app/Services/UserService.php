@@ -17,7 +17,8 @@ class UserService {
        $user = User::with([
             'followers',
             'followed',
-            'newNotifications'
+            'newNotifications',
+            'roles'
         ])
        ->where('id', $userAuth->id)
        ->get();
@@ -106,6 +107,7 @@ class UserService {
                     'name' => $request['name'],
                     'last_name' => $request['last_name'],
                     'email' => $request['email'],
+                    'password' => $request['password'],
                     'profile_photo' => $request['profile_photo'],
                     'bio' => $request['bio'],
                     'is_private' => $request['is_private'],
@@ -118,7 +120,7 @@ class UserService {
         }
     }
 
-    public function updateUser(int $id, array $request) {
+    public function updateUser(array $request, int $id) {
         try {
             $user = DB::transaction(function() use ($id, $request) {
                 $user = User::find($id);

@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class StoreUserRequest extends FormRequest {
     public function authorize(): bool {
@@ -47,5 +49,14 @@ class StoreUserRequest extends FormRequest {
             'is_private.required' => 'The is_private field is required.',
             'is_private.boolean' => 'The is_private field must be true or false.',
         ];
+    }
+
+    protected function failedValidation(Validator $validator) {
+        $response = [
+            'status' => 'failed',
+            'response' => $validator->errors(),
+        ];
+
+        throw new HttpResponseException(response()->json($response, 422));
     }
 }

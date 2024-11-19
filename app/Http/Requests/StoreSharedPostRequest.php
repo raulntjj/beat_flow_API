@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class StoreSharedPostRequest extends FormRequest {
     public function authorize(): bool {
@@ -27,5 +29,14 @@ class StoreSharedPostRequest extends FormRequest {
             'comment.string' => 'The comment must be a string.',
             'comment.max' => 'The comment may not be greater than 255 characters.',
         ];
+    }
+
+    protected function failedValidation(Validator $validator) {
+        $response = [
+            'status' => 'failed',
+            'response' => $validator->errors(),
+        ];
+
+        throw new HttpResponseException(response()->json($response, 422));
     }
 }

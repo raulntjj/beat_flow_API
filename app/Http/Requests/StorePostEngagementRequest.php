@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class StorePostEngagementRequest extends FormRequest {
     public function authorize(): bool {
@@ -26,5 +28,14 @@ class StorePostEngagementRequest extends FormRequest {
             'type.required' => 'The type field is required.',
             'type.in' => 'The type must be one of: like, share.',
         ];
+    }
+
+    protected function failedValidation(Validator $validator) {
+        $response = [
+            'status' => 'failed',
+            'response' => $validator->errors(),
+        ];
+
+        throw new HttpResponseException(response()->json($response, 422));
     }
 }

@@ -15,8 +15,7 @@ class CheckPermission {
      */
     public function handle(Request $request, Closure $next, $permission): Response {
         $user = Auth::user();
-
-        if (!$user || !$user->hasPermission($permission)) {
+        if (!$user || !$user->hasRole($permission)) {
             return response()->json(['status' => 'failed', 'response' => 'Unauthorized'], 403);
         }
 

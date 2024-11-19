@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class UpdateRoleRequest extends FormRequest {
     public function authorize(): bool {
@@ -21,5 +23,14 @@ class UpdateRoleRequest extends FormRequest {
             'name.unique' => 'The role name must be unique.',
             'name.max' => 'The name may not be greater than 100 characters.',
         ];
+    }
+
+    protected function failedValidation(Validator $validator) {
+        $response = [
+            'status' => 'failed',
+            'response' => $validator->errors(),
+        ];
+
+        throw new HttpResponseException(response()->json($response, 422));
     }
 }

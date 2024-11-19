@@ -2,37 +2,58 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
+use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequest;
+use App\Services\UserService;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
-class AuthenticatedSessionController extends Controller
-{
-    /**
-     * Handle an incoming authentication request.
-     */
-    public function store(LoginRequest $request): Response
-    {
-        $request->authenticate();
+class AuthenticatedSessionController {
+    protected $userService;
 
-        $request->session()->regenerate();
-
-        return response()->noContent();
+    public function __construct(UserService $userService) {
+        $this->userService = $userService;
     }
 
-    /**
-     * Destroy an authenticated session.
-     */
-    public function destroy(Request $request): Response
-    {
-        Auth::guard('web')->logout();
+    public function me() {
+        return $this->userService->authenticatedUser();
+    }
 
-        $request->session()->invalidate();
+    public function myFollowers(Request $params) {
+        $params = [
+            'perPage' => $request->perPage ?? 10,
+            'currentPage' => $request->currentPage ?? 1,
+        ];
+        return $this->userService->getUserFollowers($params);
+    }
 
-        $request->session()->regenerateToken();
+    public function myFollowed(Request $params) {
+        $params = [
+            'perPage' => $request->perPage ?? 10,
+            'currentPage' => $request->currentPage ?? 1,
+        ];
+        return $this->userService->getUserFollowed($params);
+    }
 
-        return response()->noContent();
+    public function myNotifications(Request $params) {
+        $params = [
+
+            'perPage' => $request->perPage ?? 10,
+            'currentPage' => $request->currentPage ?? 1,
+        ];
+        return $this->userService->getUserNotifications($params);
+    }
+
+    protected function respondWithToken($token) {
+        return response()->json([
+            'status' => 'success',
+            'response' => [
+                'access_token' => $token,
+                'token_type' => 'bearer',
+                'expires_in' => Auth::guard('api')->factory()->getTTL() * 60
+            ],
+        ]);
     }
 }
