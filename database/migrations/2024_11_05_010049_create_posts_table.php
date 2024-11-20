@@ -18,7 +18,7 @@ return new class extends Migration
             $table->text('content');
             $table->enum('visibility', ['private', 'public', 'followers']);
             $table->enum('media_type', ['audio', 'image']);
-            $table->string('media_path');
+            $table->string('media_path')->nullable();
             $table->timestamps();
         });
     }

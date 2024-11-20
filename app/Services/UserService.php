@@ -11,8 +11,11 @@ use Exception;
 use Illuminate\Support\Facades\Auth;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Illuminate\Support\Facades\Hash;
+use App\Traits\S3Operations;
 
 class UserService {    
+    use S3Operations;
+
     public function authenticatedUser(){
        $userAuth = Auth::guard('api')->user();
        $user = User::with([
@@ -109,7 +112,7 @@ class UserService {
                     'last_name' => $request['last_name'],
                     'email' => $request['email'],
                     'password' => $request['password'],
-                    'profile_photo' => $request['profile_photo'],
+                    'profile_photo_path' => $this->storeProfilePhoto($request['profile_photo_path']),
                     'bio' => $request['bio'],
                     'is_private' => $request['is_private'],
                 ]);     
@@ -130,12 +133,13 @@ class UserService {
                     throw new Exception("User not found");
                 }
 
+                $old_media = $user->profile_photo_path;
                 $user->fill([
                     'user' => $request['user'] ?? $user->user,
                     'name' => $request['name'] ?? $user->name,
                     'last_name' => $request['last_name'] ?? $user->last_name,
                     'email' => $request['email'] ?? $user->email,
-                    'profile_photo' => $request['profile_photo'] ?? $user->profile_photo,
+                    'profile_photo_path' => $this->updateProfilePhoto($request['profile_photo_path'], $old_media),
                     'password' => isset($request['password']) ? bcrypt($request['password']) : $user->password,
                     'bio' => $request['bio'] ?? $user->bio,
                     'is_private' => $request['is_private'] ?? $user->is_private,

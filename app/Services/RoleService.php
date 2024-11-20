@@ -53,7 +53,7 @@ class RoleService {
         }
     }
 
-    public function updateRole(int $id, array $request) {
+    public function updateRole(array $request, int $id) {
         try {
             $role = DB::transaction(function() use ($id, $request) {
                 $role = Role::find($id);
