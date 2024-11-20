@@ -5,9 +5,11 @@ namespace App\Services;
 use App\Models\Post;
 use App\Models\Feed;
 use Illuminate\Support\Facades\DB;
+use App\Traits\S3Operations;
 use Exception;
 
 class PostService {         
+    use S3Operations;
     public function getAllPosts(array $params) {
         try {
             $query = Post::query();
@@ -58,9 +60,10 @@ class PostService {
                     'content' => $request['content'],
                     'visibility' => $request['visibility'],
                     'media_type' => $request['media_type'],
-                    'media_path' => $request['media_path'],
+                    'media_path' => $this->storePostMedia($request['media_path']),
                 ]);
             });
+
 
             // Criando um feed para a postagem criada
             Feed::create([
@@ -74,7 +77,7 @@ class PostService {
         }
     }
 
-    public function updatePost(int $id, array $request) {
+    public function updatePost(array $request, int $id) {
         try {
             $post = DB::transaction(function() use ($id, $request) {
                 $post = Post::find($id);
@@ -83,12 +86,14 @@ class PostService {
                     throw new Exception("Post not found");
                 }
 
+                $old_media = $post->media_path;
+
                 $post->fill([
                     'user_id' => $request['user_id'] ?? $user_id->user_id,
                     'content' => $request['content'] ?? $post->content,
                     'visibility' => $request['visibility'] ?? $post->visibility,
                     'media_type' => $request['media_type'] ?? $post->media_type,
-                    'media_path' => $request['media_path'] ?? $post->media_path,
+                    'media_path' => $this->updatePostMedia($request['media_path'], $old_media),
                 ])->save();
 
                 return $post;

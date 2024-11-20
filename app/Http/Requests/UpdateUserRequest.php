@@ -18,7 +18,7 @@ class UpdateUserRequest extends FormRequest {
             // 'email' => 'nullable|string|email|max:255|unique:users,email,' . $this->user,
             // 'user' => 'nullable|string|max:255|unique:users,user,' . $this->user,
             // 'password' => 'nullable|string|min:8|confirmed',
-            'profile_photo' => 'nullable|string|max:255',
+            'profile_photo_path' => 'nullable',
             'bio' => 'nullable|string|max:500',
             'is_private' => 'nullable|boolean',
         ];
@@ -38,7 +38,7 @@ class UpdateUserRequest extends FormRequest {
             // 'user.max' => 'The username may not be greater than 255 characters.',
             // 'password.min' => 'The password must be at least 8 characters.',
             // 'password.confirmed' => 'The password confirmation does not match.',
-            'profile_photo.max' => 'The profile photo path may not be greater than 255 characters.',
+            // 'profile_photo_path.max' => 'The profile photo path may not be greater than 255 characters.',
             'bio.string' => 'The bio must be a string.',
             'bio.max' => 'The bio may not be greater than 500 characters.',
             'is_private.boolean' => 'The is_private field must be true or false.',

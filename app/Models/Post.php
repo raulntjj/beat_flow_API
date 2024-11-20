@@ -3,6 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Aws\S3\S3Client;
+use Illuminate\Support\Facades\Storage;
+use Carbon\Carbon;
 
 class Post extends Model {
     protected $fillable = [
@@ -13,6 +16,19 @@ class Post extends Model {
         'media_type',
         'media_path',
     ];
+
+    protected $appends = [
+        'media_temp',
+    ];
+
+    // Atributos
+    public function getMediaTempAttribute(){
+        try {
+            return $this->media_path ? Storage::disk('s3')->temporaryUrl($this->media_path, Carbon::now()->addDays(7)) : null;
+        } catch (\Exception $e) {
+            return null;
+        }
+    }
 
     public function user(){
         return $this->belongsTo(User::class, 'user_id');

@@ -9,16 +9,16 @@ class DatabaseSeeder extends Seeder {
     public function run() {
         // Usuários
         User::insert([
-            ['name' => 'Raul', 'last_name' => 'De Oliveira', 'email' => 'raulntjj@gmail.com', 'user' => 'raulntjj', 'password' => Hash::make('12345678'), 'profile_photo' => 'profile1.jpg', 'bio' => 'Hello World!', 'is_private' => false],
-            ['name' => 'Alice', 'last_name' => 'Smith', 'email' => 'alice@gmail.com', 'user' => 'alice', 'password' => Hash::make('12345678'), 'profile_photo' => 'profile2.jpg', 'bio' => 'Music is life!', 'is_private' => false],
-            ['name' => 'Bob', 'last_name' => 'Johnson', 'email' => 'bob@gmail.com', 'user' => 'bob', 'password' => Hash::make('12345678'), 'profile_photo' => 'profile3.jpg', 'bio' => 'Rock and Blues.', 'is_private' => true],
-            ['name' => 'Charlie', 'last_name' => 'Brown', 'email' => 'charlie@gmail.com', 'user' => 'charlie', 'password' => Hash::make('12345678'), 'profile_photo' => 'profile4.jpg', 'bio' => 'Guitarist.', 'is_private' => false],
-            ['name' => 'Diana', 'last_name' => 'Prince', 'email' => 'diana@gmail.com', 'user' => 'diana', 'password' => Hash::make('12345678'), 'profile_photo' => 'profile5.jpg', 'bio' => 'Singer-songwriter.', 'is_private' => true],
-            ['name' => 'Eve', 'last_name' => 'Taylor', 'email' => 'eve@gmail.com', 'user' => 'eve', 'password' => Hash::make('12345678'), 'profile_photo' => 'profile6.jpg', 'bio' => 'Jazz lover.', 'is_private' => false],
-            ['name' => 'Frank', 'last_name' => 'Castle', 'email' => 'frank@gmail.com', 'user' => 'frank', 'password' => Hash::make('12345678'), 'profile_photo' => 'profile7.jpg', 'bio' => 'Aspiring DJ.', 'is_private' => true],
-            ['name' => 'Grace', 'last_name' => 'Hopper', 'email' => 'grace@gmail.com', 'user' => 'grace', 'password' => Hash::make('12345678'), 'profile_photo' => 'profile8.jpg', 'bio' => 'Pianist and composer.', 'is_private' => false],
-            ['name' => 'Hank', 'last_name' => 'Hill', 'email' => 'hank@gmail.com', 'user' => 'hank', 'password' => Hash::make('12345678'), 'profile_photo' => 'profile9.jpg', 'bio' => 'Metalhead.', 'is_private' => true],
-            ['name' => 'Ivy', 'last_name' => 'Walker', 'email' => 'ivy@gmail.com', 'user' => 'ivy', 'password' => Hash::make('12345678'), 'profile_photo' => 'profile10.jpg', 'bio' => 'Electronic music producer.', 'is_private' => false],
+            ['name' => 'Raul', 'last_name' => 'De Oliveira', 'email' => 'raulntjj@gmail.com', 'user' => 'raulntjj', 'password' => Hash::make('12345678'), 'profile_photo_path' => 'beatflow/placeholder/profile_photo.jpg', 'bio' => 'Hello World!', 'is_private' => false],
+            ['name' => 'Alice', 'last_name' => 'Smith', 'email' => 'alice@gmail.com', 'user' => 'alice', 'password' => Hash::make('12345678'), 'profile_photo_path' => 'beatflow/placeholder/profile_photo.jpg', 'bio' => 'Music is life!', 'is_private' => false],
+            ['name' => 'Bob', 'last_name' => 'Johnson', 'email' => 'bob@gmail.com', 'user' => 'bob', 'password' => Hash::make('12345678'), 'profile_photo_path' => 'beatflow/placeholder/profile_photo.jpg', 'bio' => 'Rock and Blues.', 'is_private' => true],
+            ['name' => 'Charlie', 'last_name' => 'Brown', 'email' => 'charlie@gmail.com', 'user' => 'charlie', 'password' => Hash::make('12345678'), 'profile_photo_path' => 'beatflow/placeholder/profile_photo.jpg', 'bio' => 'Guitarist.', 'is_private' => false],
+            ['name' => 'Diana', 'last_name' => 'Prince', 'email' => 'diana@gmail.com', 'user' => 'diana', 'password' => Hash::make('12345678'), 'profile_photo_path' => 'beatflow/placeholder/profile_photo.jpg', 'bio' => 'Singer-songwriter.', 'is_private' => true],
+            ['name' => 'Eve', 'last_name' => 'Taylor', 'email' => 'eve@gmail.com', 'user' => 'eve', 'password' => Hash::make('12345678'), 'profile_photo_path' => 'beatflow/placeholder/profile_photo.jpg', 'bio' => 'Jazz lover.', 'is_private' => false],
+            ['name' => 'Frank', 'last_name' => 'Castle', 'email' => 'frank@gmail.com', 'user' => 'frank', 'password' => Hash::make('12345678'), 'profile_photo_path' => 'beatflow/placeholder/profile_photo.jpg', 'bio' => 'Aspiring DJ.', 'is_private' => true],
+            ['name' => 'Grace', 'last_name' => 'Hopper', 'email' => 'grace@gmail.com', 'user' => 'grace', 'password' => Hash::make('12345678'), 'profile_photo_path' => 'beatflow/placeholder/profile_photo.jpg', 'bio' => 'Pianist and composer.', 'is_private' => false],
+            ['name' => 'Hank', 'last_name' => 'Hill', 'email' => 'hank@gmail.com', 'user' => 'hank', 'password' => Hash::make('12345678'), 'profile_photo_path' => 'beatflow/placeholder/profile_photo.jpg', 'bio' => 'Metalhead.', 'is_private' => true],
+            ['name' => 'Ivy', 'last_name' => 'Walker', 'email' => 'ivy@gmail.com', 'user' => 'ivy', 'password' => Hash::make('12345678'), 'profile_photo_path' => 'beatflow/placeholder/pprofile_photo.jpg', 'bio' => 'Electronic music producer.', 'is_private' => false],
         ]);
 
         // Gêneros

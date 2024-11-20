@@ -6,6 +6,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
+use Aws\S3\S3Client;
+use Illuminate\Support\Facades\Storage;
+use Carbon\Carbon;
 
 class User extends Authenticatable implements JWTSubject {
     // use HasFactory, Notifiable;
@@ -17,9 +20,13 @@ class User extends Authenticatable implements JWTSubject {
         'last_name',
         'email',
         'password',
-        'profile_photo',
+        'profile_photo_path',
         'bio',
         'is_private',
+    ];
+
+    protected $appends = [
+        'profile_photo_temp',
     ];
 
     protected $hidden = [
@@ -49,14 +56,14 @@ class User extends Authenticatable implements JWTSubject {
     public function followers(){
         return $this->hasMany(Follow::class, 'followed_id')
         ->with(['follower' => function ($query) {
-            $query->select('id', 'name', 'profile_photo');
+            $query->select('id', 'name', 'profile_photo_path');
         }]);
     }
     
     public function followed(){
         return $this->HasMany(Follow::class, 'follower_id')
         ->with(['follower' => function ($query) {
-            $query->select('id', 'name', 'profile_photo');
+            $query->select('id', 'name', 'profile_photo_path');
         }]);
     }
 
@@ -78,6 +85,15 @@ class User extends Authenticatable implements JWTSubject {
             ->whereHas('permissions', function($query) use ($permission) {
                 $query->where('name', $permission);
             })->exists();
+    }
+
+    // Atributos
+    public function getProfilePhotoTempAttribute(){
+        try {
+            return $this->profile_photo_path ? Storage::disk('s3')->temporaryUrl($this->profile_photo_path, Carbon::now()->addDays(7)) : null;
+        } catch (\Exception $e) {
+            return null;
+        }
     }
 
     public function getJWTIdentifier(){
