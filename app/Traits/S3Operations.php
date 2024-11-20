@@ -4,12 +4,12 @@ namespace App\Traits;
 
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
-use FFMpeg;
+// use FFMpeg;
 
 trait S3Operations {
     // Função para deletar arquivos
-    public function deleteFile($file): void {
-        if ($file != null) {
+    public function deleteFile($old_media): void {
+        if ($old_media != null) {
             // Lista de diretórios protegidos
             $protectedDirectories = [
                 'beatflow/placeholder/'
@@ -17,14 +17,14 @@ trait S3Operations {
 
             // Verifica se o arquivo está em um dos diretórios protegidos
             foreach ($protectedDirectories as $protectedDirectory) {
-                if (str_contains($file, $protectedDirectory)) {
+                if (str_contains($old_media, $protectedDirectory)) {
                     return; // Não deletar se estiver em um diretório protegido
                 }
             }
 
             // Verifica se o arquivo existe e deleta
-            if (Storage::disk('s3')->exists($file)) {
-                Storage::disk('s3')->delete($file);
+            if (Storage::disk('s3')->exists($old_media)) {
+                Storage::disk('s3')->delete($old_media);
             }
         }
     }
@@ -55,33 +55,29 @@ trait S3Operations {
     //     return $tempPath;
     // }
 
-    public function storeProfilePhoto(Request $request) {
-        if($request->hasFile('profile_photo')) {
-            return $request->file('profile_photo')->store('beatflow/profile_photos', 's3');
+    public function storeProfilePhoto($media) {
+        return $media->store('beatflow/profile_photos', 's3');
+    }
+
+    public function updateProfilePhoto($media, $old_media) {
+        if ($media) {
+            $this->deleteFile($old_media);
+            return $this->storeProfilePhoto($media);
+        } else {
+            return $old_media;
         }
     }
 
-    public function updateProfilePhoto(Request $request) {
-        if($request->hasFile('profile_photo')) {
-            $this->deleteFile($request->oldProfilePhoto);
-            return $this->storeProfilePhoto($request);
-        } else if(isset($request['oldProfilePhoto'])) {
-            return $request->oldProfilePhoto;
-        }
+    public function storePostMedia($media) {
+        return $media->store('beatflow/post_media', 's3');
     }
 
-    public function storePostMedia(Request $request) {
-        if($request->hasFile('media_path')) {
-            return $request->file('media_path')->store('beatflow/post_media', 's3');
-        }
-    }
-
-    public function updatePostMedia(Request $request) {
-        if($request->hasFile('media_path')) {
-            $this->deleteFile($request->oldMedia);
-            return $this->storePostMedia($request);
-        } else if(isset($request['oldMedia'])) {
-            return $request->oldMedia;
+    public function updatePostMedia($media, $old_media) {
+        if ($media) {
+            $this->deleteFile($old_media);
+            return $this->storePostMedia($media);
+        } else {
+            return $old_media;
         }
     }
 

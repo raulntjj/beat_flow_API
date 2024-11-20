@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Aws\S3\S3Client;
+use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
 
 class Post extends Model {
@@ -23,7 +24,7 @@ class Post extends Model {
     // Atributos
     public function getMediaTempAttribute(){
         try {
-            return $this->photo ? Storage::disk('s3')->temporaryUrl($this->media_path, Carbon::now()->addDays(7)) : null;
+            return $this->media_path ? Storage::disk('s3')->temporaryUrl($this->media_path, Carbon::now()->addDays(7)) : null;
         } catch (\Exception $e) {
             return null;
         }

@@ -29,11 +29,11 @@ class PostController {
     }
 
     public function store(StorePostRequest $request){
-        return $this->postService->createPost($request);
+        return $this->postService->createPost($request->validated());
     }
 
     public function update(UpdatePostRequest $request, int $id){
-        return $this->postService->updatePost($request, $id);
+        return $this->postService->updatePost($request->validated(), $id);
     }
 
     public function destroy(int $id){

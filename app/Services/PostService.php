@@ -60,9 +60,10 @@ class PostService {
                     'content' => $request['content'],
                     'visibility' => $request['visibility'],
                     'media_type' => $request['media_type'],
-                    'media_path' => $this->storePostMedia($request),
+                    'media_path' => $this->storePostMedia($request['media_path']),
                 ]);
             });
+
 
             // Criando um feed para a postagem criada
             Feed::create([
@@ -76,7 +77,7 @@ class PostService {
         }
     }
 
-    public function updatePost(int $id, array $request) {
+    public function updatePost(array $request, int $id) {
         try {
             $post = DB::transaction(function() use ($id, $request) {
                 $post = Post::find($id);
@@ -85,16 +86,14 @@ class PostService {
                     throw new Exception("Post not found");
                 }
 
-                $request->merge([
-                    'oldMedia' => $user->post->media_path,
-                ]);
+                $old_media = $post->media_path;
 
                 $post->fill([
                     'user_id' => $request['user_id'] ?? $user_id->user_id,
                     'content' => $request['content'] ?? $post->content,
                     'visibility' => $request['visibility'] ?? $post->visibility,
                     'media_type' => $request['media_type'] ?? $post->media_type,
-                    'media_path' => $this->updatePostMedia($request),
+                    'media_path' => $this->updatePostMedia($request['media_path'], $old_media),
                 ])->save();
 
                 return $post;

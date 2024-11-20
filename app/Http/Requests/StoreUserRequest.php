@@ -18,7 +18,7 @@ class StoreUserRequest extends FormRequest {
             'email' => 'required|string|email|max:255|unique:users,email',
             'user' => 'required|string|max:255|unique:users,user',
             'password' => 'required|string|min:8|confirmed',
-            'profile_photo' => 'required|string|max:255',
+            'profile_photo_path' => 'required',
             'bio' => 'nullable|string|max:500',
             'is_private' => 'required|boolean',
         ];
@@ -42,8 +42,7 @@ class StoreUserRequest extends FormRequest {
             'password.required' => 'The password field is required.',
             'password.min' => 'The password must be at least 8 characters.',
             'password.confirmed' => 'The password confirmation does not match.',
-            'profile_photo.required' => 'The profile photo field is required.',
-            'profile_photo.max' => 'The profile photo path may not be greater than 255 characters.',
+            'profile_photo_path.required' => 'The profile photo field is required.',
             'bio.string' => 'The bio must be a string.',
             'bio.max' => 'The bio may not be greater than 500 characters.',
             'is_private.required' => 'The is_private field is required.',

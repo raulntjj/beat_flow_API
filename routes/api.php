@@ -89,4 +89,4 @@ Route::middleware('auth:api')->group(function () {
 });
 
 
-Route::post('image', [Controller::class, 'teste']);
+// Route::post('image', [Controller::class, 'teste']);
