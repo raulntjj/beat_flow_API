@@ -27,11 +27,11 @@ class CommentController {
     }
 
     public function store(StoreCommentRequest $request){
-        return $this->commentService->createComment($request);
+        return $this->commentService->createComment($request->validated());
     }
 
     public function update(UpdateCommentRequest $request, int $id){
-        return $this->commentService->updateComment($request, $id);
+        return $this->commentService->updateComment($request->validated(), $id);
     }
 
     public function destroy(int $id){

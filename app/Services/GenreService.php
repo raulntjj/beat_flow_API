@@ -54,7 +54,7 @@ class GenreService {
         }
     }
 
-    public function updateGenre(int $id, array $request) {
+    public function updateGenre(array $request, int $id) {
         try {
             $genre = DB::transaction(function() use ($id, $request) {
                 $genre = Genre::find($id);

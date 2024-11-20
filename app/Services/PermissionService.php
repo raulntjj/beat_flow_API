@@ -53,7 +53,7 @@ class PermissionService {
         }
     }
 
-    public function updatePermission(int $id, array $request) {
+    public function updatePermission(array $request, int $id) {
         try {
             $permission = DB::transaction(function() use ($id, $request) {
                 $permission = Permission::find($id);

@@ -108,7 +108,7 @@ class FeedService {
         }
     }
 
-    public function updateFeed(int $id, array $request) {
+    public function updateFeed(array $request, int $id) {
         try {
             $feed = DB::transaction(function() use ($id, $request) {
                 $feed = Feed::find($id);

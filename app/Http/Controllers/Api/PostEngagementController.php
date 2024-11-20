@@ -27,11 +27,11 @@ class PostEngagementController {
     }
 
     public function store(StorePostEngagementRequest $request){
-        return $this->postEngagementService->createPostEngagement($request);
+        return $this->postEngagementService->createPostEngagement($request->validated());
     }
 
     public function update(UpdatePostEngagementRequest $request, int $id){
-        return $this->postEngagementService->updatePostEngagement($request, $id);
+        return $this->postEngagementService->updatePostEngagement($request->validated(), $id);
     }
 
     public function destroy(int $id){

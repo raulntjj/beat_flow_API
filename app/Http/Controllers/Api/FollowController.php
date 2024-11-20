@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreFollowRequest;
@@ -16,7 +16,7 @@ class FollowController {
     }
     
     public function store(StoreFollowRequest $request){
-        return $this->followService->createFollow($request);
+        return $this->followService->createFollow($request->validated());
     }
 
     public function destroy(int $id){

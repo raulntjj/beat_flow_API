@@ -36,11 +36,11 @@ class FeedController {
 
 
     public function store(StoreFeedRequest $request){
-        return $this->feedService->createFeed($request);
+        return $this->feedService->createFeed($request->validated());
     }
 
     public function update(UpdateFeedRequest $request, int $id){
-        return $this->feedService->updateFeed($request, $id);
+        return $this->feedService->updateFeed($request->validated(), $id);
     }
 
     public function destroy(int $id){

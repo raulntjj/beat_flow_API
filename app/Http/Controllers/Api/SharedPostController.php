@@ -27,11 +27,11 @@ class SharedPostController {
     }
 
     public function store(StoreSharedPostRequest $request){
-        return $this->sharedPostService->createSharedPost($request);
+        return $this->sharedPostService->createSharedPost($request->validated());
     }
 
     public function update(UpdateSharedPostRequest $request, int $id){
-        return $this->sharedPostService->updateSharedPost($request, $id);
+        return $this->sharedPostService->updateSharedPost($request->validated(), $id);
     }
 
     public function destroy(int $id){

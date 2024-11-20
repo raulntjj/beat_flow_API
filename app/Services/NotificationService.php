@@ -56,7 +56,7 @@ class NotificationService {
         }
     }
 
-    public function updateNotification(int $id, array $request) {
+    public function updateNotification(array $request, int $id) {
         try {
             $notification = DB::transaction(function() use ($id, $request) {
                 $notification = Notification::find($id);

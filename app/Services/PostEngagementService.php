@@ -59,7 +59,7 @@ class PostEngagementService {
         }
     }
 
-    public function updatePostEngagement(int $id, array $request) {
+    public function updatePostEngagement(array $request, int $id) {
         try {
             $engagement = DB::transaction(function() use ($id, $request) {
                 $engagement = PostEngagement::find($id);

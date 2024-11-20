@@ -62,7 +62,7 @@ class SharedPostService {
         }
     }
 
-    public function updateSharedPost(int $id, array $request) {
+    public function updateSharedPost(array $request, int $id) {
         try {
             $sharedPost = DB::transaction(function() use ($id, $request) {
                 $sharedPost = SharedPost::find($id);

@@ -55,7 +55,7 @@ class CommentService {
         }
     }
 
-    public function updateComment(int $id, array $request) {
+    public function updateComment(array $request, int $id) {
         try {
             $commentPost = DB::transaction(function() use ($id, $request) {
                 $commentPost = Comment::find($id);
