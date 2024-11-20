@@ -27,11 +27,11 @@ class RoleController {
     }
 
     public function store(StoreRoleRequest $request){
-        return $this->roleService->createRole($request);
+        return $this->roleService->createRole($request->validated());
     }
 
     public function update(UpdateRoleRequest $request, int $id){
-        return $this->roleService->updateRole($request, $id);
+        return $this->roleService->updateRole($request->validated(), $id);
     }
 
     public function destroy(int $id){

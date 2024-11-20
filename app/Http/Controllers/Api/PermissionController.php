@@ -27,11 +27,11 @@ class PermissionController {
     }
 
     public function store(StorePermissionRequest $request){
-        return $this->permissionService->createPermission($request);
+        return $this->permissionService->createPermission($request->validated());
     }
 
     public function update(UpdatePermissionRequest $request, int $id){
-        return $this->permissionService->updatePermission($request, $id);
+        return $this->permissionService->updatePermission($request->validated(), $id);
     }
 
     public function destroy(int $id){

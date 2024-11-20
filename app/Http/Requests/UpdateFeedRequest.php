@@ -13,15 +13,17 @@ class UpdateFeedRequest extends FormRequest {
 
     public function rules(): array {
         return [
-            'post_id' => 'nullable|exists:posts,id',
-            'shared_post_id' => 'nullable|exists:shared_posts,id',
+            'post_id' => 'nullable|exists:posts,id|required_without:shared_post_id',
+            'shared_post_id' => 'nullable|exists:shared_posts,id|required_without:post_id',
         ];
     }
 
     public function messages(): array {
         return [
-            'post_id.exists' => 'The selected post does not exist.',
-            'shared_post_id.exists' => 'The selected shared post does not exist.',
+            'post_id.required_without' => 'The post ID is required when shared post ID is not provided.',
+            'shared_post_id.required_without' => 'The shared post ID is required when post ID is not provided.',
+            'post_id.exists' => 'The selected post ID is invalid.',
+            'shared_post_id.exists' => 'The selected shared post ID is invalid.',
         ];
     }
 

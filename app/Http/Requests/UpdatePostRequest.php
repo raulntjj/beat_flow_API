@@ -16,8 +16,8 @@ class UpdatePostRequest extends FormRequest {
             'user_id' => 'nullable|exists:users,id',
             'content' => 'nullable|string',
             'visibility' => 'nullable|in:private,public,followers',
-            'media_type' => 'nullable|in:audio,image,video',
-            'media_path' => 'nullable',
+            'media_type' => 'nullable|in:audio,image,video|required_with:media_path',
+            'media_path' => 'nullable|required_with:media_type',
         ];
     }
 
@@ -26,7 +26,10 @@ class UpdatePostRequest extends FormRequest {
             'user_id.exists' => 'The selected user does not exist.',
             'content.string' => 'The content must be a string.',
             'visibility.in' => 'The visibility must be one of: private, public, followers.',
-            'media_type.in' => 'The media_type must be one of: audio, image or video.',
+            'media_type.required_with' => 'The media type is required when media path is provided.',
+            'media_path.required_with' => 'The media path is required when media type is provided.',
+            'media_type.in' => 'The selected media type is invalid.',
+            'media_path.required_without' => 'Media path is required when media type is selected.',
         ];
     }
 

@@ -31,11 +31,11 @@ class GenreController {
     }
 
     public function store(StoreGenreRequest $request){
-        return $this->genreService->createGenre($request);
+        return $this->genreService->createGenre($request->validated());
     }
 
     public function update(UpdateGenreRequest $request, int $id){
-        return $this->genreService->updateGenre($request, $id);
+        return $this->genreService->updateGenre($request->validated(), $id);
     }
 
     public function destroy(int $id){

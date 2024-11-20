@@ -27,11 +27,11 @@ class NotificationController {
     }
 
     public function store(StoreNotificationRequest $request){
-        return $this->notificationService->createNotification($request);
+        return $this->notificationService->createNotification($request->validated());
     }
 
     public function update(UpdateNotificationRequest $request, int $id){
-        return $this->notificationService->updateNotification($request, $id);
+        return $this->notificationService->updateNotification($request->validated(), $id);
     }
 
     public function destroy(int $id){

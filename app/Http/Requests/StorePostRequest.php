@@ -16,8 +16,8 @@ class StorePostRequest extends FormRequest {
             'user_id' => 'required|exists:users,id',
             'content' => 'required|string',
             'visibility' => 'required|in:private,public,followers',
-            'media_type' => 'nullable|in:audio,image,video',
-            'media_path' => 'nullable',
+            'media_type' => 'nullable|in:audio,image,video|required_with:media_path',
+            'media_path' => 'nullable|required_with:media_type',
         ];
     }
 
@@ -29,9 +29,10 @@ class StorePostRequest extends FormRequest {
             'content.string' => 'The content must be a string.',
             'visibility.required' => 'The visibility field is required.',
             'visibility.in' => 'The visibility must be one of: private, public, followers.',
-            'media_type.in' => 'The media_type must be one of: audio, image or video.',
-            // 'media_path.string' => 'The media_path must be a string.',
-            // 'media_path.max' => 'The media_path may not be greater than 255 characters.',
+            'media_type.required_with' => 'The media type is required when media path is provided.',
+            'media_path.required_with' => 'The media path is required when media type is provided.',
+            'media_type.in' => 'The selected media type is invalid.',
+            'media_path.required_without' => 'Media path is required when media type is selected.',
         ];
     }
 
