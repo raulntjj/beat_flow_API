@@ -85,6 +85,10 @@ class PostService {
                     throw new Exception("Post not found");
                 }
 
+                $request->merge([
+                    'oldMedia' => $user->post->media_path,
+                ]);
+
                 $post->fill([
                     'user_id' => $request['user_id'] ?? $user_id->user_id,
                     'content' => $request['content'] ?? $post->content,

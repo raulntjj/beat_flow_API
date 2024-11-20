@@ -17,6 +17,7 @@ use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Database\DatabaseController;
+use App\Http\Controllers\Controller;
 use App\Http\Middleware\CheckPermission;
 use App\Http\Middleware\CheckOwnership;
 
@@ -86,3 +87,6 @@ Route::middleware('auth:api')->group(function () {
         Route::apiResource('users', UserController::class);
     });
 });
+
+
+Route::post('image', [Controller::class, 'teste']);

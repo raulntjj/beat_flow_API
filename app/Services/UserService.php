@@ -133,12 +133,16 @@ class UserService {
                     throw new Exception("User not found");
                 }
 
+                $request->merge([
+                    'oldProfilePhoto' => $user->profile_photo,
+                ]);
+
                 $user->fill([
                     'user' => $request['user'] ?? $user->user,
                     'name' => $request['name'] ?? $user->name,
                     'last_name' => $request['last_name'] ?? $user->last_name,
                     'email' => $request['email'] ?? $user->email,
-                    'profile_photo' => $this->updatePostMedia($request),
+                    'profile_photo' => $this->updateProfilePhoto($request),
                     'password' => isset($request['password']) ? bcrypt($request['password']) : $user->password,
                     'bio' => $request['bio'] ?? $user->bio,
                     'is_private' => $request['is_private'] ?? $user->is_private,
