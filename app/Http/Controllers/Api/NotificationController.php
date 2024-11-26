@@ -30,9 +30,9 @@ class NotificationController {
         return $this->notificationService->createNotification($request->validated());
     }
 
-    public function update(UpdateNotificationRequest $request, int $id){
-        return $this->notificationService->updateNotification($request->validated(), $id);
-    }
+    // public function update(UpdateNotificationRequest $request, int $id){
+    //     return $this->notificationService->updateNotification($request->validated(), $id);
+    // }
 
     public function destroy(int $id){
         return $this->notificationService->deleteNotification($id);

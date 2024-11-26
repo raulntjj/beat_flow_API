@@ -4,7 +4,10 @@ namespace App\Services;
 
 use App\Models\PostEngagement;
 use App\Events\PostEngagementEvent;
+use App\Services\NotificationService;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Tymon\JWTAuth\Facades\JWTAuth;
 use Exception;
 
 class PostEngagementService {         
@@ -42,16 +45,23 @@ class PostEngagementService {
 
     public function createPostEngagement(array $request) {
         try {
+            $userAuth = Auth::guard('api')->user();
             $engagement = DB::transaction(function() use ($request) { 
                 return PostEngagement::create([
                     'post_id' => $request['post_id'],
                     'user_id' => $request['user_id'],
                     'type' => $request['type'],
-                ]);     
+                ]);
             });
 
-            // Disparando evento para notificar
-            event(new PostEngagementEvent($validated['type'], $engagement->post, auth()->user()));
+            // Instanciando serviço
+            $notificationService = app(NotificationService::class);
+            $notificationService->createNotification([
+                'user_id' => $request['user_id'],
+                'type' => $request['type'],
+                'is_read' => false,
+                'notifier_name' => $userAuth->user
+            ]);
 
             return response()->json(['status' => 'success', 'response' => $engagement]);
         } catch (Exception $e) {
@@ -59,29 +69,29 @@ class PostEngagementService {
         }
     }
 
-    public function updatePostEngagement(array $request, int $id) {
-        try {
-            $engagement = DB::transaction(function() use ($id, $request) {
-                $engagement = PostEngagement::find($id);
+    // public function updatePostEngagement(array $request, int $id) {
+    //     try {
+    //         $engagement = DB::transaction(function() use ($id, $request) {
+    //             $engagement = PostEngagement::find($id);
                 
-                if (!$engagement) {
-                    throw new Exception("PostEngagement not found");
-                }
+    //             if (!$engagement) {
+    //                 throw new Exception("PostEngagement not found");
+    //             }
 
-                $engagement->fill([
-                    'post_id' => $request['post_id'] ?? $engagement->post_id,
-                    'user_id' => $request['user_id'] ?? $engagement->user_id,
-                    'type' => $request['type'] ?? $engagement->type,
-                ])->save();
+    //             $engagement->fill([
+    //                 'post_id' => $request['post_id'] ?? $engagement->post_id,
+    //                 'user_id' => $request['user_id'] ?? $engagement->user_id,
+    //                 'type' => $request['type'] ?? $engagement->type,
+    //             ])->save();
 
-                return $engagement;
-            });
+    //             return $engagement;
+    //         });
 
-            return response()->json(['status' => 'success', 'response' => $engagement]);
-        } catch (Exception $e) {
-            return response()->json(['status' => 'failed', 'response' => $e->getMessage()]);
-        }
-    }
+    //         return response()->json(['status' => 'success', 'response' => $engagement]);
+    //     } catch (Exception $e) {
+    //         return response()->json(['status' => 'failed', 'response' => $e->getMessage()]);
+    //     }
+    // }
 
     public function deletePostEngagement(int $id) {
         try {

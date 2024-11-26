@@ -28,6 +28,10 @@ class PostController {
         return $this->postService->getAllPosts($params);
     }
 
+    public function show(int $id){
+        return $this->postService->getPost($id);
+    }
+
     public function store(StorePostRequest $request){
         return $this->postService->createPost($request->validated());
     }

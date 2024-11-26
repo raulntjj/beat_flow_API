@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Services\UserService;
 use Illuminate\Support\Facades\Auth;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
@@ -21,6 +22,12 @@ class AuthController {
     public function logout() {
         Auth::guard('api')->logout();
         return response()->json(['status' => 'success', 'response' => 'Successfully logged out']);
+    }
+
+    public function register(StoreUserRequest $request) {
+        $userService = app(UserService::class);
+        $user = $userService->createUser($request->validated());
+        return response()->json(['status' => 'success', 'response' => $user]);
     }
 
     public function refresh() {

@@ -30,9 +30,9 @@ class PostEngagementController {
         return $this->postEngagementService->createPostEngagement($request->validated());
     }
 
-    public function update(UpdatePostEngagementRequest $request, int $id){
-        return $this->postEngagementService->updatePostEngagement($request->validated(), $id);
-    }
+    // public function update(UpdatePostEngagementRequest $request, int $id){
+    //     return $this->postEngagementService->updatePostEngagement($request->validated(), $id);
+    // }
 
     public function destroy(int $id){
         return $this->postEngagementService->deletePostEngagement($id);

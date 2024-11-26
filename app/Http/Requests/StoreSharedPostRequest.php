@@ -15,7 +15,8 @@ class StoreSharedPostRequest extends FormRequest {
         return [
             'post_id' => 'required|exists:posts,id',
             'user_id' => 'required|exists:users,id',
-            'comment' => 'required|string|max:255',
+            'comment' => 'nullable|string|max:255',
+            'notifier_name' => 'nullable|string|max:255',
         ];
     }
 
