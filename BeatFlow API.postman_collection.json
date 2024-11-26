@@ -11,11 +11,34 @@
 			"item": [
 				{
 					"name": "Seed DB",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([201, 202]);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "127.0.0.1:8989/api/database",
+							"raw": "3.12.129.102/api/database",
 							"host": [
 								"127",
 								"0",
@@ -29,7 +52,81 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Seed DB",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "3.12.129.102/api/database",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8989",
+									"path": [
+										"api",
+										"database"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.27.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.26"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 25 Nov 2024 23:53:08 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"response\": \"Database seeded successfully.\"\n}"
+						}
+					]
 				},
 				{
 					"name": "Refresh DB",
@@ -37,7 +134,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "127.0.0.1:8989/api/database",
+							"raw": "3.12.129.102/api/database",
 							"host": [
 								"127",
 								"0",
@@ -51,7 +148,72 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Refresh DB",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "3.12.129.102/api/database",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8989",
+									"path": [
+										"api",
+										"database"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.27.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.26"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 25 Nov 2024 23:52:57 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"response\": \"Database refreshed successfully.\"\n}"
+						}
+					]
 				}
 			]
 		},
@@ -73,7 +235,7 @@
 							}
 						},
 						"url": {
-							"raw": "127.0.0.1:8989/api/login",
+							"raw": "3.12.129.102/api/login",
 							"host": [
 								"127",
 								"0",
@@ -87,7 +249,81 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "3.12.129.102/api/login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"email\": \"raulntjj@gmail.com\",\n  \"password\": \"12345678\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "3.12.129.102/api/login",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8989",
+									"path": [
+										"api",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.27.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.26"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 25 Nov 2024 02:13:53 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"response\": {\n        \"access_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjg5ODkvYXBpL2xvZ2luIiwiaWF0IjoxNzMyNTAwODMzLCJleHAiOjE3MzI1MDQ0MzMsIm5iZiI6MTczMjUwMDgzMywianRpIjoiOUQ0b0FUamVMRzNtVHNUMCIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.JuXFH0i7nLuKqDCW-Loa6LB0UEDIWJDjQaOV1y4ggzU\",\n        \"token_type\": \"bearer\",\n        \"expires_in\": 3600\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "Logout",
@@ -95,7 +331,7 @@
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "127.0.0.1:8989/auth/logout",
+							"raw": "3.12.129.102/api/logout",
 							"host": [
 								"127",
 								"0",
@@ -104,12 +340,77 @@
 							],
 							"port": "8989",
 							"path": [
-								"auth",
+								"api",
 								"logout"
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Logout",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "3.12.129.102/api/logout",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8989",
+									"path": [
+										"api",
+										"logout"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.27.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.26"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 25 Nov 2024 02:17:25 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"response\": \"Successfully logged out\"\n}"
+						}
+					]
 				},
 				{
 					"name": "Refresh",
@@ -117,7 +418,7 @@
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "127.0.0.1:8989/auth/refresh",
+							"raw": "3.12.129.102/api/refresh",
 							"host": [
 								"127",
 								"0",
@@ -126,12 +427,77 @@
 							],
 							"port": "8989",
 							"path": [
-								"auth",
+								"api",
 								"refresh"
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Refresh",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "3.12.129.102/api/refresh",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8989",
+									"path": [
+										"api",
+										"refresh"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.27.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.26"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 25 Nov 2024 02:18:19 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"response\": {\n        \"access_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjg5ODkvYXBpL3JlZnJlc2giLCJpYXQiOjE3MzI1MDEwNTUsImV4cCI6MTczMjUwNDY5OSwibmJmIjoxNzMyNTAxMDk5LCJqdGkiOiJjeXJzVFROMnhHSUJYRW9DIiwic3ViIjoiMSIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.IuTFM2PKboi_D6E3C9SW1H1dHv8VzLr77z4gExGFlmI\",\n        \"token_type\": \"bearer\",\n        \"expires_in\": 3600\n    }\n}"
+						}
+					]
 				}
 			]
 		},
@@ -144,7 +510,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "127.0.0.1:8989/api/me",
+							"raw": "3.12.129.102/api/me",
 							"host": [
 								"127",
 								"0",
@@ -158,7 +524,72 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Get User",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "3.12.129.102/api/me",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8989",
+									"path": [
+										"api",
+										"me"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.27.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.26"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 25 Nov 2024 02:18:55 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"response\": [\n        {\n            \"id\": 1,\n            \"name\": \"Raul\",\n            \"last_name\": \"De Oliveira\",\n            \"email\": \"raulntjj@gmail.com\",\n            \"user\": \"raulntjj\",\n            \"email_verified_at\": null,\n            \"profile_photo_path\": \"beatflow/placeholder/profile_photo.jpg\",\n            \"bio\": \"Hello World!\",\n            \"is_private\": 0,\n            \"created_at\": null,\n            \"updated_at\": null,\n            \"profile_photo_temp\": null,\n            \"followers\": [\n                {\n                    \"id\": 5,\n                    \"follower_id\": 3,\n                    \"followed_id\": 1,\n                    \"created_at\": null,\n                    \"updated_at\": null,\n                    \"follower\": {\n                        \"id\": 3,\n                        \"name\": \"Bob\",\n                        \"profile_photo_path\": \"beatflow/placeholder/profile_photo.jpg\",\n                        \"profile_photo_temp\": null\n                    }\n                }\n            ],\n            \"followed\": [\n                {\n                    \"id\": 1,\n                    \"follower_id\": 1,\n                    \"followed_id\": 2,\n                    \"created_at\": null,\n                    \"updated_at\": null,\n                    \"follower\": {\n                        \"id\": 1,\n                        \"name\": \"Raul\",\n                        \"profile_photo_path\": \"beatflow/placeholder/profile_photo.jpg\",\n                        \"profile_photo_temp\": null\n                    }\n                },\n                {\n                    \"id\": 2,\n                    \"follower_id\": 1,\n                    \"followed_id\": 3,\n                    \"created_at\": null,\n                    \"updated_at\": null,\n                    \"follower\": {\n                        \"id\": 1,\n                        \"name\": \"Raul\",\n                        \"profile_photo_path\": \"beatflow/placeholder/profile_photo.jpg\",\n                        \"profile_photo_temp\": null\n                    }\n                }\n            ],\n            \"new_notifications\": [\n                {\n                    \"id\": 1,\n                    \"user_id\": 1,\n                    \"type\": \"like\",\n                    \"is_read\": 0,\n                    \"content\": \"Alice liked your post.\",\n                    \"created_at\": \"2024-11-25T01:19:52.000000Z\",\n                    \"updated_at\": null\n                }\n            ],\n            \"roles\": [\n                {\n                    \"id\": 1,\n                    \"name\": \"Admin\",\n                    \"created_at\": \"2024-11-25T01:19:52.000000Z\",\n                    \"updated_at\": null,\n                    \"pivot\": {\n                        \"user_id\": 1,\n                        \"role_id\": 1\n                    }\n                }\n            ]\n        }\n    ]\n}"
+						}
+					]
 				},
 				{
 					"name": "Get User Feed",
@@ -166,7 +597,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "127.0.0.1:8989/api/me/feed",
+							"raw": "3.12.129.102/api/me/feed",
 							"host": [
 								"127",
 								"0",
@@ -181,7 +612,73 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Get User Feed",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "3.12.129.102/api/me/feed",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8989",
+									"path": [
+										"api",
+										"me",
+										"feed"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.27.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.26"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 25 Nov 2024 02:19:11 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"response\": {\n        \"current_page\": 1,\n        \"data\": [\n            {\n                \"id\": 1,\n                \"post_id\": 2,\n                \"shared_post_id\": null,\n                \"created_at\": \"2024-11-25T01:19:52.000000Z\",\n                \"updated_at\": null,\n                \"engagement_count\": null,\n                \"post\": {\n                    \"id\": 2,\n                    \"user_id\": 2,\n                    \"content\": \"Alice shares her thoughts.\",\n                    \"visibility\": \"public\",\n                    \"media_type\": \"image\",\n                    \"media_path\": \"post2.jpg\",\n                    \"created_at\": \"2024-11-25T01:19:52.000000Z\",\n                    \"updated_at\": null,\n                    \"media_temp\": null,\n                    \"user\": {\n                        \"id\": 2,\n                        \"name\": \"Alice\",\n                        \"last_name\": \"Smith\",\n                        \"email\": \"alice@gmail.com\",\n                        \"user\": \"alice\",\n                        \"email_verified_at\": null,\n                        \"profile_photo_path\": \"beatflow/placeholder/profile_photo.jpg\",\n                        \"bio\": \"Music is life!\",\n                        \"is_private\": 0,\n                        \"created_at\": null,\n                        \"updated_at\": null,\n                        \"profile_photo_temp\": null\n                    }\n                },\n                \"shared_post\": null\n            },\n            {\n                \"id\": 2,\n                \"post_id\": null,\n                \"shared_post_id\": null,\n                \"created_at\": \"2024-11-25T01:19:52.000000Z\",\n                \"updated_at\": null,\n                \"engagement_count\": null,\n                \"post\": null,\n                \"shared_post\": null\n            }\n        ],\n        \"first_page_url\": \"http://3.12.129.102/api/me/feed?page=1\",\n        \"from\": 1,\n        \"last_page\": 1,\n        \"last_page_url\": \"http://3.12.129.102/api/me/feed?page=1\",\n        \"links\": [\n            {\n                \"url\": null,\n                \"label\": \"&laquo; Previous\",\n                \"active\": false\n            },\n            {\n                \"url\": \"http://3.12.129.102/api/me/feed?page=1\",\n                \"label\": \"1\",\n                \"active\": true\n            },\n            {\n                \"url\": null,\n                \"label\": \"Next &raquo;\",\n                \"active\": false\n            }\n        ],\n        \"next_page_url\": null,\n        \"path\": \"http://3.12.129.102/api/me/feed\",\n        \"per_page\": 10,\n        \"prev_page_url\": null,\n        \"to\": 2,\n        \"total\": 2\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "Get User Followers",
@@ -189,7 +686,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "127.0.0.1:8989/api/me/followers",
+							"raw": "3.12.129.102/api/me/followers",
 							"host": [
 								"127",
 								"0",
@@ -204,7 +701,73 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Get User Followers",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "3.12.129.102/api/me/followers",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8989",
+									"path": [
+										"api",
+										"me",
+										"followers"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.27.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.26"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 25 Nov 2024 02:19:19 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"response\": {\n        \"current_page\": 1,\n        \"data\": [\n            {\n                \"id\": 5,\n                \"follower_id\": 3,\n                \"followed_id\": 1,\n                \"created_at\": null,\n                \"updated_at\": null,\n                \"follower\": {\n                    \"id\": 3,\n                    \"name\": \"Bob\",\n                    \"last_name\": \"Johnson\",\n                    \"email\": \"bob@gmail.com\",\n                    \"user\": \"bob\",\n                    \"email_verified_at\": null,\n                    \"profile_photo_path\": \"beatflow/placeholder/profile_photo.jpg\",\n                    \"bio\": \"Rock and Blues.\",\n                    \"is_private\": 1,\n                    \"created_at\": null,\n                    \"updated_at\": null,\n                    \"profile_photo_temp\": null\n                }\n            }\n        ],\n        \"first_page_url\": \"http://3.12.129.102/api/me/followers?page=1\",\n        \"from\": 1,\n        \"last_page\": 1,\n        \"last_page_url\": \"http://3.12.129.102/api/me/followers?page=1\",\n        \"links\": [\n            {\n                \"url\": null,\n                \"label\": \"&laquo; Previous\",\n                \"active\": false\n            },\n            {\n                \"url\": \"http://3.12.129.102/api/me/followers?page=1\",\n                \"label\": \"1\",\n                \"active\": true\n            },\n            {\n                \"url\": null,\n                \"label\": \"Next &raquo;\",\n                \"active\": false\n            }\n        ],\n        \"next_page_url\": null,\n        \"path\": \"http://3.12.129.102/api/me/followers\",\n        \"per_page\": 10,\n        \"prev_page_url\": null,\n        \"to\": 1,\n        \"total\": 1\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "Get User Followed",
@@ -212,7 +775,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "127.0.0.1:8989/api/me/followed",
+							"raw": "3.12.129.102/api/me/followed",
 							"host": [
 								"127",
 								"0",
@@ -227,7 +790,73 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Get User Followed",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "3.12.129.102/api/me/followed",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8989",
+									"path": [
+										"api",
+										"me",
+										"followed"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.27.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.26"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 25 Nov 2024 02:19:26 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"response\": {\n        \"current_page\": 1,\n        \"data\": [\n            {\n                \"id\": 1,\n                \"follower_id\": 1,\n                \"followed_id\": 2,\n                \"created_at\": null,\n                \"updated_at\": null,\n                \"followed\": {\n                    \"id\": 2,\n                    \"name\": \"Alice\",\n                    \"last_name\": \"Smith\",\n                    \"email\": \"alice@gmail.com\",\n                    \"user\": \"alice\",\n                    \"email_verified_at\": null,\n                    \"profile_photo_path\": \"beatflow/placeholder/profile_photo.jpg\",\n                    \"bio\": \"Music is life!\",\n                    \"is_private\": 0,\n                    \"created_at\": null,\n                    \"updated_at\": null,\n                    \"profile_photo_temp\": null\n                }\n            },\n            {\n                \"id\": 2,\n                \"follower_id\": 1,\n                \"followed_id\": 3,\n                \"created_at\": null,\n                \"updated_at\": null,\n                \"followed\": {\n                    \"id\": 3,\n                    \"name\": \"Bob\",\n                    \"last_name\": \"Johnson\",\n                    \"email\": \"bob@gmail.com\",\n                    \"user\": \"bob\",\n                    \"email_verified_at\": null,\n                    \"profile_photo_path\": \"beatflow/placeholder/profile_photo.jpg\",\n                    \"bio\": \"Rock and Blues.\",\n                    \"is_private\": 1,\n                    \"created_at\": null,\n                    \"updated_at\": null,\n                    \"profile_photo_temp\": null\n                }\n            }\n        ],\n        \"first_page_url\": \"http://3.12.129.102/api/me/followed?page=1\",\n        \"from\": 1,\n        \"last_page\": 1,\n        \"last_page_url\": \"http://3.12.129.102/api/me/followed?page=1\",\n        \"links\": [\n            {\n                \"url\": null,\n                \"label\": \"&laquo; Previous\",\n                \"active\": false\n            },\n            {\n                \"url\": \"http://3.12.129.102/api/me/followed?page=1\",\n                \"label\": \"1\",\n                \"active\": true\n            },\n            {\n                \"url\": null,\n                \"label\": \"Next &raquo;\",\n                \"active\": false\n            }\n        ],\n        \"next_page_url\": null,\n        \"path\": \"http://3.12.129.102/api/me/followed\",\n        \"per_page\": 10,\n        \"prev_page_url\": null,\n        \"to\": 2,\n        \"total\": 2\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "Get User Notifications",
@@ -235,7 +864,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "127.0.0.1:8989/api/me/notifications",
+							"raw": "3.12.129.102/api/me/notifications",
 							"host": [
 								"127",
 								"0",
@@ -250,7 +879,73 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Get User Notifications",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "3.12.129.102/api/me/notifications",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8989",
+									"path": [
+										"api",
+										"me",
+										"notifications"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.27.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.26"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 25 Nov 2024 02:19:31 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"response\": {\n        \"current_page\": 1,\n        \"data\": [\n            {\n                \"id\": 1,\n                \"user_id\": 1,\n                \"type\": \"like\",\n                \"is_read\": 0,\n                \"content\": \"Alice liked your post.\",\n                \"created_at\": \"2024-11-25T01:19:52.000000Z\",\n                \"updated_at\": null,\n                \"post\": null,\n                \"user\": {\n                    \"id\": 1,\n                    \"name\": \"Raul\",\n                    \"last_name\": \"De Oliveira\",\n                    \"email\": \"raulntjj@gmail.com\",\n                    \"user\": \"raulntjj\",\n                    \"email_verified_at\": null,\n                    \"profile_photo_path\": \"beatflow/placeholder/profile_photo.jpg\",\n                    \"bio\": \"Hello World!\",\n                    \"is_private\": 0,\n                    \"created_at\": null,\n                    \"updated_at\": null,\n                    \"profile_photo_temp\": null\n                }\n            }\n        ],\n        \"first_page_url\": \"http://3.12.129.102/api/me/notifications?page=1\",\n        \"from\": 1,\n        \"last_page\": 1,\n        \"last_page_url\": \"http://3.12.129.102/api/me/notifications?page=1\",\n        \"links\": [\n            {\n                \"url\": null,\n                \"label\": \"&laquo; Previous\",\n                \"active\": false\n            },\n            {\n                \"url\": \"http://3.12.129.102/api/me/notifications?page=1\",\n                \"label\": \"1\",\n                \"active\": true\n            },\n            {\n                \"url\": null,\n                \"label\": \"Next &raquo;\",\n                \"active\": false\n            }\n        ],\n        \"next_page_url\": null,\n        \"path\": \"http://3.12.129.102/api/me/notifications\",\n        \"per_page\": 10,\n        \"prev_page_url\": null,\n        \"to\": 1,\n        \"total\": 1\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "Change password",
@@ -267,7 +962,7 @@
 							}
 						},
 						"url": {
-							"raw": "127.0.0.1:8989/api/me/change-password",
+							"raw": "3.12.129.102/api/me/change-password",
 							"host": [
 								"127",
 								"0",
@@ -299,7 +994,7 @@
 							}
 						},
 						"url": {
-							"raw": "127.0.0.1:8989/api/me/change-email",
+							"raw": "3.12.129.102/api/me/change-email",
 							"host": [
 								"127",
 								"0",
@@ -368,7 +1063,7 @@
 							]
 						},
 						"url": {
-							"raw": "127.0.0.1:8989/api/me",
+							"raw": "3.12.129.102/api/me",
 							"host": [
 								"127",
 								"0",
@@ -396,7 +1091,7 @@
 							}
 						],
 						"url": {
-							"raw": "127.0.0.1:8989/api/me",
+							"raw": "3.12.129.102/api/me",
 							"host": [
 								"127",
 								"0",
@@ -435,7 +1130,7 @@
 							}
 						},
 						"url": {
-							"raw": "127.0.0.1:8989/api/users",
+							"raw": "3.12.129.102/api/users",
 							"host": [
 								"127",
 								"0",
@@ -449,7 +1144,81 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Get Users",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "3.12.129.102/api/users",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8989",
+									"path": [
+										"api",
+										"users"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.27.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.26"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 25 Nov 2024 23:44:56 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"response\": {\n        \"current_page\": 1,\n        \"data\": [\n            {\n                \"id\": 1,\n                \"name\": \"Raul\",\n                \"last_name\": \"De Oliveira\",\n                \"email\": \"raulntjj@gmail.com\",\n                \"user\": \"raulntjj\",\n                \"email_verified_at\": null,\n                \"profile_photo_path\": \"beatflow/placeholder/profile_photo.jpg\",\n                \"bio\": \"Hello World!\",\n                \"is_private\": 0,\n                \"created_at\": null,\n                \"updated_at\": null,\n                \"profile_photo_temp\": \"https://socialbucketfaltamento.s3.us-east-2.amazonaws.com/beatflow/placeholder/profile_photo.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA47CR2ANT6D3FB5UP%2F20241125%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20241125T234456Z&X-Amz-SignedHeaders=host&X-Amz-Expires=604800&X-Amz-Signature=7b50bd01c0287bbb1ae0fa04637bda90ee84902b1849b8a476159d6448551aff\"\n            },\n            {\n                \"id\": 2,\n                \"name\": \"Alice\",\n                \"last_name\": \"Smith\",\n                \"email\": \"alice@gmail.com\",\n                \"user\": \"alice\",\n                \"email_verified_at\": null,\n                \"profile_photo_path\": \"beatflow/placeholder/profile_photo.jpg\",\n                \"bio\": \"Music is life!\",\n                \"is_private\": 0,\n                \"created_at\": null,\n                \"updated_at\": null,\n                \"profile_photo_temp\": \"https://socialbucketfaltamento.s3.us-east-2.amazonaws.com/beatflow/placeholder/profile_photo.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA47CR2ANT6D3FB5UP%2F20241125%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20241125T234456Z&X-Amz-SignedHeaders=host&X-Amz-Expires=604800&X-Amz-Signature=7b50bd01c0287bbb1ae0fa04637bda90ee84902b1849b8a476159d6448551aff\"\n            },\n            {\n                \"id\": 3,\n                \"name\": \"Bob\",\n                \"last_name\": \"Johnson\",\n                \"email\": \"bob@gmail.com\",\n                \"user\": \"bob\",\n                \"email_verified_at\": null,\n                \"profile_photo_path\": \"beatflow/placeholder/profile_photo.jpg\",\n                \"bio\": \"Rock and Blues.\",\n                \"is_private\": 1,\n                \"created_at\": null,\n                \"updated_at\": null,\n                \"profile_photo_temp\": \"https://socialbucketfaltamento.s3.us-east-2.amazonaws.com/beatflow/placeholder/profile_photo.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA47CR2ANT6D3FB5UP%2F20241125%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20241125T234456Z&X-Amz-SignedHeaders=host&X-Amz-Expires=604800&X-Amz-Signature=7b50bd01c0287bbb1ae0fa04637bda90ee84902b1849b8a476159d6448551aff\"\n            },\n            {\n                \"id\": 4,\n                \"name\": \"Charlie\",\n                \"last_name\": \"Brown\",\n                \"email\": \"charlie@gmail.com\",\n                \"user\": \"charlie\",\n                \"email_verified_at\": null,\n                \"profile_photo_path\": \"beatflow/placeholder/profile_photo.jpg\",\n                \"bio\": \"Guitarist.\",\n                \"is_private\": 0,\n                \"created_at\": null,\n                \"updated_at\": null,\n                \"profile_photo_temp\": \"https://socialbucketfaltamento.s3.us-east-2.amazonaws.com/beatflow/placeholder/profile_photo.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA47CR2ANT6D3FB5UP%2F20241125%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20241125T234456Z&X-Amz-SignedHeaders=host&X-Amz-Expires=604800&X-Amz-Signature=7b50bd01c0287bbb1ae0fa04637bda90ee84902b1849b8a476159d6448551aff\"\n            },\n            {\n                \"id\": 5,\n                \"name\": \"Diana\",\n                \"last_name\": \"Prince\",\n                \"email\": \"diana@gmail.com\",\n                \"user\": \"diana\",\n                \"email_verified_at\": null,\n                \"profile_photo_path\": \"beatflow/placeholder/profile_photo.jpg\",\n                \"bio\": \"Singer-songwriter.\",\n                \"is_private\": 1,\n                \"created_at\": null,\n                \"updated_at\": null,\n                \"profile_photo_temp\": \"https://socialbucketfaltamento.s3.us-east-2.amazonaws.com/beatflow/placeholder/profile_photo.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA47CR2ANT6D3FB5UP%2F20241125%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20241125T234456Z&X-Amz-SignedHeaders=host&X-Amz-Expires=604800&X-Amz-Signature=7b50bd01c0287bbb1ae0fa04637bda90ee84902b1849b8a476159d6448551aff\"\n            },\n            {\n                \"id\": 6,\n                \"name\": \"Eve\",\n                \"last_name\": \"Taylor\",\n                \"email\": \"eve@gmail.com\",\n                \"user\": \"eve\",\n                \"email_verified_at\": null,\n                \"profile_photo_path\": \"beatflow/placeholder/profile_photo.jpg\",\n                \"bio\": \"Jazz lover.\",\n                \"is_private\": 0,\n                \"created_at\": null,\n                \"updated_at\": null,\n                \"profile_photo_temp\": \"https://socialbucketfaltamento.s3.us-east-2.amazonaws.com/beatflow/placeholder/profile_photo.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA47CR2ANT6D3FB5UP%2F20241125%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20241125T234456Z&X-Amz-SignedHeaders=host&X-Amz-Expires=604800&X-Amz-Signature=7b50bd01c0287bbb1ae0fa04637bda90ee84902b1849b8a476159d6448551aff\"\n            },\n            {\n                \"id\": 7,\n                \"name\": \"Frank\",\n                \"last_name\": \"Castle\",\n                \"email\": \"frank@gmail.com\",\n                \"user\": \"frank\",\n                \"email_verified_at\": null,\n                \"profile_photo_path\": \"beatflow/placeholder/profile_photo.jpg\",\n                \"bio\": \"Aspiring DJ.\",\n                \"is_private\": 1,\n                \"created_at\": null,\n                \"updated_at\": null,\n                \"profile_photo_temp\": \"https://socialbucketfaltamento.s3.us-east-2.amazonaws.com/beatflow/placeholder/profile_photo.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA47CR2ANT6D3FB5UP%2F20241125%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20241125T234456Z&X-Amz-SignedHeaders=host&X-Amz-Expires=604800&X-Amz-Signature=7b50bd01c0287bbb1ae0fa04637bda90ee84902b1849b8a476159d6448551aff\"\n            },\n            {\n                \"id\": 8,\n                \"name\": \"Grace\",\n                \"last_name\": \"Hopper\",\n                \"email\": \"grace@gmail.com\",\n                \"user\": \"grace\",\n                \"email_verified_at\": null,\n                \"profile_photo_path\": \"beatflow/placeholder/profile_photo.jpg\",\n                \"bio\": \"Pianist and composer.\",\n                \"is_private\": 0,\n                \"created_at\": null,\n                \"updated_at\": null,\n                \"profile_photo_temp\": \"https://socialbucketfaltamento.s3.us-east-2.amazonaws.com/beatflow/placeholder/profile_photo.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA47CR2ANT6D3FB5UP%2F20241125%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20241125T234456Z&X-Amz-SignedHeaders=host&X-Amz-Expires=604800&X-Amz-Signature=7b50bd01c0287bbb1ae0fa04637bda90ee84902b1849b8a476159d6448551aff\"\n            },\n            {\n                \"id\": 9,\n                \"name\": \"Hank\",\n                \"last_name\": \"Hill\",\n                \"email\": \"hank@gmail.com\",\n                \"user\": \"hank\",\n                \"email_verified_at\": null,\n                \"profile_photo_path\": \"beatflow/placeholder/profile_photo.jpg\",\n                \"bio\": \"Metalhead.\",\n                \"is_private\": 1,\n                \"created_at\": null,\n                \"updated_at\": null,\n                \"profile_photo_temp\": \"https://socialbucketfaltamento.s3.us-east-2.amazonaws.com/beatflow/placeholder/profile_photo.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA47CR2ANT6D3FB5UP%2F20241125%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20241125T234456Z&X-Amz-SignedHeaders=host&X-Amz-Expires=604800&X-Amz-Signature=7b50bd01c0287bbb1ae0fa04637bda90ee84902b1849b8a476159d6448551aff\"\n            },\n            {\n                \"id\": 10,\n                \"name\": \"Ivy\",\n                \"last_name\": \"Walker\",\n                \"email\": \"ivy@gmail.com\",\n                \"user\": \"ivy\",\n                \"email_verified_at\": null,\n                \"profile_photo_path\": \"beatflow/placeholder/pprofile_photo.jpg\",\n                \"bio\": \"Electronic music producer.\",\n                \"is_private\": 0,\n                \"created_at\": null,\n                \"updated_at\": null,\n                \"profile_photo_temp\": \"https://socialbucketfaltamento.s3.us-east-2.amazonaws.com/beatflow/placeholder/pprofile_photo.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA47CR2ANT6D3FB5UP%2F20241125%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20241125T234456Z&X-Amz-SignedHeaders=host&X-Amz-Expires=604800&X-Amz-Signature=7a19d2086ed17ffc3e56b9ee999803623b8c5a0f62afecfc07090d253bd77239\"\n            }\n        ],\n        \"first_page_url\": \"http://3.12.129.102/api/users?page=1\",\n        \"from\": 1,\n        \"last_page\": 1,\n        \"last_page_url\": \"http://3.12.129.102/api/users?page=1\",\n        \"links\": [\n            {\n                \"url\": null,\n                \"label\": \"&laquo; Previous\",\n                \"active\": false\n            },\n            {\n                \"url\": \"http://3.12.129.102/api/users?page=1\",\n                \"label\": \"1\",\n                \"active\": true\n            },\n            {\n                \"url\": null,\n                \"label\": \"Next &raquo;\",\n                \"active\": false\n            }\n        ],\n        \"next_page_url\": null,\n        \"path\": \"http://3.12.129.102/api/users\",\n        \"per_page\": 10,\n        \"prev_page_url\": null,\n        \"to\": 10,\n        \"total\": 10\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "Get User",
@@ -469,7 +1238,7 @@
 							}
 						},
 						"url": {
-							"raw": "127.0.0.1:8989/api/users/11",
+							"raw": "3.12.129.102/api/users/3",
 							"host": [
 								"127",
 								"0",
@@ -480,11 +1249,86 @@
 							"path": [
 								"api",
 								"users",
-								"11"
+								"3"
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Get User",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "3.12.129.102/api/users/3",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8989",
+									"path": [
+										"api",
+										"users",
+										"3"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.27.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.26"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 25 Nov 2024 23:45:08 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"response\": {\n        \"id\": 3,\n        \"name\": \"Bob\",\n        \"last_name\": \"Johnson\",\n        \"email\": \"bob@gmail.com\",\n        \"user\": \"bob\",\n        \"email_verified_at\": null,\n        \"profile_photo_path\": \"beatflow/placeholder/profile_photo.jpg\",\n        \"bio\": \"Rock and Blues.\",\n        \"is_private\": 1,\n        \"created_at\": null,\n        \"updated_at\": null,\n        \"profile_photo_temp\": \"https://socialbucketfaltamento.s3.us-east-2.amazonaws.com/beatflow/placeholder/profile_photo.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA47CR2ANT6D3FB5UP%2F20241125%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20241125T234508Z&X-Amz-SignedHeaders=host&X-Amz-Expires=604800&X-Amz-Signature=c872ebebd148b50373b2857ed7a46115890580c033a74a56aa033915ee715176\"\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "Create User",
@@ -526,6 +1370,11 @@
 									"type": "text"
 								},
 								{
+									"key": "password_confirmation",
+									"value": "SecurePassword123",
+									"type": "text"
+								},
+								{
 									"key": "bio",
 									"value": "Desenvolvedor apaixonado por tecnologia e aprendizado contínuo.",
 									"type": "text"
@@ -543,7 +1392,7 @@
 							]
 						},
 						"url": {
-							"raw": "127.0.0.1:8989/api/users",
+							"raw": "3.12.129.102/api/users",
 							"host": [
 								"127",
 								"0",
@@ -557,7 +1406,128 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Create User",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "Raul-tes",
+											"type": "text"
+										},
+										{
+											"key": "last_name",
+											"value": "Goncalves",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "raul.goncalves@example.com",
+											"type": "text"
+										},
+										{
+											"key": "user",
+											"value": "raulntjj1",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "SecurePassword123",
+											"type": "text"
+										},
+										{
+											"key": "password_confirmation",
+											"value": "SecurePassword123",
+											"type": "text"
+										},
+										{
+											"key": "bio",
+											"value": "Desenvolvedor apaixonado por tecnologia e aprendizado contínuo.",
+											"type": "text"
+										},
+										{
+											"key": "is_private",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "profile_photo_path",
+											"type": "file",
+											"src": "postman-cloud:///1efa6d16-a315-4b90-8097-efdd0901b50c"
+										}
+									]
+								},
+								"url": {
+									"raw": "3.12.129.102/api/users",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8989",
+									"path": [
+										"api",
+										"users"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.27.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.26"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 25 Nov 2024 23:45:44 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"response\": {\n        \"user\": \"raulntjj1\",\n        \"name\": \"Raul-tes\",\n        \"last_name\": \"Goncalves\",\n        \"email\": \"raul.goncalves@example.com\",\n        \"profile_photo_path\": \"beatflow/profile_photos/Mr5GkoO88cPfBMRb6dGnBhuNtvwtbo1HX63CCUuA.jpg\",\n        \"bio\": \"Desenvolvedor apaixonado por tecnologia e aprendizado contínuo.\",\n        \"is_private\": \"1\",\n        \"updated_at\": \"2024-11-25T23:45:44.000000Z\",\n        \"created_at\": \"2024-11-25T23:45:44.000000Z\",\n        \"id\": 11,\n        \"profile_photo_temp\": \"https://socialbucketfaltamento.s3.us-east-2.amazonaws.com/beatflow/profile_photos/Mr5GkoO88cPfBMRb6dGnBhuNtvwtbo1HX63CCUuA.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA47CR2ANT6D3FB5UP%2F20241125%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20241125T234544Z&X-Amz-SignedHeaders=host&X-Amz-Expires=604800&X-Amz-Signature=a83d72b6073fbdf343bd6e5222d9241f72658ed5f17b3dc4f39f20b032bad502\"\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "Update User",
@@ -606,12 +1576,12 @@
 								{
 									"key": "profile_photo_path",
 									"type": "file",
-									"src": "postman-cloud:///1efa6d16-a315-4b90-8097-efdd0901b50c"
+									"src": "postman-cloud:///1ef5e34d-596b-49b0-8d25-b3d351fe060d"
 								}
 							]
 						},
 						"url": {
-							"raw": "127.0.0.1:8989/api/users/11",
+							"raw": "3.12.129.102/api/me",
 							"host": [
 								"127",
 								"0",
@@ -621,12 +1591,123 @@
 							"port": "8989",
 							"path": [
 								"api",
-								"users",
-								"11"
+								"me"
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Update User",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "_method",
+											"value": "put",
+											"type": "text"
+										},
+										{
+											"key": "name",
+											"value": "Raul",
+											"type": "text"
+										},
+										{
+											"key": "last_name",
+											"value": "Goncalves",
+											"type": "text"
+										},
+										{
+											"key": "user",
+											"value": "raulntjj1",
+											"type": "text"
+										},
+										{
+											"key": "bio",
+											"value": "Desenvolvedor apaixonado por tecnologia e aprendizado contínuo.",
+											"type": "text"
+										},
+										{
+											"key": "is_private",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "profile_photo_path",
+											"type": "file",
+											"src": "postman-cloud:///1efa6d16-a315-4b90-8097-efdd0901b50c"
+										}
+									]
+								},
+								"url": {
+									"raw": "3.12.129.102/api/users/3",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8989",
+									"path": [
+										"api",
+										"users",
+										"3"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.27.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.26"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 25 Nov 2024 23:45:54 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"response\": {\n        \"id\": 3,\n        \"name\": \"Raul\",\n        \"last_name\": \"Goncalves\",\n        \"email\": \"bob@gmail.com\",\n        \"user\": \"bob\",\n        \"email_verified_at\": null,\n        \"profile_photo_path\": \"beatflow/profile_photos/qsfm9uoXo47IIZOsEB2WHZUh7XgpJXHCZrMloaMv.jpg\",\n        \"bio\": \"Desenvolvedor apaixonado por tecnologia e aprendizado contínuo.\",\n        \"is_private\": \"1\",\n        \"created_at\": null,\n        \"updated_at\": \"2024-11-25T23:45:54.000000Z\",\n        \"profile_photo_temp\": \"https://socialbucketfaltamento.s3.us-east-2.amazonaws.com/beatflow/profile_photos/qsfm9uoXo47IIZOsEB2WHZUh7XgpJXHCZrMloaMv.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA47CR2ANT6D3FB5UP%2F20241125%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20241125T234554Z&X-Amz-SignedHeaders=host&X-Amz-Expires=604800&X-Amz-Signature=da6b9225297d404718398df4da208edf632b02f71f300affa548c240fb48c046\"\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "Delete User",
@@ -640,7 +1721,7 @@
 							}
 						],
 						"url": {
-							"raw": "127.0.0.1:8989/api/users/11",
+							"raw": "3.12.129.102/api/users/5",
 							"host": [
 								"127",
 								"0",
@@ -651,11 +1732,83 @@
 							"path": [
 								"api",
 								"users",
-								"11"
+								"5"
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Delete User",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "3.12.129.102/api/users/5",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8989",
+									"path": [
+										"api",
+										"users",
+										"5"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.27.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.26"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 25 Nov 2024 23:46:02 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"response\": \"User deleted successfully\"\n}"
+						}
+					]
 				}
 			]
 		},
@@ -677,7 +1830,7 @@
 							}
 						},
 						"url": {
-							"raw": "127.0.0.1:8989/api/follows",
+							"raw": "3.12.129.102/api/follows",
 							"host": [
 								"127",
 								"0",
@@ -699,7 +1852,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "127.0.0.1:8989/api/follows/3",
+							"raw": "3.12.129.102/api/follows/3",
 							"host": [
 								"127",
 								"0",
@@ -739,7 +1892,7 @@
 							}
 						},
 						"url": {
-							"raw": "127.0.0.1:8989/api/notifications",
+							"raw": "3.12.129.102/api/notifications",
 							"host": [
 								"127",
 								"0",
@@ -753,7 +1906,293 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Get Notifications",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "3.12.129.102/api/notifications",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8989",
+									"path": [
+										"api",
+										"notifications"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.27.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.26"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 25 Nov 2024 23:21:35 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"response\": [\n        {\n            \"id\": 1,\n            \"user_id\": 1,\n            \"type\": \"like\",\n            \"is_read\": 0,\n            \"content\": \"Alice liked your post.\",\n            \"created_at\": \"2024-11-25T22:52:02.000000Z\",\n            \"updated_at\": null\n        },\n        {\n            \"id\": 2,\n            \"user_id\": 2,\n            \"type\": \"comment\",\n            \"is_read\": 0,\n            \"content\": \"Bob commented on your post.\",\n            \"created_at\": \"2024-11-25T22:52:02.000000Z\",\n            \"updated_at\": null\n        },\n        {\n            \"id\": 3,\n            \"user_id\": 1,\n            \"type\": \"like\",\n            \"is_read\": 0,\n            \"content\": \"Raul curtiu sua publicação.\",\n            \"created_at\": \"2024-11-25T23:21:26.000000Z\",\n            \"updated_at\": \"2024-11-25T23:21:26.000000Z\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Create Notification",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\" : 1,\n    \"type\" : \"follow\",\n    \"is_read\" : false,\n    \"notifier_name\" : \"Raul\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "3.12.129.102/api/notifications",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8989",
+							"path": [
+								"api",
+								"notifications"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create Notification",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"user_id\" : 1,\n    \"type\" : \"follow\",\n    \"is_read\" : false,\n    \"notifier_name\" : \"Raul\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "3.12.129.102/api/notifications",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8989",
+									"path": [
+										"api",
+										"notifications"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.27.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.26"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 25 Nov 2024 23:33:51 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"response\": {\n        \"user_id\": 1,\n        \"type\": \"follow\",\n        \"is_read\": false,\n        \"content\": \"Raul seguiu você.\",\n        \"updated_at\": \"2024-11-25T23:33:51.000000Z\",\n        \"created_at\": \"2024-11-25T23:33:51.000000Z\",\n        \"id\": 4\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Notification",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\" : 1,\n    \"type\" : \"follow\",\n    \"is_read\" : false,\n    \"notifier_name\" : \"Raul\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "3.12.129.102/api/notifications/3",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8989",
+							"path": [
+								"api",
+								"notifications",
+								"3"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete Notification",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"user_id\" : 1,\n    \"type\" : \"follow\",\n    \"is_read\" : false,\n    \"notifier_name\" : \"Raul\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "3.12.129.102/api/notifications/3",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8989",
+									"path": [
+										"api",
+										"notifications",
+										"3"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.27.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.26"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 25 Nov 2024 23:34:53 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"response\": \"Notification deleted successfully\"\n}"
+						}
+					]
 				}
 			]
 		},
@@ -778,7 +2217,7 @@
 							}
 						},
 						"url": {
-							"raw": "127.0.0.1:8989/api/feeds",
+							"raw": "3.12.129.102/api/feeds",
 							"host": [
 								"127",
 								"0",
@@ -792,7 +2231,81 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Get Feeds",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "3.12.129.102/api/feeds",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8989",
+									"path": [
+										"api",
+										"feeds"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.27.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.26"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 25 Nov 2024 23:46:27 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"response\": {\n        \"current_page\": 1,\n        \"data\": [\n            {\n                \"id\": 1,\n                \"post_id\": 2,\n                \"shared_post_id\": null,\n                \"created_at\": \"2024-11-25T22:52:02.000000Z\",\n                \"updated_at\": null\n            },\n            {\n                \"id\": 2,\n                \"post_id\": 3,\n                \"shared_post_id\": null,\n                \"created_at\": \"2024-11-25T22:52:02.000000Z\",\n                \"updated_at\": null\n            },\n            {\n                \"id\": 3,\n                \"post_id\": 1,\n                \"shared_post_id\": null,\n                \"created_at\": \"2024-11-25T22:52:02.000000Z\",\n                \"updated_at\": null\n            },\n            {\n                \"id\": 5,\n                \"post_id\": null,\n                \"shared_post_id\": 5,\n                \"created_at\": \"2024-11-25T22:54:14.000000Z\",\n                \"updated_at\": \"2024-11-25T22:54:14.000000Z\"\n            }\n        ],\n        \"first_page_url\": \"http://3.12.129.102/api/feeds?page=1\",\n        \"from\": 1,\n        \"last_page\": 1,\n        \"last_page_url\": \"http://3.12.129.102/api/feeds?page=1\",\n        \"links\": [\n            {\n                \"url\": null,\n                \"label\": \"&laquo; Previous\",\n                \"active\": false\n            },\n            {\n                \"url\": \"http://3.12.129.102/api/feeds?page=1\",\n                \"label\": \"1\",\n                \"active\": true\n            },\n            {\n                \"url\": null,\n                \"label\": \"Next &raquo;\",\n                \"active\": false\n            }\n        ],\n        \"next_page_url\": null,\n        \"path\": \"http://3.12.129.102/api/feeds\",\n        \"per_page\": 10,\n        \"prev_page_url\": null,\n        \"to\": 4,\n        \"total\": 4\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "Create Feed",
@@ -801,7 +2314,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"post_id\" : 1,\n    \"shared_post_id\" : null,\n}",
+							"raw": "{\n    \"post_id\" : 1,\n    \"shared_post_id\" : null\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -809,7 +2322,7 @@
 							}
 						},
 						"url": {
-							"raw": "127.0.0.1:8989/api/feeds",
+							"raw": "3.12.129.102/api/feeds",
 							"host": [
 								"127",
 								"0",
@@ -840,7 +2353,7 @@
 							}
 						},
 						"url": {
-							"raw": "127.0.0.1:8989/api/feeds/1",
+							"raw": "3.12.129.102/api/feeds/1",
 							"host": [
 								"127",
 								"0",
@@ -880,7 +2393,7 @@
 							}
 						},
 						"url": {
-							"raw": "127.0.0.1:8989/api/posts",
+							"raw": "3.12.129.102/api/posts",
 							"host": [
 								"127",
 								"0",
@@ -894,7 +2407,190 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Get Posts",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "3.12.129.102/api/posts",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8989",
+									"path": [
+										"api",
+										"posts"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.27.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.26"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 25 Nov 2024 22:35:55 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"response\": {\n        \"current_page\": 1,\n        \"data\": [\n            {\n                \"id\": 1,\n                \"user_id\": 1,\n                \"content\": \"First post from Raul.\",\n                \"visibility\": \"public\",\n                \"media_type\": \"image\",\n                \"media_path\": \"post1.jpg\",\n                \"created_at\": \"2024-11-25T01:19:52.000000Z\",\n                \"updated_at\": null,\n                \"media_temp\": \"https://socialbucketfaltamento.s3.us-east-2.amazonaws.com/post1.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA47CR2ANT6D3FB5UP%2F20241125%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20241125T223555Z&X-Amz-SignedHeaders=host&X-Amz-Expires=604800&X-Amz-Signature=40f153f95ed8b4ced0befd4849228bf78b4bd6a6327deff360542c7ac2a22d16\"\n            },\n            {\n                \"id\": 2,\n                \"user_id\": 2,\n                \"content\": \"Alice shares her thoughts.\",\n                \"visibility\": \"public\",\n                \"media_type\": \"image\",\n                \"media_path\": \"post2.jpg\",\n                \"created_at\": \"2024-11-25T01:19:52.000000Z\",\n                \"updated_at\": null,\n                \"media_temp\": \"https://socialbucketfaltamento.s3.us-east-2.amazonaws.com/post2.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA47CR2ANT6D3FB5UP%2F20241125%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20241125T223555Z&X-Amz-SignedHeaders=host&X-Amz-Expires=604800&X-Amz-Signature=c7fbcad1e2af01e5880262001f0f77557cabbc56c35c79f541fceba06092c1a6\"\n            },\n            {\n                \"id\": 3,\n                \"user_id\": 3,\n                \"content\": \"Bob’s latest track.\",\n                \"visibility\": \"followers\",\n                \"media_type\": \"audio\",\n                \"media_path\": \"post3.mp3\",\n                \"created_at\": \"2024-11-25T01:19:52.000000Z\",\n                \"updated_at\": null,\n                \"media_temp\": \"https://socialbucketfaltamento.s3.us-east-2.amazonaws.com/post3.mp3?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA47CR2ANT6D3FB5UP%2F20241125%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20241125T223555Z&X-Amz-SignedHeaders=host&X-Amz-Expires=604800&X-Amz-Signature=df56ffbc2adeb597a696830123031ddc603059280f9af227b01c2248f0a143b7\"\n            },\n            {\n                \"id\": 4,\n                \"user_id\": 4,\n                \"content\": \"Charlie playing live.\",\n                \"visibility\": \"public\",\n                \"media_type\": \"image\",\n                \"media_path\": \"post4.mp4\",\n                \"created_at\": \"2024-11-25T01:19:52.000000Z\",\n                \"updated_at\": null,\n                \"media_temp\": \"https://socialbucketfaltamento.s3.us-east-2.amazonaws.com/post4.mp4?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA47CR2ANT6D3FB5UP%2F20241125%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20241125T223555Z&X-Amz-SignedHeaders=host&X-Amz-Expires=604800&X-Amz-Signature=31f37bb91627534f582fab10a3b1fa332374c5eed4aa1e070172d9838e2e35f7\"\n            },\n            {\n                \"id\": 5,\n                \"user_id\": 5,\n                \"content\": \"Diana’s acoustic session.\",\n                \"visibility\": \"public\",\n                \"media_type\": \"audio\",\n                \"media_path\": \"post5.mp3\",\n                \"created_at\": \"2024-11-25T01:19:52.000000Z\",\n                \"updated_at\": null,\n                \"media_temp\": \"https://socialbucketfaltamento.s3.us-east-2.amazonaws.com/post5.mp3?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA47CR2ANT6D3FB5UP%2F20241125%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20241125T223555Z&X-Amz-SignedHeaders=host&X-Amz-Expires=604800&X-Amz-Signature=bf1aba5fd69807e833b9e9fd06df7797dbde7f76d54ee903419c49d6d4cc50f6\"\n            },\n            {\n                \"id\": 6,\n                \"user_id\": 1,\n                \"content\": \"Medina é gay dms\",\n                \"visibility\": \"public\",\n                \"media_type\": \"image\",\n                \"media_path\": \"beatflow/post_media/HADqTtpfax4eGGW8IrYGLj7dCV01Fq8PWNvjrz2I.jpg\",\n                \"created_at\": \"2024-11-25T22:34:29.000000Z\",\n                \"updated_at\": \"2024-11-25T22:34:29.000000Z\",\n                \"media_temp\": \"https://socialbucketfaltamento.s3.us-east-2.amazonaws.com/beatflow/post_media/HADqTtpfax4eGGW8IrYGLj7dCV01Fq8PWNvjrz2I.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA47CR2ANT6D3FB5UP%2F20241125%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20241125T223555Z&X-Amz-SignedHeaders=host&X-Amz-Expires=604800&X-Amz-Signature=3d81ef899e55f8e755b9dcc58993978507ab74384ceccada93fd2b0ed0c639ed\"\n            }\n        ],\n        \"first_page_url\": \"http://3.12.129.102/api/posts?page=1\",\n        \"from\": 1,\n        \"last_page\": 1,\n        \"last_page_url\": \"http://3.12.129.102/api/posts?page=1\",\n        \"links\": [\n            {\n                \"url\": null,\n                \"label\": \"&laquo; Previous\",\n                \"active\": false\n            },\n            {\n                \"url\": \"http://3.12.129.102/api/posts?page=1\",\n                \"label\": \"1\",\n                \"active\": true\n            },\n            {\n                \"url\": null,\n                \"label\": \"Next &raquo;\",\n                \"active\": false\n            }\n        ],\n        \"next_page_url\": null,\n        \"path\": \"http://3.12.129.102/api/posts\",\n        \"per_page\": 10,\n        \"prev_page_url\": null,\n        \"to\": 6,\n        \"total\": 6\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Post Engagement and Info",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "3.12.129.102/api/posts/1",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8989",
+							"path": [
+								"api",
+								"posts",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Posts",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "3.12.129.102/api/posts",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8989",
+									"path": [
+										"api",
+										"posts"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.27.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.26"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 25 Nov 2024 22:35:55 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"response\": {\n        \"current_page\": 1,\n        \"data\": [\n            {\n                \"id\": 1,\n                \"user_id\": 1,\n                \"content\": \"First post from Raul.\",\n                \"visibility\": \"public\",\n                \"media_type\": \"image\",\n                \"media_path\": \"post1.jpg\",\n                \"created_at\": \"2024-11-25T01:19:52.000000Z\",\n                \"updated_at\": null,\n                \"media_temp\": \"https://socialbucketfaltamento.s3.us-east-2.amazonaws.com/post1.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA47CR2ANT6D3FB5UP%2F20241125%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20241125T223555Z&X-Amz-SignedHeaders=host&X-Amz-Expires=604800&X-Amz-Signature=40f153f95ed8b4ced0befd4849228bf78b4bd6a6327deff360542c7ac2a22d16\"\n            },\n            {\n                \"id\": 2,\n                \"user_id\": 2,\n                \"content\": \"Alice shares her thoughts.\",\n                \"visibility\": \"public\",\n                \"media_type\": \"image\",\n                \"media_path\": \"post2.jpg\",\n                \"created_at\": \"2024-11-25T01:19:52.000000Z\",\n                \"updated_at\": null,\n                \"media_temp\": \"https://socialbucketfaltamento.s3.us-east-2.amazonaws.com/post2.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA47CR2ANT6D3FB5UP%2F20241125%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20241125T223555Z&X-Amz-SignedHeaders=host&X-Amz-Expires=604800&X-Amz-Signature=c7fbcad1e2af01e5880262001f0f77557cabbc56c35c79f541fceba06092c1a6\"\n            },\n            {\n                \"id\": 3,\n                \"user_id\": 3,\n                \"content\": \"Bob’s latest track.\",\n                \"visibility\": \"followers\",\n                \"media_type\": \"audio\",\n                \"media_path\": \"post3.mp3\",\n                \"created_at\": \"2024-11-25T01:19:52.000000Z\",\n                \"updated_at\": null,\n                \"media_temp\": \"https://socialbucketfaltamento.s3.us-east-2.amazonaws.com/post3.mp3?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA47CR2ANT6D3FB5UP%2F20241125%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20241125T223555Z&X-Amz-SignedHeaders=host&X-Amz-Expires=604800&X-Amz-Signature=df56ffbc2adeb597a696830123031ddc603059280f9af227b01c2248f0a143b7\"\n            },\n            {\n                \"id\": 4,\n                \"user_id\": 4,\n                \"content\": \"Charlie playing live.\",\n                \"visibility\": \"public\",\n                \"media_type\": \"image\",\n                \"media_path\": \"post4.mp4\",\n                \"created_at\": \"2024-11-25T01:19:52.000000Z\",\n                \"updated_at\": null,\n                \"media_temp\": \"https://socialbucketfaltamento.s3.us-east-2.amazonaws.com/post4.mp4?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA47CR2ANT6D3FB5UP%2F20241125%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20241125T223555Z&X-Amz-SignedHeaders=host&X-Amz-Expires=604800&X-Amz-Signature=31f37bb91627534f582fab10a3b1fa332374c5eed4aa1e070172d9838e2e35f7\"\n            },\n            {\n                \"id\": 5,\n                \"user_id\": 5,\n                \"content\": \"Diana’s acoustic session.\",\n                \"visibility\": \"public\",\n                \"media_type\": \"audio\",\n                \"media_path\": \"post5.mp3\",\n                \"created_at\": \"2024-11-25T01:19:52.000000Z\",\n                \"updated_at\": null,\n                \"media_temp\": \"https://socialbucketfaltamento.s3.us-east-2.amazonaws.com/post5.mp3?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA47CR2ANT6D3FB5UP%2F20241125%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20241125T223555Z&X-Amz-SignedHeaders=host&X-Amz-Expires=604800&X-Amz-Signature=bf1aba5fd69807e833b9e9fd06df7797dbde7f76d54ee903419c49d6d4cc50f6\"\n            },\n            {\n                \"id\": 6,\n                \"user_id\": 1,\n                \"content\": \"Medina é gay dms\",\n                \"visibility\": \"public\",\n                \"media_type\": \"image\",\n                \"media_path\": \"beatflow/post_media/HADqTtpfax4eGGW8IrYGLj7dCV01Fq8PWNvjrz2I.jpg\",\n                \"created_at\": \"2024-11-25T22:34:29.000000Z\",\n                \"updated_at\": \"2024-11-25T22:34:29.000000Z\",\n                \"media_temp\": \"https://socialbucketfaltamento.s3.us-east-2.amazonaws.com/beatflow/post_media/HADqTtpfax4eGGW8IrYGLj7dCV01Fq8PWNvjrz2I.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA47CR2ANT6D3FB5UP%2F20241125%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20241125T223555Z&X-Amz-SignedHeaders=host&X-Amz-Expires=604800&X-Amz-Signature=3d81ef899e55f8e755b9dcc58993978507ab74384ceccada93fd2b0ed0c639ed\"\n            }\n        ],\n        \"first_page_url\": \"http://3.12.129.102/api/posts?page=1\",\n        \"from\": 1,\n        \"last_page\": 1,\n        \"last_page_url\": \"http://3.12.129.102/api/posts?page=1\",\n        \"links\": [\n            {\n                \"url\": null,\n                \"label\": \"&laquo; Previous\",\n                \"active\": false\n            },\n            {\n                \"url\": \"http://3.12.129.102/api/posts?page=1\",\n                \"label\": \"1\",\n                \"active\": true\n            },\n            {\n                \"url\": null,\n                \"label\": \"Next &raquo;\",\n                \"active\": false\n            }\n        ],\n        \"next_page_url\": null,\n        \"path\": \"http://3.12.129.102/api/posts\",\n        \"per_page\": 10,\n        \"prev_page_url\": null,\n        \"to\": 6,\n        \"total\": 6\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "Create Post",
@@ -912,7 +2608,7 @@
 							"formdata": [
 								{
 									"key": "user_id",
-									"value": "11",
+									"value": "1",
 									"type": "text"
 								},
 								{
@@ -943,7 +2639,7 @@
 							]
 						},
 						"url": {
-							"raw": "127.0.0.1:8989/api/posts",
+							"raw": "3.12.129.102/api/posts",
 							"host": [
 								"127",
 								"0",
@@ -957,7 +2653,113 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Create Post",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "user_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "content",
+											"value": "Medina é gay dms",
+											"type": "text"
+										},
+										{
+											"key": "visibility",
+											"value": "public",
+											"type": "text"
+										},
+										{
+											"key": "user",
+											"value": "raulntjj1",
+											"type": "text"
+										},
+										{
+											"key": "media_type",
+											"value": "image",
+											"type": "text"
+										},
+										{
+											"key": "media_path",
+											"type": "file",
+											"src": "postman-cloud:///1efa6d16-a315-4b90-8097-efdd0901b50c"
+										}
+									]
+								},
+								"url": {
+									"raw": "3.12.129.102/api/posts",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8989",
+									"path": [
+										"api",
+										"posts"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.27.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.26"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 25 Nov 2024 22:34:29 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"response\": {\n        \"user_id\": \"1\",\n        \"content\": \"Medina é gay dms\",\n        \"visibility\": \"public\",\n        \"media_type\": \"image\",\n        \"media_path\": \"beatflow/post_media/HADqTtpfax4eGGW8IrYGLj7dCV01Fq8PWNvjrz2I.jpg\",\n        \"updated_at\": \"2024-11-25T22:34:29.000000Z\",\n        \"created_at\": \"2024-11-25T22:34:29.000000Z\",\n        \"id\": 6,\n        \"media_temp\": \"https://socialbucketfaltamento.s3.us-east-2.amazonaws.com/beatflow/post_media/HADqTtpfax4eGGW8IrYGLj7dCV01Fq8PWNvjrz2I.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA47CR2ANT6D3FB5UP%2F20241125%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20241125T223429Z&X-Amz-SignedHeaders=host&X-Amz-Expires=604800&X-Amz-Signature=473ccb0ac7d4d85062995a07ff9de2982c55ec8249a1789a0158d53ac826347a\"\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "Update Post",
@@ -980,7 +2782,7 @@
 								},
 								{
 									"key": "user_id",
-									"value": "11",
+									"value": "2",
 									"type": "text"
 								},
 								{
@@ -1011,7 +2813,7 @@
 							]
 						},
 						"url": {
-							"raw": "127.0.0.1:8989/api/posts/7",
+							"raw": "3.12.129.102/api/posts/2",
 							"host": [
 								"127",
 								"0",
@@ -1022,11 +2824,304 @@
 							"path": [
 								"api",
 								"posts",
-								"7"
+								"2"
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Update Post",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "_method",
+											"value": "put",
+											"type": "text"
+										},
+										{
+											"key": "user_id",
+											"value": "2",
+											"type": "text"
+										},
+										{
+											"key": "content",
+											"value": "Medina é gay dms c",
+											"type": "text"
+										},
+										{
+											"key": "visibility",
+											"value": "public",
+											"type": "text"
+										},
+										{
+											"key": "user",
+											"value": "raulntjj1",
+											"type": "text"
+										},
+										{
+											"key": "media_type",
+											"value": "image",
+											"type": "text"
+										},
+										{
+											"key": "media_path",
+											"type": "file",
+											"src": "postman-cloud:///1ef5e34d-596b-49b0-8d25-b3d351fe060d"
+										}
+									]
+								},
+								"url": {
+									"raw": "3.12.129.102/api/posts/2",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8989",
+									"path": [
+										"api",
+										"posts",
+										"2"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.27.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.26"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 25 Nov 2024 22:37:25 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"response\": {\n        \"id\": 2,\n        \"user_id\": \"2\",\n        \"content\": \"Medina é gay dms c\",\n        \"visibility\": \"public\",\n        \"media_type\": \"image\",\n        \"media_path\": \"beatflow/post_media/dMbQ9pcByb6vQa4b3SpN77czUXs3hnlzAmXHzjmz.png\",\n        \"created_at\": \"2024-11-25T01:19:52.000000Z\",\n        \"updated_at\": \"2024-11-25T22:37:25.000000Z\",\n        \"media_temp\": \"https://socialbucketfaltamento.s3.us-east-2.amazonaws.com/beatflow/post_media/dMbQ9pcByb6vQa4b3SpN77czUXs3hnlzAmXHzjmz.png?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA47CR2ANT6D3FB5UP%2F20241125%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20241125T223725Z&X-Amz-SignedHeaders=host&X-Amz-Expires=604800&X-Amz-Signature=f9151520e96fc2689a3307e520385dd526aed4120124412e9bcc8300954ab07e\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Post",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "_method",
+									"value": "put",
+									"type": "text"
+								},
+								{
+									"key": "user_id",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "Medina é gay dms c",
+									"type": "text"
+								},
+								{
+									"key": "visibility",
+									"value": "public",
+									"type": "text"
+								},
+								{
+									"key": "user",
+									"value": "raulntjj1",
+									"type": "text"
+								},
+								{
+									"key": "media_type",
+									"value": "image",
+									"type": "text"
+								},
+								{
+									"key": "media_path",
+									"type": "file",
+									"src": "postman-cloud:///1ef5e34d-596b-49b0-8d25-b3d351fe060d"
+								}
+							]
+						},
+						"url": {
+							"raw": "3.12.129.102/api/posts/2",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8989",
+							"path": [
+								"api",
+								"posts",
+								"2"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete Post",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "_method",
+											"value": "put",
+											"type": "text"
+										},
+										{
+											"key": "user_id",
+											"value": "2",
+											"type": "text"
+										},
+										{
+											"key": "content",
+											"value": "Medina é gay dms c",
+											"type": "text"
+										},
+										{
+											"key": "visibility",
+											"value": "public",
+											"type": "text"
+										},
+										{
+											"key": "user",
+											"value": "raulntjj1",
+											"type": "text"
+										},
+										{
+											"key": "media_type",
+											"value": "image",
+											"type": "text"
+										},
+										{
+											"key": "media_path",
+											"type": "file",
+											"src": "postman-cloud:///1ef5e34d-596b-49b0-8d25-b3d351fe060d"
+										}
+									]
+								},
+								"url": {
+									"raw": "3.12.129.102/api/posts/2",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8989",
+									"path": [
+										"api",
+										"posts",
+										"2"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.27.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.26"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 25 Nov 2024 22:38:25 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"response\": \"Post deleted successfully\"\n}"
+						}
+					]
 				}
 			]
 		},
@@ -1051,7 +3146,7 @@
 							}
 						},
 						"url": {
-							"raw": "127.0.0.1:8989/api/shared-posts",
+							"raw": "3.12.129.102/api/shared-posts",
 							"host": [
 								"127",
 								"0",
@@ -1065,30 +3160,98 @@
 							]
 						}
 					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Post Engagements",
-			"item": [
+					"response": [
+						{
+							"name": "Get Shared Posts",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "3.12.129.102/api/shared-posts",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8989",
+									"path": [
+										"api",
+										"shared-posts"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.27.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.26"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 25 Nov 2024 22:39:06 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"response\": [\n        {\n            \"id\": 1,\n            \"post_id\": 1,\n            \"user_id\": 3,\n            \"comment\": \"Check this out!\",\n            \"created_at\": \"2024-11-25T01:19:52.000000Z\",\n            \"updated_at\": null\n        },\n        {\n            \"id\": 3,\n            \"post_id\": 3,\n            \"user_id\": 5,\n            \"comment\": \"Fantastic track!\",\n            \"created_at\": \"2024-11-25T01:19:52.000000Z\",\n            \"updated_at\": null\n        }\n    ]\n}"
+						}
+					]
+				},
 				{
-					"name": "Get Roles",
+					"name": "Create Shared Post",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "profile_photo",
-									"type": "file",
-									"src": "postman-cloud:///1efa6d16-a315-4b90-8097-efdd0901b50c"
+							"mode": "raw",
+							"raw": "{\n    \"post_id\" : \"1\",\n    \"user_id\" : \"1\",\n    \"comment\" : \"Top demais esse meu post\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
 								}
-							]
+							}
 						},
 						"url": {
-							"raw": "127.0.0.1:8989/api/image",
+							"raw": "3.12.129.102/api/shared-posts",
 							"host": [
 								"127",
 								"0",
@@ -1098,14 +3261,289 @@
 							"port": "8989",
 							"path": [
 								"api",
-								"image"
+								"shared-posts"
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Create Shared Post",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"post_id\" : \"1\",\n    \"user_id\" : \"1\",\n    \"comment\" : \"Top demais esse meu post\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "3.12.129.102/api/shared-posts",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8989",
+									"path": [
+										"api",
+										"shared-posts"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.27.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.26"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 25 Nov 2024 22:41:52 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"response\": {\n        \"post_id\": \"1\",\n        \"user_id\": \"1\",\n        \"comment\": \"Top demais esse meu post\",\n        \"updated_at\": \"2024-11-25T22:41:52.000000Z\",\n        \"created_at\": \"2024-11-25T22:41:52.000000Z\",\n        \"id\": 4\n    }\n}"
+						}
+					]
 				},
 				{
-					"name": "Get Roles Copy",
+					"name": "Update Shared Post",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"post_id\" : \"1\",\n    \"user_id\" : \"1\",\n    \"comment\" : \"Top demais esse meu post (teste de update)\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "3.12.129.102/api/shared-posts/5",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8989",
+							"path": [
+								"api",
+								"shared-posts",
+								"5"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create Shared Post Copy",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"post_id\" : \"1\",\n    \"user_id\" : \"1\",\n    \"comment\" : \"Top demais esse meu post (teste de update)\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "3.12.129.102/api/shared-posts/4",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8989",
+									"path": [
+										"api",
+										"shared-posts",
+										"4"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.27.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.26"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 25 Nov 2024 22:45:25 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"response\": {\n        \"id\": 4,\n        \"post_id\": \"1\",\n        \"user_id\": \"1\",\n        \"comment\": \"Top demais esse meu post (teste de update)\",\n        \"created_at\": \"2024-11-25T22:41:52.000000Z\",\n        \"updated_at\": \"2024-11-25T22:45:25.000000Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Shared Posts",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "3.12.129.102/api/shared-posts/4",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8989",
+							"path": [
+								"api",
+								"shared-posts",
+								"4"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete Shared Posts",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "3.12.129.102/api/shared-posts/1",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8989",
+									"path": [
+										"api",
+										"shared-posts",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.27.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.26"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 25 Nov 2024 22:52:34 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"response\": \"SharedPost deleted successfully\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Post Engagements",
+			"item": [
+				{
+					"name": "Get Post Engagements",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -1122,7 +3560,7 @@
 							}
 						},
 						"url": {
-							"raw": "127.0.0.1:8989/api/post-engagements",
+							"raw": "3.12.129.102/api/post-engagements",
 							"host": [
 								"127",
 								"0",
@@ -1136,7 +3574,293 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Get Post Engagements",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "3.12.129.102/api/post-engagements",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8989",
+									"path": [
+										"api",
+										"post-engagements"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.27.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.26"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 25 Nov 2024 23:22:59 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"response\": {\n        \"current_page\": 1,\n        \"data\": [\n            {\n                \"id\": 2,\n                \"post_id\": 2,\n                \"user_id\": 3,\n                \"type\": \"like\",\n                \"created_at\": \"2024-11-25T22:52:02.000000Z\",\n                \"updated_at\": null\n            },\n            {\n                \"id\": 3,\n                \"post_id\": 1,\n                \"user_id\": 1,\n                \"type\": \"like\",\n                \"created_at\": \"2024-11-25T23:01:59.000000Z\",\n                \"updated_at\": \"2024-11-25T23:01:59.000000Z\"\n            },\n            {\n                \"id\": 4,\n                \"post_id\": 1,\n                \"user_id\": 1,\n                \"type\": \"like\",\n                \"created_at\": \"2024-11-25T23:20:43.000000Z\",\n                \"updated_at\": \"2024-11-25T23:20:43.000000Z\"\n            },\n            {\n                \"id\": 5,\n                \"post_id\": 1,\n                \"user_id\": 1,\n                \"type\": \"like\",\n                \"created_at\": \"2024-11-25T23:21:06.000000Z\",\n                \"updated_at\": \"2024-11-25T23:21:06.000000Z\"\n            },\n            {\n                \"id\": 6,\n                \"post_id\": 1,\n                \"user_id\": 1,\n                \"type\": \"like\",\n                \"created_at\": \"2024-11-25T23:21:26.000000Z\",\n                \"updated_at\": \"2024-11-25T23:21:26.000000Z\"\n            }\n        ],\n        \"first_page_url\": \"http://3.12.129.102/api/post-engagements?page=1\",\n        \"from\": 1,\n        \"last_page\": 1,\n        \"last_page_url\": \"http://3.12.129.102/api/post-engagements?page=1\",\n        \"links\": [\n            {\n                \"url\": null,\n                \"label\": \"&laquo; Previous\",\n                \"active\": false\n            },\n            {\n                \"url\": \"http://3.12.129.102/api/post-engagements?page=1\",\n                \"label\": \"1\",\n                \"active\": true\n            },\n            {\n                \"url\": null,\n                \"label\": \"Next &raquo;\",\n                \"active\": false\n            }\n        ],\n        \"next_page_url\": null,\n        \"path\": \"http://3.12.129.102/api/post-engagements\",\n        \"per_page\": 10,\n        \"prev_page_url\": null,\n        \"to\": 5,\n        \"total\": 5\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Create Post Engagement",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"post_id\" : \"1\",\n    \"user_id\" : \"1\",\n    \"type\" : \"like\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "3.12.129.102/api/post-engagements",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8989",
+							"path": [
+								"api",
+								"post-engagements"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create Post Engagement",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"post_id\" : \"1\",\n    \"user_id\" : \"1\",\n    \"type\" : \"like\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "3.12.129.102/api/post-engagements",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8989",
+									"path": [
+										"api",
+										"post-engagements"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.27.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.26"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 25 Nov 2024 23:21:26 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"response\": {\n        \"post_id\": \"1\",\n        \"user_id\": \"1\",\n        \"type\": \"like\",\n        \"updated_at\": \"2024-11-25T23:21:26.000000Z\",\n        \"created_at\": \"2024-11-25T23:21:26.000000Z\",\n        \"id\": 6\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Post Engagements",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"post_id\" : \"1\",\n    \"user_id\" : \"1\",\n    \"type\" : \"like\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "3.12.129.102/api/post-engagements/1",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8989",
+							"path": [
+								"api",
+								"post-engagements",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create Post Engagement Copy",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"post_id\" : \"1\",\n    \"user_id\" : \"1\",\n    \"type\" : \"like\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "3.12.129.102/api/post-engagements/1",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8989",
+									"path": [
+										"api",
+										"post-engagements",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.27.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.26"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 25 Nov 2024 23:22:49 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"response\": \"PostEngagement deleted successfully\"\n}"
+						}
+					]
 				}
 			]
 		},
@@ -1149,7 +3873,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "127.0.0.1:8989/api/comments",
+							"raw": "3.12.129.102/api/comments",
 							"host": [
 								"127",
 								"0",
@@ -1163,24 +3887,81 @@
 							]
 						}
 					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Genres",
-			"item": [
+					"response": [
+						{
+							"name": "Get Comments",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "3.12.129.102/api/comments",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8989",
+									"path": [
+										"api",
+										"comments"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.27.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.26"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 26 Nov 2024 00:14:27 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"response\": [\n        {\n            \"id\": 1,\n            \"post_id\": 1,\n            \"user_id\": 2,\n            \"content\": \"Nice post, Raul!\",\n            \"created_at\": \"2024-11-25T23:53:08.000000Z\",\n            \"updated_at\": null\n        },\n        {\n            \"id\": 2,\n            \"post_id\": 2,\n            \"user_id\": 3,\n            \"content\": \"Love it, Alice!\",\n            \"created_at\": \"2024-11-25T23:53:08.000000Z\",\n            \"updated_at\": null\n        },\n        {\n            \"id\": 3,\n            \"post_id\": 3,\n            \"user_id\": 4,\n            \"content\": \"Great track, Bob!\",\n            \"created_at\": \"2024-11-25T23:53:08.000000Z\",\n            \"updated_at\": null\n        },\n        {\n            \"id\": 4,\n            \"post_id\": 4,\n            \"user_id\": 5,\n            \"content\": \"Amazing performance, Charlie!\",\n            \"created_at\": \"2024-11-25T23:53:08.000000Z\",\n            \"updated_at\": null\n        },\n        {\n            \"id\": 5,\n            \"post_id\": 5,\n            \"user_id\": 6,\n            \"content\": \"Beautiful session, Diana.\",\n            \"created_at\": \"2024-11-25T23:53:08.000000Z\",\n            \"updated_at\": null\n        }\n    ]\n}"
+						}
+					]
+				},
 				{
-					"name": "Get Genres",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
+					"name": "Create Comment",
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "",
+							"raw": "{\n    \"post_id\" : \"1\",\n    \"user_id\" : \"1\",\n    \"content\" : \"comentaerio top\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1188,7 +3969,7 @@
 							}
 						},
 						"url": {
-							"raw": "127.0.0.1:8989/api/genres",
+							"raw": "3.12.129.102/api/comments",
 							"host": [
 								"127",
 								"0",
@@ -1198,28 +3979,94 @@
 							"port": "8989",
 							"path": [
 								"api",
-								"genres"
+								"comments"
 							]
 						}
 					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Permissions",
-			"item": [
+					"response": [
+						{
+							"name": "Get Comments Copy",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"post_id\" : \"1\",\n    \"user_id\" : \"1\",\n    \"content\" : \"comentaerio top\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "3.12.129.102/api/comments",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8989",
+									"path": [
+										"api",
+										"comments"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.27.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.26"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 26 Nov 2024 00:16:08 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"response\": {\n        \"post_id\": \"1\",\n        \"user_id\": \"1\",\n        \"content\": \"comentaerio top\",\n        \"updated_at\": \"2024-11-26T00:16:08.000000Z\",\n        \"created_at\": \"2024-11-26T00:16:08.000000Z\",\n        \"id\": 6\n    }\n}"
+						}
+					]
+				},
 				{
-					"name": "Get Permissions",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
+					"name": "Update Comment",
 					"request": {
-						"method": "GET",
+						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "",
+							"raw": "{\n    \"post_id\" : \"1\",\n    \"user_id\" : \"1\",\n    \"content\" : \"comentaerio top123\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1227,7 +4074,7 @@
 							}
 						},
 						"url": {
-							"raw": "127.0.0.1:8989/api/permissions",
+							"raw": "3.12.129.102/api/comments/6",
 							"host": [
 								"127",
 								"0",
@@ -1237,11 +4084,176 @@
 							"port": "8989",
 							"path": [
 								"api",
-								"permissions"
+								"comments",
+								"6"
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Update Comment",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"post_id\" : \"1\",\n    \"user_id\" : \"1\",\n    \"content\" : \"comentaerio top123\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "3.12.129.102/api/comments/6",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8989",
+									"path": [
+										"api",
+										"comments",
+										"6"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.27.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.26"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 26 Nov 2024 00:16:36 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"response\": {\n        \"id\": 6,\n        \"post_id\": \"1\",\n        \"user_id\": \"1\",\n        \"content\": \"comentaerio top123\",\n        \"created_at\": \"2024-11-26T00:16:08.000000Z\",\n        \"updated_at\": \"2024-11-26T00:16:36.000000Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Comment",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "3.12.129.102/api/comments/5",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8989",
+							"path": [
+								"api",
+								"comments",
+								"5"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete Comment",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "3.12.129.102/api/comments/5",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8989",
+									"path": [
+										"api",
+										"comments",
+										"5"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.27.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.26"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 26 Nov 2024 00:17:09 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"response\": \"Comment deleted successfully\"\n}"
+						}
+					]
 				}
 			]
 		},
@@ -1266,7 +4278,7 @@
 							}
 						},
 						"url": {
-							"raw": "127.0.0.1:8989/api/roles",
+							"raw": "3.12.129.102/api/roles",
 							"host": [
 								"127",
 								"0",
@@ -1280,6 +4292,477 @@
 							]
 						}
 					},
+					"response": [
+						{
+							"name": "Get Roles",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "3.12.129.102/api/roles",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8989",
+									"path": [
+										"api",
+										"roles"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.27.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.26"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 25 Nov 2024 23:47:26 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"response\": [\n        {\n            \"id\": 1,\n            \"name\": \"Admin\",\n            \"created_at\": \"2024-11-25T22:52:02.000000Z\",\n            \"updated_at\": null\n        },\n        {\n            \"id\": 2,\n            \"name\": \"User\",\n            \"created_at\": \"2024-11-25T22:52:02.000000Z\",\n            \"updated_at\": null\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Create Role",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\" : \"teste\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "3.12.129.102/api/roles",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8989",
+							"path": [
+								"api",
+								"roles"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create Role",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\" : \"teste\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "3.12.129.102/api/roles",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8989",
+									"path": [
+										"api",
+										"roles"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.27.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.26"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 25 Nov 2024 23:48:04 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"response\": {\n        \"name\": \"teste\",\n        \"updated_at\": \"2024-11-25T23:48:04.000000Z\",\n        \"created_at\": \"2024-11-25T23:48:04.000000Z\",\n        \"id\": 3\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Role",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\" : \"teste1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "3.12.129.102/api/roles/3",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8989",
+							"path": [
+								"api",
+								"roles",
+								"3"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update Role",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\" : \"teste1\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "3.12.129.102/api/roles/3",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8989",
+									"path": [
+										"api",
+										"roles",
+										"3"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.27.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.26"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 25 Nov 2024 23:49:03 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"response\": {\n        \"id\": 3,\n        \"name\": \"teste1\",\n        \"created_at\": \"2024-11-25T23:48:04.000000Z\",\n        \"updated_at\": \"2024-11-25T23:49:03.000000Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Role",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "3.12.129.102/api/roles/3",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8989",
+							"path": [
+								"api",
+								"roles",
+								"3"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete Role",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "3.12.129.102/api/roles/3",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8989",
+									"path": [
+										"api",
+										"roles",
+										"3"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.27.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.26"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 25 Nov 2024 23:49:44 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"response\": \"Role deleted successfully\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Genres (Desativado)",
+			"item": [
+				{
+					"name": "Get Genres",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "3.12.129.102/api/genres",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8989",
+							"path": [
+								"api",
+								"genres"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Permissions (Desativado)",
+			"item": [
+				{
+					"name": "Get Permissions",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "3.12.129.102/api/permissions",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8989",
+							"path": [
+								"api",
+								"permissions"
+							]
+						}
+					},
 					"response": []
 				}
 			]
@@ -1290,7 +4773,7 @@
 		"bearer": [
 			{
 				"key": "token",
-				"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjg5ODkvYXBpL2xvZ2luIiwiaWF0IjoxNzMyMDc0MTgzLCJleHAiOjE3MzIwNzc3ODMsIm5iZiI6MTczMjA3NDE4MywianRpIjoiUEJHVm9WVVp1dzF0U2FEVSIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.Nsq024wJ0_ZwM77Fq7lkm7n2Pq6XH-dcktloTOixnIY",
+				"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjg5ODkvYXBpL2xvZ2luIiwiaWF0IjoxNzMyNTc4ODIxLCJleHAiOjE3MzI1ODI0MjEsIm5iZiI6MTczMjU3ODgyMSwianRpIjoiaEVWNGxBcmhSMEowU090OCIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.KPBbHCrfrn6zso6D0PxORrozVojP8VGakG05H-HFdj4",
 				"type": "string"
 			}
 		]
