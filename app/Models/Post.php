@@ -19,6 +19,8 @@ class Post extends Model {
 
     protected $appends = [
         'media_temp',
+        'comments',
+        'likes',
     ];
 
     // Atributos
@@ -36,6 +38,18 @@ class Post extends Model {
 
     public function shareds(){
         return $this->HasMany(SharedPost::class, 'post_id', 'id');
+    }
+
+    public function getCommentsAttribute() {
+        return $this->hasMany(PostEngagement::class, 'post_id', 'id')
+        ->where('type', 'comment')
+        ->count();
+    }
+
+    public function getLikesAttribute() {
+        return $this->hasMany(PostEngagement::class, 'post_id', 'id')
+        ->where('type', 'like')
+        ->count();
     }
 
     public function engagements(){

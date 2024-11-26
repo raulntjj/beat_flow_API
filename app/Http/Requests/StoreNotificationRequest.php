@@ -14,9 +14,10 @@ class StoreNotificationRequest extends FormRequest {
     public function rules(): array {
         return [
             'user_id' => 'required|exists:users,id',
-            'type' => 'required|in:follow,like,comment',
+            'type' => 'required|in:follow,like,comment,share',
             'is_read' => 'required|boolean',
-            'content' => 'required|string|max:255',
+            'content' => 'nullable|required_without:notifier_name|string|max:255',
+            'notifier_name' => 'nullable|required_without:content|string|max:255',
         ];
     }
 
