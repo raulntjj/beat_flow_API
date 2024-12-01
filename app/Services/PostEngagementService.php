@@ -29,6 +29,19 @@ class PostEngagementService {
         }
     }
 
+    public function getUserPostEngagements(int $post_id) {
+        try {
+            $userAuth = Auth::guard('api')->user();
+            $engagements = PostEngagement::where('user_id', $userAuth->id)
+            ->where('post_id', $post_id)
+            ->get()
+            ->toArray();
+            return response()->json(['status' => 'success', 'response' => $engagements]);
+        } catch (Exception $e) {
+            return response()->json(['status' => 'failed', 'response' => $e->getMessage()]);
+        }
+    }
+
     public function getPostEngagement(int $id) {
         try {
             $engagement = PostEngagement::find($id);
@@ -93,11 +106,14 @@ class PostEngagementService {
     //     }
     // }
 
-    public function deletePostEngagement(int $id) {
+    public function deletePostEngagement(Array $request) {
         try {
             $engagement = DB::transaction(function() use ($id) {
-                $engagement = PostEngagement::find($id);
-
+                $engagement = PostEngagement::where('user_id', $request['user_id'])
+                ->where('post_id', $request['post_id'])
+                ->where('type', $request['type'])
+                ->first();
+        
                 if (!$engagement) {
                     throw new Exception("PostEngagement not found");
                 }
