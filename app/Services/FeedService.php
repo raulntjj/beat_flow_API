@@ -45,12 +45,11 @@ class FeedService {
             // Busca os posts e compartilhamentos relacionados às pessoas que o usuário segue
             $query = Feed::query()
                 ->with(['post.user', 'sharedPost.post.user'])
-		->select(
-			'feeds.*',
-			'post_engagements.engagement_count as post_engagement_count',
-			'shared_engagements.engagement_count as shared_engagement_count'
-		)
-
+        		->select(
+        			'feeds.*',
+        			'post_engagements.engagement_count as post_engagement_count',
+        			'shared_engagements.engagement_count as shared_engagement_count'
+        		)
                 ->where(function ($query) use ($userAuth) {
                     $query->whereHas('post.user', function ($queryUser) use ($userAuth) {
                         $queryUser->whereIn('id', function ($q) use ($userAuth) {
@@ -67,12 +66,12 @@ class FeedService {
                         });
                     });
                 })
-                // ->leftJoinSub($postEngagements, 'post_engagements', function ($join) {
-                //     $join->on('feeds.post_id', '=', 'post_engagements.post_id');
-                // })
-                // ->leftJoinSub($sharedPostEngagements, 'shared_engagements', function ($join) {
-                //     $join->on('feeds.shared_post_id', '=', 'shared_engagements.shared_post_id');
-                // })
+                ->leftJoinSub($postEngagements, 'post_engagements', function ($join) {
+                     $join->on('feeds.post_id', '=', 'post_engagements.post_id');
+                })
+                ->leftJoinSub($sharedPostEngagements, 'shared_engagements', function ($join) {
+                     $join->on('feeds.shared_post_id', '=', 'shared_engagements.shared_post_id');
+                })
                 ->orderByRaw('GREATEST(COALESCE(post_engagements.engagement_count, 0), COALESCE(shared_engagements.engagement_count, 0)) DESC');
     
             // Paginação
