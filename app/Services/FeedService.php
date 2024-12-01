@@ -44,7 +44,13 @@ class FeedService {
     
             // Busca os posts e compartilhamentos relacionados às pessoas que o usuário segue
             $query = Feed::query()
-                ->with(['post.user', 'sharedPost.post.user']) // Precarrega os usuários e conteúdos dos posts/compartilhamentos
+                ->with(['post.user', 'sharedPost.post.user'])
+		->select(
+			'feeds.*',
+			'post_engagements.engagement_count as post_engagement_count',
+			'shared_engagements.engagement_count as shared_engagement_count'
+		)
+
                 ->where(function ($query) use ($userAuth) {
                     $query->whereHas('post.user', function ($queryUser) use ($userAuth) {
                         $queryUser->whereIn('id', function ($q) use ($userAuth) {
