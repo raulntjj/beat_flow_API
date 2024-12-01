@@ -26,8 +26,12 @@ class PostEngagementController {
         return $this->postEngagementService->getAllPostEngagements($params);
     }
 
-    public function getUserPostEngagements(int $post_id) {
-        return $this->postEngagementService->getUserPostEngagements($post_id);
+    public function getUserPostEngagements(Request $request) {
+        if($request->filled('post_id')) {
+            return $this->postEngagementService->getUserPostEngagements($post_id);
+        } else {
+            return response()->json(['status' => 'failed', 'response' => 'The post_id field is required']);
+        }
     }
 
     public function store(StorePostEngagementRequest $request){

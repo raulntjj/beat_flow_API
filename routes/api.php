@@ -85,7 +85,7 @@ Route::middleware('auth:api')->group(function () {
         Route::apiResource('permissions', PermissionController::class);
         Route::apiResource('posts', PostController::class);
         Route::apiResource('post-engagements', PostEngagementController::class)->except(['destroy']);
-        Route::delete('post-engagements', [PostEngagementController::class 'destroy']);
+        Route::delete('post-engagements', [PostEngagementController::class, 'destroy']);
         Route::apiResource('roles', RoleController::class);
         Route::apiResource('shared-posts', SharedPostController::class);
         Route::apiResource('users', UserController::class);
