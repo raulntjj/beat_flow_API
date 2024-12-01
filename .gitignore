@@ -22,3 +22,5 @@ yarn-error.log
 /.zed
 # .env.example
 composer.lock
+
+composer.lock
