@@ -62,8 +62,8 @@ class PostService {
                     'user_id' => $request['user_id'],
                     'content' => $request['content'],
                     'visibility' => $request['visibility'],
-                    'media_type' => $request['media_type'],
-                    'media_path' => $this->storePostMedia($request['media_path']),
+                    'media_type' => $request['media_type'] ?? null,
+                    'media_path' => $request['media_path'] ?? $this->storePostMedia($request['media_path']),
                 ]);
             });
 

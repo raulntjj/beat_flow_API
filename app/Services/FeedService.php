@@ -31,25 +31,10 @@ class FeedService {
         try {
             $userAuth = Auth::guard('api')->user();
     
-            // Subconsulta para engajamentos de posts
-            $postEngagements = \DB::table('post_engagements')
-                ->select('post_id', \DB::raw('COUNT(*) as engagement_count'))
-                ->groupBy('post_id');
-    
-            // Subconsulta para engajamentos dos posts compartilhados
-            $sharedPostEngagements = \DB::table('post_engagements')
-                ->join('shared_posts', 'post_engagements.post_id', '=', 'shared_posts.post_id')
-                ->select('shared_posts.id as shared_post_id', \DB::raw('COUNT(*) as engagement_count'))
-                ->groupBy('shared_posts.id');
-    
             // Busca os posts e compartilhamentos relacionados às pessoas que o usuário segue
             $query = Feed::query()
                 ->with(['post.user', 'sharedPost.post.user'])
-        		->select(
-        			'feeds.*',
-        			'post_engagements.engagement_count as post_engagement_count',
-        			'shared_engagements.engagement_count as shared_engagement_count'
-        		)
+		->select('feeds.*')
                 ->where(function ($query) use ($userAuth) {
                     $query->whereHas('post.user', function ($queryUser) use ($userAuth) {
                         $queryUser->whereIn('id', function ($q) use ($userAuth) {
@@ -66,13 +51,12 @@ class FeedService {
                         });
                     });
                 })
-                ->leftJoinSub($postEngagements, 'post_engagements', function ($join) {
-                     $join->on('feeds.post_id', '=', 'post_engagements.post_id');
-                })
-                ->leftJoinSub($sharedPostEngagements, 'shared_engagements', function ($join) {
-                     $join->on('feeds.shared_post_id', '=', 'shared_engagements.shared_post_id');
-                })
-                ->orderByRaw('GREATEST(COALESCE(post_engagements.engagement_count, 0), COALESCE(shared_engagements.engagement_count, 0)) DESC');
+	    	->leftJoin('posts', 'feeds.post_id', '=', 'posts.id') // Faz join com posts
+		->leftJoin('posts as shared_posts', 'feeds.shared_post_id', '=', 'shared_posts.id') // Faz join com shared posts
+		->orderByRaw('GREATEST(
+        		COALESCE(posts.created_at, 0),
+			COALESCE(shared_posts.created_at, 0)
+    		) DESC'); // Ordena pelo mais recente entre posts e shared posts
     
             // Paginação
             $feeds = $query->paginate($params['perPage'], ['*'], 'page', $params['page']);
