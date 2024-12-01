@@ -41,7 +41,7 @@ class NotificationService {
             if ($params['getAllData']) {
                 $notifications = $query->get();
             } else {
-                $notifications = $query->paginate($params['perPage'], ['*'], 'page', $params['currentPage']);
+                $notifications = $query->paginate($params['perPage'], ['*'], 'page', $params['page']);
             }
             return response()->json(['status' => 'success', 'response' => $notifications]);
         } catch (Exception $e) {

@@ -38,7 +38,7 @@ class UserService {
             $query = Follow::with(['follower'])
             ->where('followed_id', $userAuth->id);
 
-            $followers = $query->paginate($params['perPage'], ['*'], 'page', $params['currentPage']);
+            $followers = $query->paginate($params['perPage'], ['*'], 'page', $params['page']);
             return response()->json(['status' => 'success', 'response' => $followers]);
         } catch (Exception $e) {
             return response()->json(['status' => 'failed', 'response' => $e->getMessage()]);
@@ -51,7 +51,7 @@ class UserService {
             $query = Follow::with(['followed'])
             ->where('follower_id', $userAuth->id);
 
-            $followed = $query->paginate($params['perPage'], ['*'], 'page', $params['currentPage']);
+            $followed = $query->paginate($params['perPage'], ['*'], 'page', $params['page']);
             return response()->json(['status' => 'success', 'response' => $followed]);
         } catch (Exception $e) {
             return response()->json(['status' => 'failed', 'response' => $e->getMessage()]);
@@ -64,7 +64,7 @@ class UserService {
             $query = Notification::with(['post', 'user'])
             ->where('user_id', $userAuth->id);
 
-            $notifications = $query->paginate($params['perPage'], ['*'], 'page', $params['currentPage']);
+            $notifications = $query->paginate($params['perPage'], ['*'], 'page', $params['page']);
             return response()->json(['status' => 'success', 'response' => $notifications]);
         } catch (Exception $e) {
             return response()->json(['status' => 'failed', 'response' => $e->getMessage()]);
@@ -81,7 +81,7 @@ class UserService {
             if ($params['getAllData']) {
                 $users = $query->get();
             } else {
-                $users = $query->paginate($params['perPage'], ['*'], 'page', $params['currentPage']);
+                $users = $query->paginate($params['perPage'], ['*'], 'page', $params['page']);
             }
             return response()->json(['status' => 'success', 'response' => $users]);
         } catch (Exception $e) {
@@ -124,7 +124,7 @@ class UserService {
                 ]);    
             });
 
-            return response()->json(['status' => 'success', 'response' => $user]);
+            return response()->json(['status' => 'success', 'response' => $user], 201);
         } catch (Exception $e) {
             return response()->json(['status' => 'failed', 'response' => $e->getMessage()]);
         }

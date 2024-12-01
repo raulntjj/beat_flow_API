@@ -19,7 +19,7 @@ class FeedService {
             if ($params['getAllData']) {
                 $feeds = $query->get();
             } else {
-                $feeds = $query->paginate($params['perPage'], ['*'], 'page', $params['currentPage']);
+                $feeds = $query->paginate($params['perPage'], ['*'], 'page', $params['page']);
             }
             return response()->json(['status' => 'success', 'response' => $feeds]);
         } catch (Exception $e) {
@@ -67,23 +67,22 @@ class FeedService {
                         });
                     });
                 })
-                ->leftJoinSub($postEngagements, 'post_engagements', function ($join) {
-                    $join->on('feeds.post_id', '=', 'post_engagements.post_id');
-                })
-                ->leftJoinSub($sharedPostEngagements, 'shared_engagements', function ($join) {
-                    $join->on('feeds.shared_post_id', '=', 'shared_engagements.shared_post_id');
-                })
+                // ->leftJoinSub($postEngagements, 'post_engagements', function ($join) {
+                //     $join->on('feeds.post_id', '=', 'post_engagements.post_id');
+                // })
+                // ->leftJoinSub($sharedPostEngagements, 'shared_engagements', function ($join) {
+                //     $join->on('feeds.shared_post_id', '=', 'shared_engagements.shared_post_id');
+                // })
                 ->orderByRaw('GREATEST(COALESCE(post_engagements.engagement_count, 0), COALESCE(shared_engagements.engagement_count, 0)) DESC');
     
             // Paginação
-            $feeds = $query->paginate($params['perPage'], ['*'], 'page', $params['currentPage']);
+            $feeds = $query->paginate($params['perPage'], ['*'], 'page', $params['page']);
     
             return response()->json(['status' => 'success', 'response' => $feeds]);
         } catch (Exception $e) {
             return response()->json(['status' => 'failed', 'response' => $e->getMessage()]);
         }
-    }
-    
+    }    
 
     public function getFeed(int $id) {
         try {

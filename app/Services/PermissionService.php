@@ -17,7 +17,7 @@ class PermissionService {
             if ($params['getAllData']) {
                 $permissions = $query->get();
             } else {
-                $permissions = $query->paginate($params['perPage'], ['*'], 'page', $params['currentPage']);
+                $permissions = $query->paginate($params['perPage'], ['*'], 'page', $params['page']);
             }
             return response()->json(['status' => 'success', 'response' => $permissions]);
         } catch (Exception $e) {

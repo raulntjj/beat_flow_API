@@ -17,7 +17,7 @@ class GenreService {
             if ($params['getAllData']) {
                 $genres = $query->get();
             } else {
-                $genres = $query->paginate($params['perPage'], ['*'], 'page', $params['currentPage']);
+                $genres = $query->paginate($params['perPage'], ['*'], 'page', $params['page']);
             }
             return response()->json(['status' => 'success', 'response' => $genres]);
         } catch (Exception $e) {
