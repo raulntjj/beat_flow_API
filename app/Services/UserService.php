@@ -121,7 +121,7 @@ class UserService {
                     'profile_photo_path' => $request['profile_photo_path'],
                     'bio' => $request['bio'],
                     'is_private' => $request['is_private'],
-                ]);     
+                ]);    
             });
 
             return response()->json(['status' => 'success', 'response' => $user]);
