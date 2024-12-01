@@ -26,6 +26,10 @@ class PostEngagementController {
         return $this->postEngagementService->getAllPostEngagements($params);
     }
 
+    public function getUserPostEngagements(int $post_id) {
+        return $this->postEngagementService->getUserPostEngagements($post_id);
+    }
+
     public function store(StorePostEngagementRequest $request){
         return $this->postEngagementService->createPostEngagement($request->validated());
     }
@@ -34,7 +38,7 @@ class PostEngagementController {
     //     return $this->postEngagementService->updatePostEngagement($request->validated(), $id);
     // }
 
-    public function destroy(int $id){
-        return $this->postEngagementService->deletePostEngagement($id);
+    public function destroy(Request $request){
+        return $this->postEngagementService->deletePostEngagement($request->validated());
     }
 }
