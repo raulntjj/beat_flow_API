@@ -21,7 +21,7 @@ class UserController {
         $params = [
             'getAllData' => $request->getAllData ?? false,
             'perPage' => $request->perPage ?? 10,
-            'currentPage' => $request->currentPage ?? 1,
+            'page' => $request->page ?? 1,
             'search' => $request->search ?? false,
             'filter' => $request->filter ?? false,
         ];

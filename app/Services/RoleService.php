@@ -17,7 +17,7 @@ class RoleService {
             if ($params['getAllData']) {
                 $roles = $query->get();
             } else {
-                $roles = $query->paginate($params['perPage'], ['*'], 'page', $params['currentPage']);
+                $roles = $query->paginate($params['perPage'], ['*'], 'page', $params['page']);
             }
             return response()->json(['status' => 'success', 'response' => $roles]);
         } catch (Exception $e) {

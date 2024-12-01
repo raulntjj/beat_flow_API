@@ -30,7 +30,7 @@ class PostService {
             if ($params['getAllData']) {
                 $posts = $query->get();
             } else {
-                $posts = $query->paginate($params['perPage'], ['*'], 'page', $params['currentPage']);
+                $posts = $query->paginate($params['perPage'], ['*'], 'page', $params['page']);
             }
             return response()->json(['status' => 'success', 'response' => $posts]);
         } catch (Exception $e) {

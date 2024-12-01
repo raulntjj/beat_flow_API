@@ -21,7 +21,7 @@ class PostEngagementService {
             if ($params['getAllData']) {
                 $engagements = $query->get();
             } else {
-                $engagements = $query->paginate($params['perPage'], ['*'], 'page', $params['currentPage']);
+                $engagements = $query->paginate($params['perPage'], ['*'], 'page', $params['page']);
             }
             return response()->json(['status' => 'success', 'response' => $engagements]);
         } catch (Exception $e) {

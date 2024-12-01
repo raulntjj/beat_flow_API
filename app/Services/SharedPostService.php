@@ -18,7 +18,7 @@ class SharedPostService {
             if ($params['getAllData']) {
                 $sharedPosts = $query->get();
             } else {
-                $sharedPosts = $query->paginate($params['perPage'], ['*'], 'page', $params['currentPage']);
+                $sharedPosts = $query->paginate($params['perPage'], ['*'], 'page', $params['page']);
             }
             return response()->json(['status' => 'success', 'response' => $sharedPosts]);
         } catch (Exception $e) {

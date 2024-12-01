@@ -44,7 +44,7 @@ class AuthenticatedSessionController {
     public function myFollowers(Request $params) {
         $params = [
             'perPage' => $params->perPage ?? 10,
-            'currentPage' => $params->currentPage ?? 1,
+            'page' => $params->page ?? 1,
         ];
         return $this->userService->getUserFollowers($params);
     }
@@ -52,7 +52,7 @@ class AuthenticatedSessionController {
     public function myFollowed(Request $params) {
         $params = [
             'perPage' => $params->perPage ?? 10,
-            'currentPage' => $params->currentPage ?? 1,
+            'page' => $params->page ?? 1,
         ];
         return $this->userService->getUserFollowed($params);
     }
@@ -60,7 +60,7 @@ class AuthenticatedSessionController {
     public function myNotifications(Request $params) {
         $params = [
             'perPage' => $params->perPage ?? 10,
-            'currentPage' => $params->currentPage ?? 1,
+            'page' => $params->page ?? 1,
         ];
         return $this->userService->getUserNotifications($params);
     }

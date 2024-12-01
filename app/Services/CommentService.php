@@ -17,7 +17,7 @@ class CommentService {
             if ($params['getAllData']) {
                 $commentPosts = $query->get();
             } else {
-                $commentPosts = $query->paginate($params['perPage'], ['*'], 'page', $params['currentPage']);
+                $commentPosts = $query->paginate($params['perPage'], ['*'], 'page', $params['page']);
             }
             return response()->json(['status' => 'success', 'response' => $commentPosts]);
         } catch (Exception $e) {
