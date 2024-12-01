@@ -40,6 +40,10 @@ class Post extends Model {
         return $this->HasMany(SharedPost::class, 'post_id', 'id');
     }
 
+	public function comments(){
+		return $this->HasMany(Comment::class, 'post_id', 'id');
+	}
+
     public function getCommentsAttribute() {
         return $this->hasMany(PostEngagement::class, 'post_id', 'id')
         ->where('type', 'comment')

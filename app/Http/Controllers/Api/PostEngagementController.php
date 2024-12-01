@@ -28,7 +28,7 @@ class PostEngagementController {
 
     public function getUserPostEngagements(Request $request) {
         if($request->filled('post_id')) {
-            return $this->postEngagementService->getUserPostEngagements($post_id);
+            return $this->postEngagementService->getUserPostEngagements($request->all());
         } else {
             return response()->json(['status' => 'failed', 'response' => 'The post_id field is required']);
         }
@@ -43,6 +43,6 @@ class PostEngagementController {
     // }
 
     public function destroy(Request $request){
-        return $this->postEngagementService->deletePostEngagement($request->validated());
+        return $this->postEngagementService->deletePostEngagement($request->all());
     }
 }

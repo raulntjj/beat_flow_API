@@ -51,7 +51,7 @@ Route::middleware('auth:api')->group(function () {
         Route::get('/followers', [AuthenticatedSessionController::class, 'myFollowers']);
         Route::get('/followed', [AuthenticatedSessionController::class, 'myFollowed']);
         Route::get('/notifications', [AuthenticatedSessionController::class, 'myNotifications']);
-        Route::get('/posts/engagements', [PostEngagementController::class, 'getUserPostEngagements'])
+        Route::get('/posts/engagements', [PostEngagementController::class, 'getUserPostEngagements']);
     });
 
     // Permissões para usuários comuns (Limited acess)
@@ -76,7 +76,7 @@ Route::middleware('auth:api')->group(function () {
     });
 
     // Permissões para admins (Full access)
-    Route::middleware([CheckPermission::class . ':Admin'])->group(function () {
+   // Route::middleware([CheckPermission::class . ':Admin'])->group(function () {
         Route::apiResource('comments', CommentController::class);
         Route::apiResource('feeds', FeedController::class);
         Route::apiResource('follows', FollowController::class);
@@ -89,7 +89,7 @@ Route::middleware('auth:api')->group(function () {
         Route::apiResource('roles', RoleController::class);
         Route::apiResource('shared-posts', SharedPostController::class);
         Route::apiResource('users', UserController::class);
-    });
+    //});
 });
 
 
