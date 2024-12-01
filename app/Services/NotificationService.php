@@ -7,6 +7,30 @@ use Illuminate\Support\Facades\DB;
 use Exception;
 
 class NotificationService {         
+    private function generateContent($type, $notifier_name) {
+        switch($type) {
+            case 'like':
+                return "{$notifier_name} curtiu sua publicação.";
+                break;
+            
+            case 'share':
+                return "{$notifier_name} compartilhou sua publicação.";
+                break;
+
+            case 'comment':
+                return "{$notifier_name} comentou na sua publicação.";
+                break;
+
+            case 'follow':
+                return "{$notifier_name} seguiu você.";
+                break;
+            
+            default:
+                return "{$notifier_name} notificou você.";
+                break;
+        }
+    }
+    
     public function getAllNotifications(array $params) {
         try {
             $query = Notification::query();
@@ -45,9 +69,12 @@ class NotificationService {
                 return Notification::create([
                     'user_id' => $request['user_id'],
                     'type' => $request['type'],
-                    'is_read' => $request['is_read'],
-                    'content' => $request['content'],
-                ]);     
+                    'is_read' => $request['is_read'] ?? false,
+                    'content' => $request['content'] ?? $this->generateContent(
+                        $request['type'],
+                        $request['notifier_name']
+                    ),
+                ]);
             });
 
             return response()->json(['status' => 'success', 'response' => $notification]);
@@ -56,30 +83,30 @@ class NotificationService {
         }
     }
 
-    public function updateNotification(array $request, int $id) {
-        try {
-            $notification = DB::transaction(function() use ($id, $request) {
-                $notification = Notification::find($id);
+    // public function updateNotification(array $request, int $id) {
+    //     try {
+    //         $notification = DB::transaction(function() use ($id, $request) {
+    //             $notification = Notification::find($id);
                 
-                if (!$notification) {
-                    throw new Exception("Notification not found");
-                }
+    //             if (!$notification) {
+    //                 throw new Exception("Notification not found");
+    //             }
 
-                $notification->fill([
-                    'user_id' => $request['user_id'] ?? $notification->user_id,
-                    'type' => $request['type'] ?? $notification->type,
-                    'is_read' => $request['is_read'] ?? $notification->is_read,
-                    'content' => $request['content'] ?? $notification->content,
-                ])->save();
+    //             $notification->fill([
+    //                 'user_id' => $request['user_id'] ?? $notification->user_id,
+    //                 'type' => $request['type'] ?? $notification->type,
+    //                 'is_read' => $request['is_read'] ?? $notification->is_read,
+    //                 'content' => $request['content'] ?? $notification->content,
+    //             ])->save();
 
-                return $notification;
-            });
+    //             return $notification;
+    //         });
 
-            return response()->json(['status' => 'success', 'response' => $notification]);
-        } catch (Exception $e) {
-            return response()->json(['status' => 'failed', 'response' => $e->getMessage()]);
-        }
-    }
+    //         return response()->json(['status' => 'success', 'response' => $notification]);
+    //     } catch (Exception $e) {
+    //         return response()->json(['status' => 'failed', 'response' => $e->getMessage()]);
+    //     }
+    // }
 
     public function deleteNotification(int $id) {
         try {

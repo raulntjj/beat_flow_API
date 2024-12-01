@@ -35,7 +35,9 @@ if(env('APP_ENV') == 'local') {
 Route::post('login', [AuthController::class, 'login']);
 Route::post('logout', [AuthController::class, 'logout']);
 Route::post('refresh', [AuthController::class, 'refresh']);
+Route::post('register', [AuthController::class, 'register']);
 
+Route::get('documentation', [Controller::class, 'documentation']);
 Route::middleware('auth:api')->group(function () {
     // Rotas para obter dados do usuário logado
     Route::prefix('me')->group(function () {
@@ -66,7 +68,7 @@ Route::middleware('auth:api')->group(function () {
         ->middleware(CheckOwnership::class . ':follow');
 
         Route::apiResource('shared-posts', SharedPostController::class)
-        ->middleware(CheckOwnership::class . ':shared_post');
+        ->middleware(CheckOwnership::class . ':shared-posts');
 
         Route::apiResource('notifications', NotificationController::class)
         ->middleware(CheckOwnership::class . ':notification');

@@ -105,6 +105,12 @@ class UserService {
 
     public function createUser(array $request) {
         try {
+
+            if($request['profile_photo_path'] ?? false){
+                $request['profile_photo_path'] = $this->storeProfilePhoto($request['profile_photo_path'])
+            } else {
+                $request['profile_photo_path'] = 'beatflow/placeholder/profile_photo.jpg';
+            }
             $user = DB::transaction(function() use ($request) { 
                 return User::create([
                     'user' => $request['user'],
@@ -112,10 +118,10 @@ class UserService {
                     'last_name' => $request['last_name'],
                     'email' => $request['email'],
                     'password' => $request['password'],
-                    'profile_photo_path' => $this->storeProfilePhoto($request['profile_photo_path']),
+                    'profile_photo_path' => $request['profile_photo_path'],
                     'bio' => $request['bio'],
                     'is_private' => $request['is_private'],
-                ]);     
+                ]);    
             });
 
             return response()->json(['status' => 'success', 'response' => $user]);

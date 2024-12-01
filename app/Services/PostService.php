@@ -40,7 +40,10 @@ class PostService {
 
     public function getPost(int $id) {
         try {
-            $post = Post::find($id);
+            $post = Post::with([
+                'engagements',
+                'user',
+            ])->find($id);
 
             if (!$post) {
                 return response()->json(['status' => 'failed', 'response' => 'Post not found'], 404);
