@@ -107,7 +107,7 @@ class UserService {
         try {
 
             if($request['profile_photo_path'] ?? false){
-                $request['profile_photo_path'] = $this->storeProfilePhoto($request['profile_photo_path'])
+                $request['profile_photo_path'] = $this->storeProfilePhoto($request['profile_photo_path']);
             } else {
                 $request['profile_photo_path'] = 'beatflow/placeholder/profile_photo.jpg';
             }
