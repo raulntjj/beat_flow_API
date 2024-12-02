@@ -40,7 +40,7 @@ class FollowService {
             $follow = DB::transaction(function() use ($request) {
                 $follow =  Follow::where('follower_id', $request['follower_id'])
                 ->where('followed_id', $request['followed_id'])
-                ->first();
+                ->get();
 
                 if (!$follow) {
                     throw new Exception("Follow not found");
