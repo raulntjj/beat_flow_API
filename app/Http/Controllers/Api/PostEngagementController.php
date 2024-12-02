@@ -59,6 +59,7 @@ class PostEngagementController {
                 'response' => $validator->errors(),
             ], 200);
         }
-        return $this->postEngagementService->deletePostEngagement($validator);
+
+        return $this->postEngagementService->deletePostEngagement($validator->validated());
     }
 }

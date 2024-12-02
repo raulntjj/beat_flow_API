@@ -34,7 +34,7 @@ class FollowController {
                 'response' => $validator->errors(),
             ], 200);
         }
-    
-        return $this->followService->deleteFollow($validator);
+        
+        return $this->followService->deleteFollow($validator->validated());
     }
 }
