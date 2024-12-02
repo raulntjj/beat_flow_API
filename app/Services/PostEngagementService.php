@@ -118,7 +118,9 @@ class PostEngagementService {
                     throw new Exception("PostEngagement not found");
                 }
 
-                $engagement->delete();
+                foreach($engagement as $engagement_unity) {
+                    $engagement_unity->delete();
+                }
 
                 return $engagement;
             });
