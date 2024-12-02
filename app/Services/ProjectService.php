@@ -49,13 +49,13 @@ class ProjectService {
         try {
             $project = DB::transaction(function() use ($request) {
                 if($request['media_path'] ?? false) {
-                    $request['media_path'] = $this->storePostMedia($request['media_path']);
+                    $request['media_path'] = $this->storeProjectMedia($request['media_path']);
                 } else {
                     $request['media_path'] = null;
                 }
 
                 if($request['cover_path'] ?? false) {
-                    $request['cover_path'] = $this->storePostMedia($request['cover_path']);
+                    $request['cover_path'] = $this->storeCover($request['cover_path']);
                 } else {
                     $request['cover_path'] = null;
                 }
@@ -85,13 +85,16 @@ class ProjectService {
                     throw new Exception("Project not found");
                 }
 
+                $old_media = $post->media_path;
+                $old_cover = $post->media_path;
+
                 $project->fill([
                     'name' => $request['name'] ?? $project->name,
                     'content' => $request['content'] ?? $project->content,
                     'owner_id' => $request['owner_id'] ?? $project->owner_id,
-                    'cover_path' => $request['cover_path'] ?? $project->cover_path,
+                    'cover_path' => $this->updateCover($request['cover_path'], $old_cover),
                     'media_type' => $request['media_type'] ?? $project->media_type,
-                    'media_path' => $request['media_path'] ?? $project->media_path,
+                    'media_path' => $this->updatePostMedia($request['media_path'], $old_media),
                 ])->save();
 
                 return $project;
