@@ -58,13 +58,19 @@ class PostService {
 
     public function createPost(array $request) {
         try {
-            $post = DB::transaction(function() use ($request) { 
+            $post = DB::transaction(function() use ($request) {
+                if($request['media_path'] ?? false) {
+                    $request['media_path'] = $this->storePostMedia($request['media_path']);
+                } else {
+                    $request['media_path'] = null;
+                }
+
                 return Post::create([
                     'user_id' => $request['user_id'],
                     'content' => $request['content'],
                     'visibility' => $request['visibility'],
                     'media_type' => $request['media_type'] ?? null,
-                    'media_path' => $request['media_path'] ?? $this->storePostMedia($request['media_path']),
+                    'media_path' => $request['media_path'],
                 ]);
             });
 
