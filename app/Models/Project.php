@@ -2,11 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Aws\S3\S3Client;
+use Illuminate\Support\Facades\Storage;
+use Carbon\Carbon;
 
 class Project extends Model {
-    use HasFactory;
     protected $fillable = [
         'name',
         'content',
