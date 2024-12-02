@@ -91,7 +91,7 @@ class UserService {
 
     public function getByUser(String $slug) {
         try {
-            $user = User::where('user', $slug)->get();
+            $user = User::where('user', $slug)->first();
 
             if (!$user) {
                 return response()->json(['status' => 'failed', 'response' => 'User not found'], 404);
