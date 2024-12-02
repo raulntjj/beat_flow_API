@@ -55,31 +55,32 @@ Route::middleware('auth:api')->group(function () {
     });
 
     // Permissões para usuários comuns (Limited acess)
-    Route::middleware([CheckPermission::class . ':User'])->group(function () {
-        Route::apiResource('comments', CommentController::class)
-        ->middleware(CheckOwnership::class . ':comment');
+    // Route::middleware([CheckPermission::class . ':User'])->group(function () {
+    //     Route::apiResource('comments', CommentController::class)
+    //     ->middleware(CheckOwnership::class . ':comment');
 
-        Route::apiResource('posts', PostController::class)
-        ->middleware(CheckOwnership::class . ':post');
+    //     Route::apiResource('posts', PostController::class)
+    //     ->middleware(CheckOwnership::class . ':post');
 
-        Route::apiResource('post-engagements', PostEngagementController::class)
-        ->middleware(CheckOwnership::class . ':post_engagement');
+    //     Route::apiResource('post-engagements', PostEngagementController::class)
+    //     ->middleware(CheckOwnership::class . ':post_engagement');
 
-        Route::apiResource('follows', FollowController::class)->only(['store', 'destroy'])
-        ->middleware(CheckOwnership::class . ':follow');
+    //     Route::apiResource('follows', FollowController::class)->only(['store', 'destroy'])
+    //     ->middleware(CheckOwnership::class . ':follow');
 
-        Route::apiResource('shared-posts', SharedPostController::class)
-        ->middleware(CheckOwnership::class . ':shared-posts');
+    //     Route::apiResource('shared-posts', SharedPostController::class)
+    //     ->middleware(CheckOwnership::class . ':shared-posts');
 
-        Route::apiResource('notifications', NotificationController::class)
-        ->middleware(CheckOwnership::class . ':notification');
-    });
+    //     Route::apiResource('notifications', NotificationController::class)
+    //     ->middleware(CheckOwnership::class . ':notification');
+    // });
 
     // Permissões para admins (Full access)
    // Route::middleware([CheckPermission::class . ':Admin'])->group(function () {
         Route::apiResource('comments', CommentController::class);
         Route::apiResource('feeds', FeedController::class);
-        Route::apiResource('follows', FollowController::class);
+        Route::apiResource('follows', FollowController::class)->except(['destroy']);
+        Route::delete('follows', [FollowController::class, 'destroy']);
         Route::apiResource('genres', GenreController::class);
         Route::apiResource('notifications', NotificationController::class);
         Route::apiResource('permissions', PermissionController::class);

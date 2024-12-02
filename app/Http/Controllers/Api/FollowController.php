@@ -19,7 +19,22 @@ class FollowController {
         return $this->followService->createFollow($request->validated());
     }
 
-    public function destroy(int $id){
-        return $this->followService->deleteFollow($id);
+    public function destroy(Request $request){
+        $validator = \Illuminate\Support\Facades\Validator::make($request->all(), [
+            'follower_id' => 'required',
+            'followed_id' => 'required',
+        ], [
+            'follower_id.required' => 'The follower_id field is required.',
+            'followed_id.required' => 'The followed_id field is required.',
+        ]);
+    
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => 'failed',
+                'response' => $validator->errors(),
+            ], 200);
+        }
+    
+        return $this->followService->deleteFollow($validated);
     }
 }

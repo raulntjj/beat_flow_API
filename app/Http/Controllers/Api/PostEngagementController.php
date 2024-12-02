@@ -43,6 +43,22 @@ class PostEngagementController {
     // }
 
     public function destroy(Request $request){
+        $validator = \Illuminate\Support\Facades\Validator::make($request->all(), [
+            'user_id' => 'required',
+            'post_id' => 'required',
+            'type' => 'required',
+        ], [
+            'user_id.required' => 'The user_id field is required.',
+            'post_id.required' => 'The post_id field is required.',
+            'type.required' => 'The type field is required.',
+        ]);
+    
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => 'failed',
+                'response' => $validator->errors(),
+            ], 200);
+        }
         return $this->postEngagementService->deletePostEngagement($request->all());
     }
 }
