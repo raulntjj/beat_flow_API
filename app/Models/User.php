@@ -87,6 +87,10 @@ class User extends Authenticatable implements JWTSubject {
             })->exists();
     }
 
+    public function projects() {
+        return $this->belongsToMany(User::class, 'project_users', 'user_id', 'project_id');
+    }
+
     // Atributos
     public function getProfilePhotoTempAttribute(){
         try {

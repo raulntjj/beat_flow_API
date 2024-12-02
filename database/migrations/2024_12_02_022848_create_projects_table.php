@@ -11,13 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('projects', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
-            $table->text('content');
-            $table->enum('visibility', ['private', 'public', 'followers']);
-            $table->enum('media_type', ['audio', 'image'])->nullable();
+            $table->string('name');
+            $table->string('cover_path');
+            $table->unsignedBigInteger('owner_id')->nullable();
+            $table->foreign('owner_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('content');
+
+            $table->enum('media_type', ['audio', 'video'])->nullable();
             $table->string('media_path')->nullable();
             $table->timestamps();
         });
@@ -28,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('projects');
     }
 };

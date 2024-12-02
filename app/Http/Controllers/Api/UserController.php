@@ -32,6 +32,10 @@ class UserController {
         return $this->userService->getUser($id);
     }
 
+    public function getByUser(String $slug) {
+        return $this->userService->getByUser($slug);
+    }
+
     public function store(StoreUserRequest $request) {
         return $this->userService->createUser($request->validated());
     }
