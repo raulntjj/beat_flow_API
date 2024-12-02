@@ -20,10 +20,11 @@ class FollowService {
                 ]);
             });
 
+
             // Instanciando serviço
             $notificationService = app(NotificationService::class);
             $notificationService->createNotification([
-                'user_id' => $request['follower_id'],
+                'user_id' => $request['followed_id'],
                 'type' => 'follow',
                 'is_read' => false,
                 'notifier_name' => $userAuth->user

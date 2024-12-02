@@ -67,10 +67,11 @@ class PostEngagementService {
                 ]);
             });
 
+            $post = Post::find($request['post_id']);
             // Instanciando serviço
             $notificationService = app(NotificationService::class);
             $notificationService->createNotification([
-                'user_id' => $request['user_id'],
+                'user_id' => $post['user_id'],
                 'type' => $request['type'],
                 'is_read' => false,
                 'notifier_name' => $userAuth->user
