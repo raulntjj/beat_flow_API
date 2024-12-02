@@ -28,4 +28,21 @@ class Project extends Model {
     public function participants() {
         return $this->belongsToMany(User::class, 'project_users', 'project_id', 'user_id');
     }
+
+    // Atributos
+    public function getCoverTempAttribute(){
+        try {
+            return $this->media_path ? Storage::disk('s3')->temporaryUrl($this->media_path, Carbon::now()->addDays(7)) : null;
+        } catch (\Exception $e) {
+            return null;
+        }
+    }
+
+    public function getMediaTempAttribute(){
+        try {
+            return $this->media_path ? Storage::disk('s3')->temporaryUrl($this->media_path, Carbon::now()->addDays(7)) : null;
+        } catch (\Exception $e) {
+            return null;
+        }
+    }
 }

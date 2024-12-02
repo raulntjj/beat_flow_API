@@ -68,6 +68,32 @@ trait S3Operations {
         }
     }
 
+    public function storeCover($media) {
+        return $media->store('beatflow/cover_photos', 's3');
+    }
+
+    public function updateCover($media, $old_media) {
+        if ($media) {
+            $this->deleteFile($old_media);
+            return $this->storeCover($media);
+        } else {
+            return $old_media;
+        }
+    }
+
+    public function storeProjectMedia($media) {
+        return $media->store('beatflow/project_media', 's3');
+    }
+
+    public function updateProjectMedia($media, $old_media) {
+        if ($media) {
+            $this->deleteFile($old_media);
+            return $this->storeProjectMedia($media);
+        } else {
+            return $old_media;
+        }
+    }
+
     public function storePostMedia($media) {
         return $media->store('beatflow/post_media', 's3');
     }
