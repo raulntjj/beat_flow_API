@@ -14,6 +14,7 @@ use App\Http\Controllers\Api\PostEngagementController;
 use App\Http\Controllers\Api\RoleController;
 use App\Http\Controllers\Api\SharedPostController;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\ProjectController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Database\DatabaseController;
@@ -52,7 +53,10 @@ Route::middleware('auth:api')->group(function () {
         Route::get('/followed', [AuthenticatedSessionController::class, 'myFollowed']);
         Route::get('/notifications', [AuthenticatedSessionController::class, 'myNotifications']);
         Route::get('/posts/engagements', [PostEngagementController::class, 'getUserPostEngagements']);
+        Route::get('/projects', [AuthenticatedSessionController::class, 'myProjects']);
     });
+
+    Route::get('users/slug/{user}', [UserController::class, 'getByUser']);
 
     // Permissões para usuários comuns (Limited acess)
     // Route::middleware([CheckPermission::class . ':User'])->group(function () {
@@ -77,6 +81,7 @@ Route::middleware('auth:api')->group(function () {
 
     // Permissões para admins (Full access)
    // Route::middleware([CheckPermission::class . ':Admin'])->group(function () {
+        Route::apiResource('projects', ProjectController::class);
         Route::apiResource('comments', CommentController::class);
         Route::apiResource('feeds', FeedController::class);
         Route::apiResource('follows', FollowController::class)->except(['destroy']);

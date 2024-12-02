@@ -113,7 +113,7 @@ class PostEngagementService {
                 $engagement = PostEngagement::where('user_id', $request['user_id'])
                 ->where('post_id', $request['post_id'])
                 ->where('type', $request['type'])
-                ->first();
+                ->get();
         
                 if (!$engagement) {
                     throw new Exception("PostEngagement not found");

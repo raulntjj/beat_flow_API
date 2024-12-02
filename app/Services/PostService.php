@@ -43,7 +43,7 @@ class PostService {
             $post = Post::with([
                 'engagements',
                 'user',
-		'comments',
+		        'comments',
             ])->find($id);
 
             if (!$post) {

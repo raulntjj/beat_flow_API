@@ -18,17 +18,17 @@ class UserService {
 
     public function authenticatedUser(){
        $userAuth = Auth::guard('api')->user();
-       $user = User::with([
-            'followers',
-            'followed',
-            'newNotifications',
-            'roles'
-        ])
-       ->where('id', $userAuth->id)
-       ->get();
+    //    $user = User::with([
+    //         'followers',
+    //         'followed',
+    //         'newNotifications',
+    //         'roles'
+    //     ])
+    //    ->where('id', $userAuth->id)
+    //    ->get();
         return response()->json([
             'status' => 'success', 
-            'response' => $user
+            'response' => $userAuth
         ]);
     }
 
@@ -84,6 +84,20 @@ class UserService {
                 $users = $query->paginate($params['perPage'], ['*'], 'page', $params['page']);
             }
             return response()->json(['status' => 'success', 'response' => $users]);
+        } catch (Exception $e) {
+            return response()->json(['status' => 'failed', 'response' => $e->getMessage()]);
+        }
+    }
+
+    public function getByUser(String $slug) {
+        try {
+            $user = User::where('user', $slug)->get();
+
+            if (!$user) {
+                return response()->json(['status' => 'failed', 'response' => 'User not found'], 404);
+            }
+
+            return response()->json(['status' => 'success', 'response' => $user]);
         } catch (Exception $e) {
             return response()->json(['status' => 'failed', 'response' => $e->getMessage()]);
         }
