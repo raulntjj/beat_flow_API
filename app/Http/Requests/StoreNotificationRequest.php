@@ -41,6 +41,6 @@ class StoreNotificationRequest extends FormRequest {
             'response' => $validator->errors(),
         ];
 
-        throw new HttpResponseException(response()->json($response, 422));
+        throw new HttpResponseException(response()->json($response, 200));
     }
 }

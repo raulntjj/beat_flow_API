@@ -35,10 +35,12 @@ class FollowService {
         }
     }
 
-    public function deleteFollow(int $id) {
+    public function deleteFollow(Array $request) {
         try {
-            $follow = DB::transaction(function() use ($id) {
-                $follow = Follow::find($id);
+            $follow = DB::transaction(function() use ($request) {
+                $follow =  Follow::where('follower_id', $request['follower_id'])
+                ->where('followed_id', $request['followed_id'])
+                ->first();
 
                 if (!$follow) {
                     throw new Exception("Follow not found");
