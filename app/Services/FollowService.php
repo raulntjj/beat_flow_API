@@ -46,8 +46,9 @@ class FollowService {
                     throw new Exception("Follow not found");
                 }
 
-                $follow->delete();
-
+                foreach($follow as $follow_unity) {
+                    $follow_unity->delete();
+                }
                 return $follow;
             });
 
