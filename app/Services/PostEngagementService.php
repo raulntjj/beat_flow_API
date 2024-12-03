@@ -67,7 +67,7 @@ class PostEngagementService {
                 ]);
             });
 
-            $post = Post::find($request['post_id']);
+                $post = \App\Models\Post::find($request['post_id']);
             // Instanciando serviço
             $notificationService = app(NotificationService::class);
             $notificationService->createNotification([

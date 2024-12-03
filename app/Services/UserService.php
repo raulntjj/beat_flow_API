@@ -18,17 +18,17 @@ class UserService {
 
     public function authenticatedUser(){
        $userAuth = Auth::guard('api')->user();
-    //    $user = User::with([
-    //         'followers',
-    //         'followed',
-    //         'newNotifications',
-    //         'roles'
-    //     ])
-    //    ->where('id', $userAuth->id)
-    //    ->get();
+        $user = User::with([
+	     'posts',
+         ])
+	->withCount([
+	     'newNotifications'
+	])
+        ->where('id', $userAuth->id)
+        ->first();
         return response()->json([
             'status' => 'success', 
-            'response' => $userAuth
+            'response' => $user
         ]);
     }
 
