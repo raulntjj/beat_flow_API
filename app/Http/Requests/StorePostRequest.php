@@ -16,8 +16,19 @@ class StorePostRequest extends FormRequest {
             'user_id' => 'required|exists:users,id',
             'content' => 'required|string',
             'visibility' => 'required|in:private,public,followers',
-            'media_type' => 'nullable|in:audio,image,video|required_with:media_path',
-            'media_path' => 'nullable|required_with:media_type',
+            'media_type' => 'nullable|in:audio,image|required_with:media_path',
+            'media_path' => [
+                'nullable',
+                'required_with:media_type',
+                function ($attribute, $value, $fail) {
+                    $mediaType = request('media_type');
+                    if ($mediaType === 'audio' && !in_array($value->getClientOriginalExtension(), ['mp3', 'wav', 'aac'])) {
+                        $fail('The media path must be a valid audio file (mp3, wav, aac).');
+                    } elseif ($mediaType === 'image' && !in_array($value->getClientOriginalExtension(), ['jpeg', 'jpg', 'png'])) {
+                        $fail('The media path must be a valid image file (jpeg, jpg, png, gif).');
+                    }
+                },
+            ],
         ];
     }
 
@@ -31,10 +42,9 @@ class StorePostRequest extends FormRequest {
             'visibility.in' => 'The visibility must be one of: private, public, followers.',
             'media_type.required_with' => 'The media type is required when media path is provided.',
             'media_path.required_with' => 'The media path is required when media type is provided.',
-            'media_type.in' => 'The selected media type is invalid.',
-            'media_path.required_without' => 'Media path is required when media type is selected.',
+            'media_type.in' => 'The selected media type must be either audio or image.',
         ];
-    }
+    }    
 
     protected function failedValidation(Validator $validator) {
         $response = [

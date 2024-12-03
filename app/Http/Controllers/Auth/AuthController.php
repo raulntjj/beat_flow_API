@@ -11,14 +11,24 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 
 class AuthController {
     public function login(Request $request) {
-        $credentials = $request->only('email', 'password');
-
+        $credentials = $request->only('identifier', 'password');
+        $identifier = $credentials['identifier'];
+        $password = $credentials['password'];
+    
+        $field = filter_var($identifier, FILTER_VALIDATE_EMAIL) ? 'email' : 'user';
+    
+        $credentials = [
+            $field => $identifier,
+            'password' => $password,
+        ];
+    
         if (!$token = Auth::guard('api')->attempt($credentials)) {
             return response()->json(['status' => 'failed', 'response' => 'Unauthorized'], 401);
         }
-
+    
         return $this->respondWithToken($token);
     }
+    
     
     public function logout() {
         Auth::guard('api')->logout();
