@@ -31,10 +31,10 @@ class FeedService {
         try {
             $userAuth = Auth::guard('api')->user();
     
-            // Busca os posts e compartilhamentos relacionados às pessoas que o usuário segue
+            // Busca os posts e compartilhamentos relacionados às pessoas que o usuário segue e do próprio usuário
             $query = Feed::query()
                 ->with(['post.user', 'sharedPost.post.user'])
-		->select('feeds.*')
+                ->select('feeds.*')
                 ->where(function ($query) use ($userAuth) {
                     $query->whereHas('post.user', function ($queryUser) use ($userAuth) {
                         $queryUser->whereIn('id', function ($q) use ($userAuth) {
@@ -49,14 +49,22 @@ class FeedService {
                                 ->from('follows')
                                 ->where('follower_id', $userAuth->id);
                         });
+                    })
+                    ->orWhereHas('post', function ($queryPost) use ($userAuth) {
+                        // Inclui as postagens do próprio usuário
+                        $queryPost->where('user_id', $userAuth->id);
+                    })
+                    ->orWhereHas('sharedPost.post', function ($queryPost) use ($userAuth) {
+                        // Inclui os compartilhamentos do próprio usuário
+                        $queryPost->where('user_id', $userAuth->id);
                     });
                 })
-	    	->leftJoin('posts', 'feeds.post_id', '=', 'posts.id') // Faz join com posts
-		->leftJoin('posts as shared_posts', 'feeds.shared_post_id', '=', 'shared_posts.id') // Faz join com shared posts
-		->orderByRaw('GREATEST(
-        		COALESCE(posts.created_at, 0),
-			COALESCE(shared_posts.created_at, 0)
-    		) DESC'); // Ordena pelo mais recente entre posts e shared posts
+                ->leftJoin('posts', 'feeds.post_id', '=', 'posts.id') // Faz join com posts
+                ->leftJoin('posts as shared_posts', 'feeds.shared_post_id', '=', 'shared_posts.id') // Faz join com shared posts
+                ->orderByRaw('GREATEST(
+                    COALESCE(posts.created_at, 0),
+                    COALESCE(shared_posts.created_at, 0)
+                ) DESC'); // Ordena pelo mais recente entre posts e shared posts
     
             // Paginação
             $feeds = $query->paginate($params['perPage'], ['*'], 'page', $params['page']);
@@ -65,7 +73,7 @@ class FeedService {
         } catch (Exception $e) {
             return response()->json(['status' => 'failed', 'response' => $e->getMessage()]);
         }
-    }    
+    }
 
     public function getFeed(int $id) {
         try {
