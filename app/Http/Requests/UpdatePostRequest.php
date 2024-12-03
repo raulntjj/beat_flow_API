@@ -16,8 +16,19 @@ class UpdatePostRequest extends FormRequest {
             'user_id' => 'nullable|exists:users,id',
             'content' => 'nullable|string',
             'visibility' => 'nullable|in:private,public,followers',
-            'media_type' => 'nullable|in:audio,image,video|required_with:media_path',
-            'media_path' => 'nullable|required_with:media_type',
+            'media_type' => 'nullable|in:audio,image|required_with:media_path',
+            'media_path' => [
+                'nullable',
+                'required_with:media_type',
+                function ($attribute, $value, $fail) {
+                    $mediaType = request('media_type');
+                    if ($mediaType === 'audio' && !in_array($value->getClientOriginalExtension(), ['mp3', 'wav', 'aac'])) {
+                        $fail('The media path must be a valid audio file (mp3, wav, aac).');
+                    } elseif ($mediaType === 'image' && !in_array($value->getClientOriginalExtension(), ['jpeg', 'jpg', 'png'])) {
+                        $fail('The media path must be a valid image file (jpeg, jpg, png, gif).');
+                    }
+                },
+            ],
         ];
     }
 

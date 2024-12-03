@@ -19,6 +19,7 @@ class StoreUserRequest extends FormRequest {
             'user' => 'required|string|max:255|unique:users,user',
             'password' => 'required|string|min:8|confirmed',
             // 'profile_photo_path' => 'required',
+            'profile_photo_path' => 'nullable|mimes:jpg,jpeg,png',
             'bio' => 'nullable|string|max:500',
             'is_private' => 'required|boolean',
         ];
