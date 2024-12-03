@@ -97,6 +97,11 @@ class PostService {
                 }
 
                 $old_media = $post->media_path;
+                if($request['media_path'] ?? false) {
+                    $request['media_path'] = $this->updatePostMedia($request['media_path'], $old_media);
+                } else {
+                    $request['media_path'] = $old_media;
+                }
 
                 $post->fill([
                     'user_id' => $request['user_id'] ?? $user_id->user_id,

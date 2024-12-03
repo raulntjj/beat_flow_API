@@ -53,19 +53,13 @@ class User extends Authenticatable implements JWTSubject {
         return $this->genres()->where('slug', $slug)->exists();
     }
 
-    public function followers(){
-        return $this->hasMany(Follow::class, 'followed_id')
-        ->with(['follower' => function ($query) {
-            $query->select('id', 'name', 'profile_photo_path');
-        }]);
-    }
-    
-    public function followed(){
-        return $this->HasMany(Follow::class, 'follower_id')
-        ->with(['follower' => function ($query) {
-            $query->select('id', 'name', 'profile_photo_path');
-        }]);
-    }
+	public function followers() {
+	    return $this->belongsToMany(User::class, 'follows', 'followed_id', 'follower_id');
+	}
+
+	public function followed() {
+		return $this->belongsToMany(User::class, 'follows', 'follower_id', 'followed_id');
+	}
 
     public function notifications() {
         return $this->HasMany(Notification::class);
@@ -75,6 +69,9 @@ class User extends Authenticatable implements JWTSubject {
         return $this->HasMany(Notification::class)->where('is_read', false)->orderByDesc('created_at');
     }
 
+    public function posts(){
+	return $this->hasMany(Post::class, 'user_id')->orderBy('created_at', 'desc'); 
+   }
 
     public function hasRole($role){
         return $this->roles()->where('name', $role)->exists();

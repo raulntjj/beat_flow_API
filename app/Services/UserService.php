@@ -91,7 +91,12 @@ class UserService {
 
     public function getByUser(String $slug) {
         try {
-            $user = User::where('user', $slug)->first();
+            	$user = User::with(['posts'])
+		    ->withCount(['followers', 'followed'])
+        	    ->where('user', $slug)
+	            ->first();
+
+		//$user = User::where('user', $slug)->first();
 
             if (!$user) {
                 return response()->json(['status' => 'failed', 'response' => 'User not found'], 404);
@@ -152,14 +157,19 @@ class UserService {
                 if (!$user) {
                     throw new Exception("User not found");
                 }
+		$old_media = $user->profile_photo_path;
 
-                $old_media = $user->profile_photo_path;
+		if($request['profile_photo_path'] ?? false){
+        	    $request['profile_photo_path'] = $this->updateProfilePhoto($request['profile_photo_path'], $old_media);
+	        } else {
+                    $request['profile_photo_path'] = $user->profile_photo_path;
+            	}
                 $user->fill([
                     'user' => $request['user'] ?? $user->user,
                     'name' => $request['name'] ?? $user->name,
                     'last_name' => $request['last_name'] ?? $user->last_name,
                     'email' => $request['email'] ?? $user->email,
-                    'profile_photo_path' => $this->updateProfilePhoto($request['profile_photo_path'], $old_media),
+                    'profile_photo_path' => $request['profile_photo_path'],
                     'password' => isset($request['password']) ? bcrypt($request['password']) : $user->password,
                     'bio' => $request['bio'] ?? $user->bio,
                     'is_private' => $request['is_private'] ?? $user->is_private,
