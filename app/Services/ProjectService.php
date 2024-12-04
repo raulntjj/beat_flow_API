@@ -12,13 +12,16 @@ class ProjectService {
     use S3Operations;
     public function getAllProjects(array $params) {
         try {
-            $query = Project::query();
+            $query = Project::with([
+                'owner',
+                'participants',
+            ]);
             if ($params['search']){
                 $query->where('content', 'like', '%' . $params['search'] . '%');
             }
 
             if ($params['getAllData']) {
-                $projects = $query->get();
+                $projects = $query->get()->orderBy('created_at', 'DESC');
             } else {
                 $projects = $query->paginate($params['perPage'], ['*'], 'page', $params['page']);
             }
