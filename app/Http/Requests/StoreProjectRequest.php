@@ -25,8 +25,10 @@ class StoreProjectRequest extends FormRequest {
             'name' => 'required',
             'content' => 'nullable',
             'cover_path' => 'nullable',
-            'media_type' => 'nullable',
-            'media_path' => 'nullable',
+            'media_type' => 'required',
+            'media_path' => 'required',
+            'participants' => 'nullable|array',
+            'participants.*' => 'exists:users,id',
         ];
     }
 

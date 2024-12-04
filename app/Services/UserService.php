@@ -21,9 +21,9 @@ class UserService {
         $user = User::with([
 	     'posts',
          ])
-	->withCount([
-	     'newNotifications'
-	])
+	    ->withCount([
+	        'newNotifications'
+	    ])
         ->where('id', $userAuth->id)
         ->first();
         return response()->json([
