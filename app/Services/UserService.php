@@ -48,9 +48,9 @@ class UserService {
     public function getUserFollowed(array $params) {
         try {
             $userAuth = Auth::guard('api')->user();        
+            $userAuth = Auth::guard('api')->user();        
             $query = Follow::with(['followed'])
             ->where('follower_id', $userAuth->id);
-
             $followed = $query->paginate($params['perPage'], ['*'], 'page', $params['page']);
             return response()->json(['status' => 'success', 'response' => $followed]);
         } catch (Exception $e) {
@@ -58,24 +58,38 @@ class UserService {
         }
     }
 
-    public function getUserNotifications(array $params) {
-        try {
-            $userAuth = Auth::guard('api')->user();        
-            $query = Notification::with(['post', 'user'])
-            ->where('user_id', $userAuth->id);
+public function getUserNotifications(array $params)
+{
+    try {
+        $userAuth = Auth::guard('api')->user();        
+        $query = Notification::where('user_id', $userAuth->id)
+            ->orderBy('is_read', 'asc') // Ordena por is_read (não lidas primeiro)
+            ->orderBy('created_at', 'desc');
 
-            $notifications = $query->paginate($params['perPage'], ['*'], 'page', $params['page']);
-            return response()->json(['status' => 'success', 'response' => $notifications]);
-        } catch (Exception $e) {
-            return response()->json(['status' => 'failed', 'response' => $e->getMessage()]);
-        }
+        // Paginação das notificações
+        $notifications = $query->paginate($params['perPage'], ['*'], 'page', $params['page']);
+
+        // Adiciona o usuário baseado no conteúdo em cada notificação
+        $notifications->getCollection()->transform(function ($notification) {
+            $userFromContent = $notification->getUserFromContent();
+            $notification->user = $userFromContent ?? null;
+            return $notification;
+        });
+
+        return response()->json(['status' => 'success', 'response' => $notifications]);
+    } catch (Exception $e) {
+        return response()->json(['status' => 'failed', 'response' => $e->getMessage()]);
     }
+}
+
 
     public function getAllUsers(array $params) {
         try {
             $query = User::query();
             if ($params['search']){
-                $query->where('name', 'like', '%' . $params['search'] . '%');
+                $query->where('name', 'like', '%' . $params['search'] . '%')
+		->orWhere('last_name', 'like', '%' . $params['search'] . '%')
+		->orWhere('user',  'like', '%' . $params['search'] . '%');
             }
 
             if ($params['getAllData']) {

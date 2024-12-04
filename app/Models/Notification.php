@@ -19,7 +19,24 @@ class Notification extends Model {
         return $this->belongsTo(Post::class);
     }
 
-    public function user() {
-        return $this->belongsTo(User::class);
+    public function user()     {
+        preg_match('/^(\w+)\s/', $this->content, $matches);
+
+        if (!empty($matches[1])) {
+            return User::where('username', $matches[1])->first();
+        }
+
+        return null; // Retorna null caso não encontre um username
+    }
+
+	    public function getUserFromContent()
+    {
+        preg_match('/^(\w+)\s/', $this->content, $matches);
+
+        if (!empty($matches[1])) {
+            return User::where('user', $matches[1])->first();
+        }
+
+        return null; // Retorna null caso não encontre um username
     }
 }

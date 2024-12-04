@@ -89,6 +89,7 @@ Route::prefix('v1')->group(function () {
             Route::delete('follows', [FollowController::class, 'destroy']);
             Route::apiResource('genres', GenreController::class);
             Route::apiResource('notifications', NotificationController::class);
+	Route::patch('notifications/read/{id}', [NotificationController::class, 'notificationReaded']);
             Route::apiResource('permissions', PermissionController::class);
             Route::apiResource('posts', PostController::class);
             Route::apiResource('post-engagements', PostEngagementController::class)->except(['destroy']);

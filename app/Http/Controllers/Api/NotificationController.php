@@ -34,7 +34,12 @@ class NotificationController {
     //     return $this->notificationService->updateNotification($request->validated(), $id);
     // }
 
+    public function notificationReaded(int $id){
+	return $this->notificationService->readNotification($id);	
+    }
+
     public function destroy(int $id){
         return $this->notificationService->deleteNotification($id);
     }
 }
+

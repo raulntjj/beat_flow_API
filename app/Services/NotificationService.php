@@ -127,4 +127,23 @@ class NotificationService {
             return response()->json(['status' => 'failed', 'response' => $e->getMessage()]);
         }
     }
+
+	public function readNotification(int $id){
+		try {
+			 $notification = DB::transaction(function () use ($id) {
+		            $notification = Notification::find($id);
+
+		            if (!$notification) {
+		                throw new Exception("Notification not found");
+		            }
+
+		            $notification->is_read = true;
+		            $notification->save();
+
+		            return $notification;
+		        });
+		} catch (Exception $e) {
+        	    return response()->json(['status' => 'failed', 'response' => $e->getMessage()]);
+        	}	
+	}
 }
