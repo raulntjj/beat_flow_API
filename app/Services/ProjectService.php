@@ -5,6 +5,8 @@ namespace App\Services;
 use App\Models\Project;
 use App\Models\Feed;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Tymon\JWTAuth\Facades\JWTAuth;
 use App\Traits\S3Operations;
 use Exception;
 

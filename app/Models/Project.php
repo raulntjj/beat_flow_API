@@ -33,7 +33,7 @@ class Project extends Model {
     // Atributos
     public function getCoverTempAttribute(){
         try {
-            return $this->media_path ? Storage::disk('s3')->temporaryUrl($this->media_path, Carbon::now()->addDays(7)) : null;
+            return $this->cover_path ? Storage::disk('s3')->temporaryUrl($this->cover_path, Carbon::now()->addDays(7)) : null;
         } catch (\Exception $e) {
             return null;
         }
