@@ -111,15 +111,18 @@ class NotificationService {
     public function deleteNotification(int $id) {
         try {
             $notification = DB::transaction(function() use ($id) {
-                $notification = Notification::find($id);
+                $notifications = Notification::where('user_id', $id)->get();
 
-                if (!$notification) {
+                if (!$notifications) {
                     throw new Exception("Notification not found");
                 }
 
-                $notification->delete();
+		foreach($notifications as $notification) {
+			$notification->delete();
+		}
+            
 
-                return $notification;
+                return 1;
             });
 
             return response()->json(['status' => 'success', 'response' => 'Notification deleted successfully']);

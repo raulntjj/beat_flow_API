@@ -153,7 +153,7 @@ public function getUserNotifications(array $params)
                     'password' => $request['password'],
                     'profile_photo_path' => $request['profile_photo_path'],
                     'bio' => $request['bio'],
-                    'is_private' => $request['is_private'],
+                    'is_private' => $request['is_private'] ?? false,
                 ]);    
             });
 

@@ -21,7 +21,7 @@ class StoreUserRequest extends FormRequest {
             // 'profile_photo_path' => 'required',
             'profile_photo_path' => 'nullable|mimes:jpg,jpeg,png',
             'bio' => 'nullable|string|max:500',
-            'is_private' => 'required|boolean',
+            'is_private' => 'nullable|boolean',
         ];
     }
 
